@@ -2,6 +2,13 @@
 
 The Pitstop — Cars24’s October 2026 newsletter. A responsive, swipeable editorial reader inspired by Flatland.
 
+## Links
+
+- [Live site on Vercel](https://newsletter-x-cars-24.vercel.app/)
+- [GitHub Pages](https://ishaankothiyal-designer.github.io/Newsletter-X-Cars-24/)
+- [Public repository](https://github.com/ishaankothiyal-designer/Newsletter-X-Cars-24)
+- [Vercel project dashboard](https://vercel.com/design-ea38/newsletter-x-cars-24)
+
 The current V8 edition includes 26 stories in five chapters, eight paper colours, varied editorial layouts, story illustrations, source notes, and a soft page-turn sound. Earlier design versions remain available from the Versions menu.
 
 ## Local preview
