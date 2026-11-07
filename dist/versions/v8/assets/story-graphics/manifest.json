@@ -1,0 +1,92 @@
+{
+  "growth": {
+    "src": "assets/story-graphics/growth.svg",
+    "alt": "A rising road carries a car upwards, an editorial metaphor for growth.",
+    "type": "spot"
+  },
+  "ecosystem": {
+    "src": "assets/story-graphics/ecosystem.svg",
+    "alt": "A car, a protective shield, and finance papers connected as one ecosystem.",
+    "type": "spot"
+  },
+  "startup": {
+    "src": "assets/story-graphics/startup.svg",
+    "alt": "A seedling grows from an open notebook beside a pencil.",
+    "type": "spot"
+  },
+  "lending": {
+    "src": "assets/story-graphics/lending.svg",
+    "alt": "A stack of coins beside a car and a completed loan document.",
+    "type": "spot"
+  },
+  "finance": {
+    "src": "assets/story-graphics/finance.svg",
+    "alt": "A process map under review with a magnifying glass and pencil.",
+    "type": "spot"
+  },
+  "close": {
+    "src": "assets/story-graphics/close.svg",
+    "alt": "A ruled ledger with a magnifying glass focusing on a reconciled entry.",
+    "type": "spot"
+  },
+  "dealer": {
+    "src": "assets/story-graphics/dealer.svg",
+    "alt": "A phone and an offer document, with a pencil for customising terms.",
+    "type": "spot"
+  },
+  "miles": {
+    "src": "assets/story-graphics/miles.svg",
+    "alt": "A dotted field-visit route links three location pins to a car.",
+    "type": "spot"
+  },
+  "leads": {
+    "src": "assets/story-graphics/leads.svg",
+    "alt": "A priority queue of three customer conversations with one brought forward.",
+    "type": "spot"
+  },
+  "approvals": {
+    "src": "assets/story-graphics/approvals.svg",
+    "alt": "An approval journey moves from waiting to in progress to a check mark.",
+    "type": "spot"
+  },
+  "saarathi": {
+    "src": "assets/story-graphics/saarathi.svg",
+    "alt": "A car at the yard next to adjustable offer controls on a clipboard.",
+    "type": "spot"
+  },
+  "ownership": {
+    "src": "assets/story-graphics/ownership.svg",
+    "alt": "Connected backend servers lead to a separate phone awaiting final checks.",
+    "type": "spot"
+  },
+  "security": {
+    "src": "assets/story-graphics/security.svg",
+    "alt": "A software package receives a stitched security patch.",
+    "type": "spot"
+  },
+  "survey": {
+    "src": "assets/story-graphics/survey.svg",
+    "alt": "Three different speech bubbles meet an open feedback notebook.",
+    "type": "spot"
+  },
+  "thermostat": {
+    "src": "assets/story-graphics/thermostat.svg",
+    "alt": "A thermostat between a winter scarf and a small desk fan.",
+    "type": "spot"
+  },
+  "controls": {
+    "src": "assets/story-graphics/controls.svg",
+    "alt": "Routine checks flow through a system while one exception is separated.",
+    "type": "spot"
+  },
+  "inflection": {
+    "src": "assets/story-graphics/inflection.svg",
+    "alt": "Different interlocking pieces assemble into a shared bridge.",
+    "type": "spot"
+  },
+  "safeguards": {
+    "src": "assets/story-graphics/safeguards.svg",
+    "alt": "A growing branch is supported by a protective shield.",
+    "type": "spot"
+  }
+}

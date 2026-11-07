@@ -1,0 +1,33 @@
+/* Hallmark · macrostructure: Editorial Workbench · tone: V6 newsprint · anchor hue: Cars24 blue
+ * Preserves the user-selected V6 visual system and opaque card-to-back motion. */
+@import url('tokens.css');
+html{height:100%;min-height:0;overflow:clip}
+body{height:var(--mobile-viewport-height,100dvh);min-height:0;overflow:clip;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:var(--space-sm);padding:max(var(--space-sm),env(safe-area-inset-top)) max(var(--space-lg),env(safe-area-inset-right)) max(var(--space-sm),env(safe-area-inset-bottom)) max(var(--space-lg),env(safe-area-inset-left))}
+.newspaper-header,.workspace,.page-footer{width:100%;max-width:1440px;margin:0 auto;min-width:0}
+.imprint{padding:0 0 var(--space-sm);font-size:9px}.imprint a{min-height:24px}.imprint img{width:84px}
+.masthead-row{padding:4px 0 6px;grid-template-columns:190px minmax(0,1fr) 72px}.masthead-row h1{font-size:clamp(52px,6vw,86px)}.issue-seal{height:58px;width:50px;font-size:7px;gap:2px}.issue-seal strong{font-size:28px}
+.edition-rule{padding:5px 0;font-size:8px}
+.workspace{height:100%;min-height:0;grid-template-columns:minmax(170px,210px) minmax(0,740px) minmax(130px,200px);justify-content:center;gap:var(--space-xl);padding:0;align-items:stretch}
+.editorial-rail,.reading-note{height:100%;min-height:0;overflow-y:auto;scrollbar-width:thin}.editorial-rail h2{font-size:32px}.rail-bottom{margin-top:var(--space-lg)}.section-label{margin-top:var(--space-lg)}#chapter-nav button{font-size:12px;line-height:1.5}
+.reader{height:100%;min-height:0;display:grid;grid-template-rows:44px minmax(0,1fr) auto;gap:var(--space-sm)}
+.reader-header{height:44px;min-height:0;margin:0;gap:var(--space-sm)}.reader-wordmark{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.reader-header .version-button{min-height:44px;flex-shrink:0}
+.deck-wrap{min-height:0;padding:0 38px 28px 2px}.track{height:100%;min-height:0;aspect-ratio:auto;width:100%}
+.sheet-scroll{height:100%;overflow-y:auto;overscroll-behavior-y:contain;touch-action:pan-y pinch-zoom;padding:var(--space-lg);gap:14px;scrollbar-width:thin}
+.sheet h2,.statement-layout h2{font-size:clamp(36px,3.5vw,58px)}.statement-layout .story-headline{padding-top:var(--space-sm);padding-bottom:var(--space-md)}
+.print-image img{height:clamp(140px,24dvh,235px)}.print-image+.print-image{margin-top:var(--space-md)}
+.article-copy{display:block}.byline{flex-direction:row;flex-wrap:wrap;gap:6px 12px;padding:var(--space-sm) 0 10px;margin-bottom:12px;border-right:0;border-bottom:1px solid var(--rule)}.byline-label,.byline-name{font-size:10px}.body-text,.statement-layout .body-text{font-size:16px;line-height:1.65}.body-text+.body-text{margin-top:12px}
+.story-credit{min-height:44px;font-size:10px}.folio{font-size:8px;line-height:1.5}.folio>span{min-width:0}.card-category{line-height:1.6}.story-bottom{min-height:44px}
+.reader-footer{padding:0 38px 0 2px;min-height:0}.reading-progress{font-size:8px}.controls{margin-top:var(--space-sm)}#back,#next{min-height:44px}.page-footer{min-height:28px;padding:0;font-size:8px}.page-footer a{min-height:28px;display:inline-flex;align-items:center}
+.original-opening .sheet-scroll{padding:10px;gap:var(--space-sm)}.original-artwork{flex:1;aspect-ratio:auto;flex-shrink:1;min-height:0}.original-opening .opening-bottom{font-size:7px;margin-top:0;flex-shrink:0}
+.intro-copy{font-size:16px;line-height:1.65;user-select:text}.overview-buckets{display:grid;gap:var(--space-lg)}.overview-buckets>section{border-top:2px solid var(--ink);padding-top:var(--space-sm)}
+.index-jump{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;min-height:44px;padding:10px 0;border-bottom:1px solid var(--rule);font:14px/1.5 var(--body)}.index-jump>span{flex-shrink:0}.index-jump:hover{color:var(--blue)}
+.overview-heading>.index-jump{font:24px/1.2 var(--display);text-transform:uppercase;border:0}.overview-heading small{font:9px/1.5 var(--mono)}.overview-story-list{margin-top:var(--space-sm)}.overview-story-list .index-jump{font-size:13px}
+.bucket-number{font:100px/1 var(--display);display:flex;align-items:center;gap:var(--space-lg);padding:var(--space-md) 0;border-bottom:2px solid var(--ink)}.bucket-number span{font:10px/1.7 var(--mono)}.bucket-index{display:grid}.completion .sheet-scroll{justify-content:flex-start}.completion h2{font-size:clamp(42px,4vw,68px)}
+dialog,#version-dialog{max-height:calc(var(--mobile-viewport-height,100dvh) - 32px);overflow-y:auto;overscroll-behavior:contain}
+@media(min-width:1025px) and (max-width:1200px){.workspace{grid-template-columns:175px minmax(0,720px);gap:var(--space-lg)}.reading-note{display:none}.masthead-row{grid-template-columns:175px minmax(0,1fr) 60px}}
+@media(max-width:1024px){body{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));gap:6px}.newspaper-header,.workspace,.page-footer{max-width:720px}.workspace{display:block}.editorial-rail,.reading-note{display:none}.imprint{padding-bottom:6px}.masthead-row{grid-template-columns:minmax(0,1fr) 38px;gap:10px;padding:6px 0}.masthead-row h1{font-size:clamp(38px,10vw,66px)}.issue-seal{width:33px;height:41px}.issue-seal strong{font-size:21px}.sheet-scroll{padding:var(--space-md);gap:12px}.sheet h2,.statement-layout h2{font-size:clamp(32px,7vw,52px)}.body-text,.statement-layout .body-text,.intro-copy{font-size:15px;line-height:1.65}.print-image img{height:clamp(110px,20dvh,180px)}.reader-header .reader-wordmark{font-size:9px}.deck-wrap{padding-right:32px;padding-bottom:24px}.reader-footer{padding-right:32px}.page-footer,.page-footer a{min-height:28px}.page-footer>span:nth-child(2){display:none}.reading-progress{font-size:7px;gap:6px}.bucket-number{font-size:80px}}
+@media(max-height:700px){.masthead-row{padding:3px 0}.masthead-row h1{font-size:42px}.issue-seal{height:34px}.issue-seal strong{font-size:18px}.edition-rule{padding:3px 0}.reading-note .swipe-sketch,.rail-bottom{display:none}}
+@media(max-height:500px){.masthead-row,.edition-rule{display:none}.imprint{padding:0}.reader{gap:5px}.deck-wrap{padding-bottom:20px}.page-footer{min-height:24px}.page-footer a{min-height:24px}.sheet-scroll{padding:13px;gap:10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}
+/* A long bucket label must shrink inside the header, never widen the reader grid. */
+.reader{grid-template-columns:minmax(0,1fr)}.reader-header,.deck-wrap,.reader-footer{min-width:0}.reader-header .reader-wordmark{flex:1 1 0;width:0}.reader-header .text-button{flex-shrink:0}

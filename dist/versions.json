@@ -1,0 +1,70 @@
+{
+  "default": "v8",
+  "versions": [
+    {
+      "id": "v1",
+      "name": "Original",
+      "description": "The first newsletter layout, before editorial and motion refinements.",
+      "date": "2026-11-02",
+      "commit": "7f6c0d9426074c772b1505588a2fb948b32f736f",
+      "path": "versions/v1/"
+    },
+    {
+      "id": "v2",
+      "name": "Editorial refinement",
+      "description": "Story-specific layouts, varied typography, and the refined editorial direction.",
+      "date": "2026-11-02",
+      "commit": "f74d5b4ecfce86d4ff682baf76e6a031348bc8c9",
+      "path": "versions/v2/"
+    },
+    {
+      "id": "v3",
+      "name": "Pastel",
+      "description": "Pastel backgrounds with the rebuilt navigation and aligned Miles story.",
+      "date": "2026-11-02",
+      "commit": "a50f68c156de5f7c2a082877415536fe97713048",
+      "path": "versions/v3/"
+    },
+    {
+      "id": "v4",
+      "name": "Flatland",
+      "description": "Original grid backgrounds extracted from the Flatland PDF.",
+      "date": "2026-11-03",
+      "commit": "224e5af1dff9b9e0d1beb1d57bcc8eb45bf38533",
+      "path": "versions/v4/"
+    },
+    {
+      "id": "v5",
+      "name": "Newsprint",
+      "description": "Newspaper opening, original Flatland patterns, blue ink illustrations, editorial line art, and a swipeable story deck.",
+      "date": "2026-11-03",
+      "commit": "a272fde391825cf57b39dd26e820510668762491",
+      "path": "versions/v5/"
+    },
+    {
+      "id": "v6",
+      "name": "Viewport deck",
+      "description": "Device-height mobile reading with visible controls, scrollable stories, and swiped cards tucked behind the deck.",
+      "date": "2026-11-03",
+      "baseCommit": "a74b59ea70843445efcc262a0468bed7da40215b",
+      "path": "versions/v6/",
+      "commit": "d4d2a4883120dc54c3ae905dc6cb8392365b7e18"
+    },
+    {
+      "id": "v7",
+      "name": "Cars24 newspaper",
+      "description": "V6 layout and card-to-back reading, with Cars24 blue, neutral newsprint, and mint accents replacing the Flatland palette.",
+      "date": "2026-11-03",
+      "commit": "cddf0adc6d59d1edbb6ca7a87873aaf71a77fadc",
+      "path": "versions/v7/"
+    },
+    {
+      "id": "v8",
+      "name": "Five chapters \u00b7 V6 paper",
+      "description": "Original V6 Flatland paper, cover artwork and card-to-back animation, with a quieter header, five chapter introductions, accordion contents, and 26 individual stories.",
+      "date": "2026-11-07",
+      "path": "versions/v8/",
+      "baseCommit": "c5c27cdf91fe28c6b8e21c3b8314519cee9b94e3"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+/* V7: colour-only Cars24 theme over the unchanged V6 newspaper reader.
+ * Brand Blue 300 / 700, Neutral 100 / 950, Mint Green 500,
+ * and the approved Ethereal Glow light endpoint. Historical tone names
+ * remain aliases so the V6 story data and interaction code stay identical.
+ */
+:root {
+  --blue: #4736fe;
+  --ink: #2b2098;
+  --paper: #f5f5f5;
+  --muted: #161616;
+  --white: #ffffff;
+  --brand-tint: #ebe9ff;
+  --brand-mint: #63ffb1;
+  --green: var(--paper);
+  --pink: var(--brand-tint);
+  --sky: var(--brand-tint);
+  --yellow: var(--white);
+  --mint: var(--paper);
+  --ice: var(--white);
+  --rule: #2b209840;
+  --faint: #4736fe12;
+  --shadow: #16161624;
+}
+/* Neutral newsprint replaces the warm paper and every Flatland colour grid. */
+body { background-image: url('assets/v7-newsprint-paper.svg'); }
+.sheet[data-flatland] { background-image: url('assets/v7-newsprint-paper.svg'); }
+/* Blue is the editorial ink; long-form copy uses the brand's near-black. */
+.masthead-row h1, .sheet h2, .big-stat, .page-number,
+.editorial-rail h2, .next-preview h2, .rail-bottom p,
+.reading-note > p, .opening-deck, .opening-count { color: var(--blue); }
+.body-text, .byline, .story-foot, .opening-summary p,
+.completion p, dialog p { color: #161616; }
+.print-image { background-color: var(--blue); }
+#next, #progress-fill { background-color: var(--blue); }
+#next:hover { background-color: var(--ink); }
+.card-category::before, .issue-seal { background-color: var(--brand-mint); }
+.opening-spark, .editorial-dingbat { color: var(--blue); }
+.swipe-sketch span { background-color: var(--paper); }
+.swipe-sketch span:nth-child(2) { background-color: var(--brand-tint); }
+.swipe-sketch span:nth-child(3) { background-color: var(--brand-mint); }

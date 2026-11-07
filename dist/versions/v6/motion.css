@@ -1,0 +1,13 @@
+/* Browser-native horizontal pan + scroll snap. Custom capture is mouse/pen only. */
+.motion-track{scroll-snap-type:x mandatory!important;scroll-behavior:auto!important;touch-action:auto;cursor:grab;isolation:isolate}
+.motion-track.is-controlled{scroll-snap-type:none!important}
+.motion-track.is-mouse-dragging{cursor:grabbing;user-select:none;-webkit-user-select:none}
+.swipe-surface{position:relative;display:flex;flex-direction:inherit;flex:1;min-height:0;width:100%;height:100%;overflow:hidden;backface-visibility:hidden;transform-origin:50% 80%}
+.cover .swipe-surface{align-items:center;justify-content:center;background-color:var(--paper)!important}
+.end .swipe-surface{align-items:center;justify-content:center}
+/* Readable text is never masked or animated from opacity zero. */
+.gsap-motion .reveal-line{overflow:visible}
+.gsap-motion .reveal-line>span{display:block}
+.motion-track.is-scrolling .swipe-surface{will-change:transform}
+@media(prefers-reduced-motion:reduce){.motion-track .swipe-surface{transform:none!important}}
+.reduce-motion *,.reduce-motion *:before,.reduce-motion *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}

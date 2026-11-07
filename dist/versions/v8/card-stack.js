@@ -1,0 +1,141 @@
+(() => {
+'use strict';
+const data=window.PITSTOP,$=id=>document.getElementById(id),track=$('track');
+const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const plain=s=>s.replace(/\n/g,' '),lines=s=>s.split('\n').map(x=>`<span>${escape(x)}</span>`).join('');
+const count=data.stories.length,chapters=data.chapters.map(x=>x.name);
+const paper={academy:'green',growth:'paper',ecosystem:'pink',frontier:'ice',startup:'yellow',lending:'sky',handovers:'mint',waits:'pink',dehradun:'green',pdi:'ice',telugu:'pink',dealer:'ice',miles:'sky',leads:'green',approvals:'yellow',saarathi:'mint',ownership:'green',security:'paper',codex:'sky',hackathon:'yellow',milo:'mint',badminton:'pink',survey:'yellow',finance:'ice',close:'paper',ambition:'green',controls:'yellow',inflection:'pink',safeguards:'ice',thermostat:'sky',diwali:'yellow'};
+
+// Original background extractions: source page provenance in assets/flatland/manifest.json.
+const flatland={paper:'cream-grid',green:'green-grid',pink:'pink-grid',yellow:'yellow-grid',mint:'mint-grid',sky:'blue-grid',ice:'ice-grid'};
+const editorialMotifs={"academy":"tools","growth":"chart","ecosystem":"globe","frontier":"rocket","startup":"bulb","lending":"chart","handovers":"key","waits":"clock","dehradun":"pin","pdi":"inspect","telugu":"film","dealer":"check","miles":"route","leads":"phone","approvals":"check","saarathi":"tools","ownership":"key","security":"shield","codex":"laptop","hackathon":"puzzle","milo":"sprout","badminton":"racket","survey":"bubble","finance":"inspect","close":"ledger","ambition":"telescope","controls":"gears","inflection":"route","safeguards":"shield","thermostat":"snow"};
+const flourish=id=>`<span class="editorial-dingbat" aria-hidden="true">${id==='thermostat'?'❄':['growth','miles','frontier','ambition','controls'].includes(id)?'↗':'✦'}</span>`;
+const editorialMark=motif=>`<svg viewBox="0 0 96 76" aria-hidden="true" focusable="false"><use href="assets/v5-editorial-marks.svg#${motif}"></use></svg>`;
+const sticker=id=>`<span class="editorial-cut" aria-hidden="true">${editorialMark(editorialMotifs[id])}</span>`;
+const alt={academy:'Illustrated colleagues learning beside a car in a workshop.',frontier:'An imagined AI event with a team on stage.',customer:'Illustrated family receiving car keys from an advisor.',business:'Illustrated colleagues and cars at a Cars24 hub.','akbar-birbal':'Akbar and Birbal inspecting a car in an editorial illustration.',telugu:'An imagined illustration of Vijay Deverakonda beside a car.',team:'Illustrated colleagues working around a laptop.',perspective:'Illustrated colleagues looking towards a road and city horizon.',diwali:'Painted Diwali celebration at a decorated Cars24 hub.', 'diwali-detail':'Painted Cars24 colleagues celebrating Diwali and sharing sweets.'};
+const image=(name,cover=false)=>`<figure class="print-image"><img src="${escape(data.stories.find(s=>s.imageFiles?.[name])?.imageFiles[name]||`assets/${name}.webp`)}" alt="${escape(alt[name])}" draggable="false" ${cover?'fetchpriority="high"':'loading="lazy"'}></figure>`;
+const folio=(section,page)=>`<div class="folio"><span>THE PITSTOP / OCTOBER ’26</span><span>${escape(section)} · ${page}</span></div>`;
+const opening=`<article class="sheet opening-card original-opening" id="cover" data-flatland="cream-grid" style="--tone:var(--paper)" role="group" aria-roledescription="slide" aria-label="The Pitstop opening slide"><div class="sheet-scroll" tabindex="0" aria-label="Opening slide content"><a class="original-artwork" href="${escape(data.form)}" target="_blank" rel="noopener" aria-label="Share your story with The Pitstop (opens in a new tab)"><img src="assets/opening.webp" width="1122" height="1402" alt="The Pitstop. Your story belongs here. Big wins. Brave firsts. Everyday moments. Colleagues gather around a laptop." fetchpriority="high" draggable="false"></a><div class="opening-bottom"><span>OCTOBER 2026 / INTERNAL EDITION</span><span>31 STORIES · FOUR BUCKETS ↗</span></div></div></article>`;
+const jump=(index,title)=>`<button class="index-jump" data-jump="${index+1}">${escape(plain(title))}<span aria-hidden="true">↗</span></button>`;
+const special=(s,i)=>`<article class="sheet ${s.kind}-card" id="${s.id}" data-flatland="${flatland[s.tone]}" style="--tone:var(--${s.tone})" role="group" aria-roledescription="slide" aria-label="${escape(plain(s.title))}"><div class="sheet-scroll" tabindex="0" aria-label="${s.kind==='overview'?'Edition overview':'Bucket introduction'}">${folio(s.kind==='overview'?'THE OVERVIEW':s.label,s.kind==='overview'?'02':String(i+2).padStart(2,'0'))}<div class="card-category">${escape(s.label)}<span class="editorial-dingbat" aria-hidden="true">↗</span></div><div class="story-headline"><h2>${lines(s.kind==='overview'?s.title:data.chapters[s.bucket].title)}</h2></div>${s.kind==='overview'?`<p class="intro-copy">The business. The technology. The customers. The people. Pick a bucket, or turn the card and read on.</p><div class="overview-buckets">${data.chapters.map((ch,k)=>`<section><div class="overview-heading">${jump(data.stories.findIndex(x=>x.id==='bucket-'+ch.id),ch.name)}<small>${ch.stories.length} STORIES</small></div><div class="overview-story-list">${ch.stories.map(id=>{const n=data.stories.findIndex(x=>x.id===id);return jump(n,data.stories[n].title)}).join('')}</div></section>`).join('')}</div>`:`<p class="intro-copy">${escape(s.body).replace(/\n\n/g,'</p><p class="body-text">')}</p><div class="bucket-number" aria-hidden="true">0${s.bucket+1}<span>OF FOUR<br>BUCKETS</span></div><div class="bucket-index">${data.chapters[s.bucket].stories.map(id=>{const n=data.stories.findIndex(x=>x.id===id);return jump(n,data.stories[n].title)}).join('')}</div>`}<div class="story-bottom"><span>${s.kind==='overview'?'CHOOSE A STORY. OR KEEP READING.':'YOUR NEXT PIT STOP STARTS HERE.'}</span><span class="page-number">${String(i+2).padStart(2,'0')}</span></div></div></article>`;
+track.innerHTML=opening+data.stories.map((s,i)=>s.kind!=='story'?special(s,i):`<article class="sheet ${s.layout==='image'?'image-layout':s.layout==='stat'?'stat-layout':'statement-layout'}" id="${escape(s.id)}" data-flatland="${flatland[paper[s.id]||'paper']}" style="--tone:var(--${paper[s.id]||'paper'})" role="group" aria-roledescription="slide" aria-label="Story ${s.number} of ${data.storyCount}: ${escape(plain(s.title))}"><div class="sheet-scroll" tabindex="0" aria-label="Story content">${folio(s.chapter,String(s.number).padStart(2,'0'))}<div class="card-category">${escape(s.label)}${flourish(s.id)}</div><div class="story-headline"><h2>${lines(s.title)}</h2></div>${s.layout==='stat'?`<div class="stat-block"><div class="metric-value"><div class="big-stat">${escape(s.stat)}</div><div class="stat-unit">${escape(s.unit)}</div></div>${sticker(s.id)}</div>`:''}${s.image?`<div>${(s.images||[s.image]).map(name=>image(name)).join('')}<div class="story-caption"><span>EDITORIAL ILLUSTRATION</span><span>CARS24 / OCT ’26</span></div></div>`:''}${s.accent?`<p class="story-accent">${escape(s.accent)}</p>`:''}<div class="article-copy"><div class="byline"><span class="byline-label">REPORTED BY</span><span class="byline-name">${escape(s.credit.split(' · ')[0])}</span></div><p class="body-text">${escape(s.body).replace(/\n\n/g,'</p><p class="body-text">')}</p></div>${s.foot?`<p class="story-foot">${escape(s.foot)}</p>`:''}${s.link?`<a class="story-link" href="${escape(s.link)}" target="_blank" rel="noopener">${escape(s.linkLabel)} ↗</a>`:''}${!s.image&&s.layout!=='stat'?`<div class="edition-stamp" aria-hidden="true"><strong>${String(s.number).padStart(2,'0')}</strong>${sticker(s.id)}<span>FROM OUR CORNER<br>OF THE WORLD.<br>THE PITSTOP / 2026</span></div>`:''}<div class="story-bottom"><button class="story-credit" data-credit="${i}">Story notes & source ↗</button><span class="page-number">${String(s.number).padStart(2,'0')}</span></div></div></article>`).join('')+`<article class="sheet completion" id="caught-up" data-flatland="green-grid" style="--tone:var(--green)" role="group" aria-roledescription="slide" aria-label="End of the edition"><div class="sheet-scroll" tabindex="0" aria-label="End of edition content">${folio('THAT’S A WRAP','38')}<div class="card-category">THE END. UNTIL NEXT MONTH.<span class="editorial-dingbat" aria-hidden="true">✦</span></div><div class="completion-cut" aria-hidden="true">${editorialMark('globe')}</div><h2>GOOD MONTH.<br>GREAT PEOPLE.</h2><p>Big wins, everyday moments, and a little Diwali warmth. Got a win, a lesson, or a teammate story for the next edition?</p><a class="story-link" href="${escape(data.form)}" target="_blank" rel="noopener">Add your story ↗</a><button class="cover-link" id="read-again">Read again ↗</button><div class="story-bottom"><span>YOUR STORY BELONGS HERE.</span><span class="page-number">✓</span></div></div></article>`;
+track.querySelectorAll('[data-flatland]').forEach(card=>card.style.setProperty('--flatland-background',`url("assets/flatland/${card.dataset.flatland}.svg")`));
+const cards=[...track.children],reduced=matchMedia('(prefers-reduced-motion: reduce)');
+// Measure all stories at their natural height and share one frame across the deck.
+let measuredDeckWidth=0;
+const mobileViewport=matchMedia('(min-width:0px)');
+function syncMobileViewport(){
+ const view=window.visualViewport;
+ // Browser zoom retains its own visual viewport; do not resize the UI during pinch zoom.
+ if(view&&Math.abs(view.scale-1)>.01)return;
+ document.documentElement.style.setProperty('--mobile-viewport-height',`${Math.floor(view?.height||innerHeight)}px`);
+}
+function updateScrollHint(){
+ const scroller=cards[current]?.querySelector('.sheet-scroll');
+ if(!scroller)return;
+ $('gesture').textContent=mobileViewport.matches&&scroller.scrollHeight>scroller.clientHeight+2?'SCROLL STORY · SWIPE ↔':'DRAG OR SWIPE ↔';
+}
+function fitDeck(){measuredDeckWidth=track.clientWidth;track.style.removeProperty('--deck-height');updateScrollHint();}
+
+let current=0,revision=0,gesture=null,suppressClickUntil=0,wheelTime=0;
+const storageKey='pitstop-october-2026-v8-story-deck';
+let saved=0;try{saved=Number(localStorage.getItem(storageKey))||0}catch{}
+const chapterButtons=chapters.map((chapter,j)=>{const start=data.stories.findIndex(s=>s.kind==='bucket'&&s.chapter===chapter)+1;const button=document.createElement('button');button.innerHTML=`${escape(chapter)}<span>${String(j+1).padStart(2,'0')}</span>`;button.addEventListener('click',()=>go(start,false));$('chapter-nav').append(button);return{chapter,button}});
+$('contents-list').innerHTML=`<button class="index-jump" data-go="1">Edition overview ↗</button>`+chapters.map(ch=>`<section class="contents-section"><h3>${escape(ch)}</h3>${data.stories.map((s,i)=>s.chapter===ch?`<button data-go="${i+1}"><span>${s.kind==='bucket'?'↗':String(s.number).padStart(2,'0')}</span>${escape(s.kind==='bucket'?'Introduction to this bucket':plain(s.title))}</button>`:'').join('')}</section>`).join('');
+const stateTransform=d=>d===0?'translate3d(0,0,0) rotate(0deg) scale(1)':d===1?'translate3d(19px,8px,0) rotate(2deg) scale(.975)':d===2?'translate3d(37px,16px,0) rotate(4deg) scale(.95)':`translate3d(${d<0?-track.clientWidth-100:50}px,12px,0) rotate(${d<0?-12:5}deg) scale(.95)`;
+function settle(animate=true,previous=current){
+ const ticket=++revision;
+ const back=(current-1+cards.length)%cards.length;
+ cards.forEach((card,i)=>{
+  const d=(i-current+cards.length)%cards.length,old=card.getBoundingClientRect();
+  const from=getComputedStyle(card).transform;card.getAnimations().forEach(a=>a.cancel());
+  const visible=d<=2||i===back,outgoing=i===previous&&current===previous+1;
+  const depth=i===back?3:d>=3?d+1:d;
+  const target=stateTransform(depth),z=String(4-depth);
+  const focusInside=card.contains(document.activeElement);
+  if(i!==current&&focusInside)track.focus({preventScroll:true});
+  card.inert=i!==current;card.setAttribute('aria-hidden',String(i!==current));card.dataset.depth=String(depth);
+  card.style.zIndex=z;card.style.pointerEvents=i===current?'auto':'none';
+  card.style.transform=target;card.style.visibility=visible?'visible':'hidden';
+  if(animate&&!reduced.matches&&visible&&old.width){
+   // Carry the whole sheet around the left edge, then return it underneath.
+   // Z-order belongs to the animation so interrupted turns cancel atomically.
+   const start=from==='none'?stateTransform((i-previous+cards.length)%cards.length):from;
+   const outside=`translate3d(${-track.clientWidth-70}px,18px,0) rotate(-10deg) scale(.97)`;
+   const frames=outgoing?[
+    {transform:start,opacity:1,zIndex:'5',offset:0},
+    {transform:outside,opacity:1,zIndex:'5',offset:.48},
+    {transform:outside,opacity:1,zIndex:z,offset:.49},
+    {transform:target,opacity:1,zIndex:z,offset:1}
+   ]:[{transform:start,opacity:1},{transform:target,opacity:1}];
+   const a=card.animate(frames,{duration:outgoing?720:480,easing:'cubic-bezier(.22,.68,.2,1)',fill:'none'});
+   a.finished.then(()=>{if(ticket!==revision)return;card.style.visibility=visible?'visible':'hidden'}).catch(()=>{});
+  }
+ });
+}
+function metadata(){
+ const s=data.stories[current-1],next=data.stories[current];
+ $('position').textContent=`${String(current+1).padStart(2,'0')} / ${cards.length} PAGES`;
+ $('home').textContent=current===0?'THE PITSTOP':s?.kind==='overview'?'THE OVERVIEW':s?s.chapter.toUpperCase():'THE LAST PAGE';
+ $('back').disabled=current===0;$('next').disabled=current===cards.length-1;
+ $('next').innerHTML=`${current===0?'Open the edition':current===cards.length-2?'Finish the edition':current===cards.length-1?'All caught up':s?.kind==='bucket'?'Read the stories':'Next page'} <span aria-hidden="true">→</span>`;
+ $('progress-fill').style.width=`${current/(cards.length-1)*100}%`;
+ const bar=document.querySelector('.progress');bar.setAttribute('aria-valuemax',cards.length-1);bar.setAttribute('aria-valuenow',current);bar.setAttribute('aria-valuetext',`Page ${current+1} of ${cards.length}`);
+ chapterButtons.forEach(x=>{if(x.chapter===s?.chapter)x.button.setAttribute('aria-current','true');else x.button.removeAttribute('aria-current')});
+ document.querySelectorAll('[data-go]').forEach(b=>{if(Number(b.dataset.go)===current)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
+ $('upnext-label').textContent=current===0?'START HERE':'UP NEXT';
+ $('upnext-title').textContent=next?plain(next.title):current===cards.length-2?'Good month. Great people.':'Your story belongs here.';
+ $('upnext-section').textContent=next?.chapter?next.chapter.toUpperCase():next?'FOUR BUCKETS / 31 STORIES':'THE PITSTOP / OCTOBER 2026';
+ $('announcement').textContent=`Page ${current+1} of ${cards.length}. ${current===0?'The Pitstop opening':s?plain(s.title):'End of the edition'}`;
+ try{history.replaceState(null,'','#'+cards[current].id)}catch{}
+ if(current>0){saved=current;try{localStorage.setItem(storageKey,String(current))}catch{}}
+ $('resume').hidden=!(saved>0&&saved!==current&&saved<cards.length);$('mobile-resume').hidden=$('resume').hidden;updateScrollHint();
+}
+
+function cancelGesture(){if(!gesture)return;const id=gesture.id;gesture=null;try{track.releasePointerCapture(id)}catch{}track.classList.remove('dragging')}
+function go(index,animate=true){cancelGesture();index=Math.max(0,Math.min(cards.length-1,index));const old=current;current=index;if(old!==current)cards[current].querySelector('.sheet-scroll').scrollTop=0;settle(animate,old);metadata()}
+$('next').addEventListener('click',()=>go(current+1));$('back').addEventListener('click',()=>go(current-1));$('home').addEventListener('click',()=>go(0,false));$('read-again').addEventListener('click',()=>go(0,false));$('resume').addEventListener('click',()=>go(saved,false));
+$('menu').addEventListener('click',()=>$('contents').showModal());$('mobile-resume').addEventListener('click',()=>{$('contents').close();go(saved,false)});
+document.querySelectorAll('.close-dialog').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
+document.querySelectorAll('dialog').forEach(dialog=>{dialog.addEventListener('keydown',e=>e.stopPropagation());dialog.addEventListener('click',e=>{const r=dialog.getBoundingClientRect();if(e.target===dialog&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))dialog.close()})});
+$('contents-list').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;$('contents').close();go(Number(b.dataset.go),false)});
+$('back-cover').addEventListener('click',()=>{$('contents').close();go(0,false)});
+track.addEventListener('click',e=>{if(performance.now()<suppressClickUntil){e.preventDefault();e.stopPropagation();return}const jump=e.target.closest('[data-jump]');if(jump){go(Number(jump.dataset.jump),false);return}const b=e.target.closest('[data-credit]');if(!b)return;const s=data.stories[Number(b.dataset.credit)];$('credit-title').textContent=plain(s.title);$('credit-source').textContent=s.sourceCredit||s.credit;$('credit-note').textContent=s.note||'Condensed from the supplied October edition. Status and figures reflect that edition’s reporting cut-off.';const sourceData=window.PITSTOP_SOURCES||{},links=s.sourceLinks||sourceData.stories?.[s.id]||[];
+$('credit-links').replaceChildren();
+links.forEach(source=>{
+ let url;try{url=new URL(source.url)}catch{return}if(url.protocol!=='https:')return;
+ const link=document.createElement('a');link.className='source-link';link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label',`${source.label} (opens in a new tab)`);
+ const copy=document.createElement('span'),label=document.createElement('strong'),detail=document.createElement('small'),arrow=document.createElement('span');label.textContent=source.label;detail.textContent=source.detail;arrow.textContent='↗';arrow.setAttribute('aria-hidden','true');arrow.className='source-link-arrow';copy.append(label,detail);link.append(copy,arrow);$('credit-links').append(link);
+});
+$('credit-links-section').hidden=!$('credit-links').children.length;
+const sourceNote=sourceData.context?.[s.id]||sourceData.unavailable?.[s.id]||'';$('credit-link-note').textContent=sourceNote;$('credit-link-note').hidden=!sourceNote;
+$('credits').showModal()},true);
+document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||e.altKey||e.ctrlKey||e.metaKey||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();go(current+(e.key==='ArrowRight'?1:-1))}if(e.target===track&&e.key==='Home'){e.preventDefault();go(0,false)}if(e.target===track&&e.key==='End'){e.preventDefault();go(cards.length-1,false)}});
+// Links remain clickable on a tap, while a horizontal drag turns their card.
+track.addEventListener('dragstart',e=>e.preventDefault());
+track.addEventListener('pointerdown',e=>{if(!e.isPrimary||e.button!==0||document.querySelector('dialog[open]')||e.target.closest('button'))return;settle(false);gesture={id:e.pointerId,x:e.clientX,y:e.clientY,dx:0,started:false,samples:[{x:e.clientX,t:performance.now()}]}});
+track.addEventListener('pointermove',e=>{if(!gesture||e.pointerId!==gesture.id)return;const g=gesture,dx=e.clientX-g.x,dy=e.clientY-g.y;
+ if(!g.started){if(Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>8){gesture=null;return}if(Math.abs(dx)<8)return;g.started=true;track.setPointerCapture(e.pointerId);track.classList.add('dragging')}
+ e.preventDefault();g.dx=dx;const now=performance.now();g.samples.push({x:e.clientX,t:now});g.samples=g.samples.filter(p=>now-p.t<110);
+ const bounded=(current===0&&dx>0)||(current===cards.length-1&&dx<0);const travel=bounded?dx*.2:dx;
+ cards[current].style.transform=`translate3d(${travel}px,${Math.abs(travel)*.025}px,0) rotate(${reduced.matches?0:travel/track.clientWidth*9}deg)`;
+ if(!reduced.matches&&dx<0){const amount=Math.min(Math.abs(dx)/track.clientWidth,1);[1,2].forEach(d=>{const c=cards[(current+d)%cards.length];if(c)c.style.transform=`translate3d(${19*d*(1-amount*.7)}px,${8*d*(1-amount*.7)}px,0) rotate(${2*d*(1-amount*.7)}deg) scale(${1-.025*d*(1-amount*.7)})`})}
+});
+function release(e,cancel=false){if(!gesture||e.pointerId!==gesture.id)return;const g=gesture;cancelGesture();if(!g.started)return;suppressClickUntil=performance.now()+300;const last=g.samples.at(-1),first=g.samples[0],v=last&&first&&last.t>first.t?(last.x-first.x)/(last.t-first.t):0;const reversed=Math.abs(v)>.18&&Math.sign(v)!==Math.sign(g.dx);const enough=Math.abs(g.dx)>Math.min(72,track.clientWidth*.18)||(Math.abs(g.dx)>18&&Math.abs(v)>.45);go(!cancel&&!reversed&&enough?current+(g.dx<0?1:-1):current)}
+track.addEventListener('pointerup',e=>release(e));track.addEventListener('pointercancel',e=>release(e,true));track.addEventListener('lostpointercapture',e=>{if(e.target===track&&gesture&&e.pointerId===gesture.id){cancelGesture();settle(true)}});
+track.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX))return;if(e.ctrlKey||e.metaKey||document.querySelector('dialog[open]'))return;const scroller=cards[current].querySelector('.sheet-scroll');if(scroller.scrollHeight>scroller.clientHeight+2&&Math.abs(e.deltaY)>Math.abs(e.deltaX))return;const unit=e.deltaMode===1?16:e.deltaMode===2?track.clientHeight:1;const delta=(Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY)*unit;if(Math.abs(delta)<10)return;e.preventDefault();const now=performance.now();if(now-wheelTime>550)go(current+(delta>0?1:-1));wheelTime=now},{passive:false});
+window.addEventListener('resize',()=>{cancelGesture();syncMobileViewport();fitDeck();settle(false)});reduced.addEventListener('change',()=>{cancelGesture();settle(false)});
+window.addEventListener('hashchange',()=>{let target;try{target=decodeURIComponent(location.hash.slice(1))}catch{return}const n=cards.findIndex(c=>c.id===target);if(n>=0)go(n,false)});
+syncMobileViewport();fitDeck();
+window.visualViewport?.addEventListener('resize',()=>{if(window.visualViewport.scale!==1)return;cancelGesture();syncMobileViewport();fitDeck();settle(false)});
+if(document.fonts)document.fonts.ready.then(()=>{cancelGesture();fitDeck();settle(false)});
+if(window.ResizeObserver){
+ const contentSizes=new ResizeObserver(entries=>{
+  if(!entries.some(entry=>entry.target!==track||Math.abs(track.clientWidth-measuredDeckWidth)>.5))return;
+  cancelGesture();fitDeck();settle(false);
+ });
+ contentSizes.observe(track);
+ track.querySelectorAll('h2,.body-text,.story-accent,.stat-unit,.opening-deck,.opening-summary').forEach(node=>contentSizes.observe(node));
+}
+let initial=0;try{initial=cards.findIndex(c=>c.id===decodeURIComponent(location.hash.slice(1)))}catch{}go(Math.max(0,initial),false);
+})();
