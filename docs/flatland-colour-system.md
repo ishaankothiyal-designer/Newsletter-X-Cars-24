@@ -50,7 +50,7 @@ The underlying backgrounds remain the original extracted Flatland SVGs. Black is
 
 The bundled Parkinsans face (already used by V6) supplies rounded heavy display type, with Geist for reading text. The PDF's custom Type 3 fonts do not expose a reliable family name; Parkinsans is a visual interpretation rather than a claimed extraction. The Pitstop masthead remains unchanged. Emphasis wraps existing headline text verbatim, and no labels or extra story copy are added.
 
-The full-bleed cover, cover subtitle, centred header, story illustrations, source panels, stacked geometry, swipe-over-links behaviour, and page-turn sound are retained. `flatland-ui.css` isolates the new editorial treatments. Older V6 files are untouched.
+The full-bleed cover, cover subtitle, centred header, story illustrations, source panels, stacked geometry, swipe-over-links behaviour, and page-turn sound are retained. `flatland-ui.css` isolates the new editorial treatments. V8 is the only published edition; earlier version files have been removed.
 
 ## Validation
 

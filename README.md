@@ -9,7 +9,7 @@ The Pitstop — Cars24’s October 2026 newsletter. A responsive, swipeable edit
 - [Public repository](https://github.com/ishaankothiyal-designer/Newsletter-X-Cars-24)
 - [Vercel project dashboard](https://vercel.com/design-ea38/newsletter-x-cars-24)
 
-The current V8 edition includes 26 stories in five chapters, eight paper colours, varied editorial layouts, story illustrations, source notes, and a soft page-turn sound. Earlier design versions remain available from the Versions menu.
+The current V8 edition includes 26 stories in five chapters, eight paper colours, varied editorial layouts, story illustrations, source notes, and a soft page-turn sound. V8 is the only edition. The version menu and older releases have been removed.
 
 ## Local preview
 
@@ -39,12 +39,12 @@ node tests/v8-sound.test.cjs
 
 ## Project layout
 
-- `dist/` — complete deployable site, including local artwork, fonts, sound, and saved versions.
+- `dist/` — complete deployable site, including local artwork, fonts, and sound.
 - `dist/reader.js` — current navigation and card motion.
 - `dist/reader.css` and `dist/flatland-ui.css` — responsive reader and editorial treatments.
 - `dist/stories.js` — stories, chapters, page colours, layout treatments, and sources.
 - `dist/page-sound.js` — optional page-turn audio.
-- `dist/versions/v8/` — saved V8 entry point, kept in parity with the default reader.
+- `dist/versions/v8/` — V8 entry point, identical to the default reader.
 - `tests/` — content, gesture, motion, viewport, and sound checks.
 - `docs/` — design decisions and asset provenance.
 - `scripts/` and `source-assets/` — reproducible editorial spot graphics and soft audio preparation.

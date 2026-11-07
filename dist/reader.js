@@ -1,6 +1,6 @@
 (() => {
 'use strict';
-const script=document.currentScript,root=new URL(script.dataset.root,script.src),data=window.PITSTOP,$=id=>document.getElementById(id),track=$('track');
+const data=window.PITSTOP,$=id=>document.getElementById(id),track=$('track');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const jump=(id,title,cls='story-jump')=>`<button class="${cls}" data-target="${esc(id)}">${esc(title)}</button>`;
 const chapterIndex=ch=>`<details class="chapter-accordion"><summary><span class="chapter-index">${String(ch.number).padStart(2,'0')}</span><span>${esc(ch.name)}</span></summary><div class="accordion-body">${jump('chapter-'+ch.id,'Open chapter →','chapter-open')}${ch.stories.map(id=>jump(id,data.stories.find(s=>s.id===id).title)).join('')}</div></details>`;
@@ -90,9 +90,6 @@ function notes(id){const s=data.stories.find(s=>s.id===id);if(!s)return;$('credi
 document.addEventListener('click',e=>{const jump=e.target.closest('[data-target]');if(jump){document.querySelectorAll('dialog[open]').forEach(d=>d.close());target(jump.dataset.target);return}if(e.target.closest('[data-contents]'))showContents();const source=e.target.closest('[data-source]');if(source)notes(source.dataset.source);});
 $('back').addEventListener('click',()=>go(current-1));$('next').addEventListener('click',()=>go(current+1));$('menu').addEventListener('click',showContents);$('menu-back').addEventListener('click',()=>{$('contents').close();go(current-1)});$('menu-next').addEventListener('click',()=>{$('contents').close();go(current+1)});
 for(const dialog of document.querySelectorAll('dialog')){dialog.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('keydown',e=>e.stopPropagation());dialog.addEventListener('click',e=>{const r=dialog.getBoundingClientRect();if(e.target===dialog&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))dialog.close();});}
-function versions(){$('contents').close();$('version-dialog').showModal();}
-$('versions').addEventListener('click',versions);$('menu-versions').addEventListener('click',versions);
-fetch(new URL('versions.json',root)).then(r=>{if(!r.ok)throw Error();return r.json()}).then(manifest=>{for(const v of [...manifest.versions].reverse()){const a=document.createElement('a'),label=document.createElement('span'),num=document.createElement('span');a.href=new URL(v.path,root).href;label.textContent=v.name;num.textContent=v.id.toUpperCase();a.append(label,num);if(v.id==='v8')a.setAttribute('aria-current','page');a.addEventListener('click',()=>{const u=new URL(v.path,root);u.hash=pages[current].id;a.href=u.href;});$('version-list').append(a);}}).catch(()=>{$('version-list').textContent='Versions are temporarily unavailable.';});
 document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||e.altKey||e.ctrlKey||e.metaKey||e.target.closest('summary,button,a,input,textarea,select'))return;if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();go(current+(e.key==='ArrowRight'?1:-1));}if(e.target===track&&e.key==='Home'){e.preventDefault();go(0,false)}if(e.target===track&&e.key==='End'){e.preventDefault();go(cards.length-1,false)}});
 track.addEventListener('dragstart',e=>e.preventDefault());
 // A drag may start on any card action. Suppress only its compatibility click;

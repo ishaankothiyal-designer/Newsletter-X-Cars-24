@@ -1,5 +1,14 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const dist=path.join(__dirname,'../dist'),v8=path.join(dist,'versions/v8'),context={window:{}};
+assert.deepEqual(fs.readdirSync(path.join(dist,'versions')),['v8'],'Only V8 may remain');
+for(const file of ['versions.json','version-picker.js','version-picker.css','app.js','design-reference.html'])assert(!fs.existsSync(path.join(dist,file)),file+' is a retired entry point');
+for(const base of [dist,v8]){
+ const html=fs.readFileSync(path.join(base,'index.html'),'utf8');
+ assert(!/id="(?:versions|menu-versions|version-dialog)"/.test(html),'Version controls must be removed');
+ assert(html.includes('src="sources.js"'),'Current source map must load');
+ const reader=fs.readFileSync(path.join(base,'reader.js'),'utf8');
+ assert(!reader.includes('versions.json')&&!reader.includes('version-dialog'),'Reader must not load retired versions');
+}
 vm.runInNewContext(fs.readFileSync(path.join(v8,'stories.js'),'utf8'),context);
 const d=context.window.PITSTOP,stories=d.stories;
 assert.equal(stories.length,26);assert.equal(d.chapters.length,5);assert.equal(stories.length+d.chapters.length+3,34);
@@ -20,7 +29,7 @@ for(const story of stories){
  assert.equal(fs.readFileSync(path.join(dist,story.visual.src)).compare(fs.readFileSync(path.join(v8,story.visual.src))),0,story.id+' art parity');
 }
 const diwali=stories.find(s=>s.id==='diwali');assert.equal(diwali.sourceLinks.length,2);for(const file of Object.values(diwali.imageFiles))assert(fs.statSync(path.join(v8,file)).size>0);
-for(const file of ['stories.js','reader.js','reader.css','reader-tokens.css','flatland-ui.css'])assert.equal(fs.readFileSync(path.join(dist,file),'utf8'),fs.readFileSync(path.join(v8,file),'utf8'),file);
+for(const file of ['index.html','sources.js','stories.js','reader.js','reader.css','reader-tokens.css','flatland-ui.css'])assert.equal(fs.readFileSync(path.join(dist,file),'utf8'),fs.readFileSync(path.join(v8,file),'utf8'),file);
 const js=fs.readFileSync(path.join(v8,'reader.js'),'utf8');
 assert(js.includes('rotate(-10deg) scale(.97)'));
 assert(js.includes('duration:outgoing?total:previous===current?200:forward?depart+80:340'));

@@ -1,5 +1,0 @@
-GSAP 3.15.0, distributed by GreenSock.
-Downloaded from the official npm package via jsDelivr.
-Copyright 2026 GreenSock. The original copyright and licence banner is retained.
-Subject to https://gsap.com/standard-license
-Runtime source: https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js
