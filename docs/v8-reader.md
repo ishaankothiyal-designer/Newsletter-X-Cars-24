@@ -1,6 +1,6 @@
 # The Pitstop — V8 only
 
-V8 is the only edition, served at `/` and `/versions/v8/`. The header and contents menu contain no version controls. Earlier version directories, manifests, pickers, preview pages, and unused reader implementations have been removed.
+V8 is the only edition, served at `/` and `/versions/v8/`. The header and contents menu contain no version controls. The Contents menu has no Page sound or Test page sound controls; page-turn audio remains automatic on committed swipes. Earlier version directories, manifests, pickers, preview pages, and unused reader implementations have been removed.
 
 ## Current motion and sound refinement
 
@@ -19,4 +19,4 @@ See `flatland-colour-system.md`, `v8-story-art.md`, `v8-cover-assets.md`, and `p
 
 ## Validation
 
-Content checks enforce V8-only files, absence of version controls, root/V8 parity, story integrity, colour contrast and complete artwork. Motion, viewport and sound tests cover interrupted drags, velocity-based release, quiet synchronised audio, mute, silent snap-back and deferred mobile toolbar resizing.
+Content checks enforce V8-only files, absence of version controls, root/V8 parity, story integrity, colour contrast and complete artwork. Motion, viewport and sound tests cover interrupted drags, velocity-based release, quiet synchronised audio, silent snap-back and deferred mobile toolbar resizing.

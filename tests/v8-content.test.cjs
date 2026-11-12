@@ -4,7 +4,7 @@ assert.deepEqual(fs.readdirSync(path.join(dist,'versions')),['v8'],'Only V8 may 
 for(const file of ['versions.json','version-picker.js','version-picker.css','app.js','design-reference.html'])assert(!fs.existsSync(path.join(dist,file)),file+' is a retired entry point');
 for(const base of [dist,v8]){
  const html=fs.readFileSync(path.join(base,'index.html'),'utf8');
- assert(!/id="(?:versions|menu-versions|version-dialog)"/.test(html),'Version controls must be removed');
+ assert(!/id="(?:versions|menu-versions|version-dialog|page-sound|test-page-sound)"/.test(html),'Version controls must be removed');
  assert(html.includes('src="sources.js"'),'Current source map must load');
  const reader=fs.readFileSync(path.join(base,'reader.js'),'utf8');
  assert(!reader.includes('versions.json')&&!reader.includes('version-dialog'),'Reader must not load retired versions');
