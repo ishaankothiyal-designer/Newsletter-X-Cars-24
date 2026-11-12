@@ -52,3 +52,13 @@ Horizontal intent begins at 4px. A slow 8px drag or 6px flick at 0.14px/ms commi
 Rapid forward swipes preserve an earlier outgoing paper’s return animation instead of cancelling and freezing it mid-path. Each return retires independently; its completion cannot clear a newer transition. Re-grabbing a returning paper itself still freezes that paper at its rendered transform. Immediate jumps, viewport resets, and reduced motion cancel outstanding transitions as before.
 
 Regression checks cover retained outgoing animations, cleanup of stale returns, reverse re-grabs, tiny drags, tap jitter, and previous gesture/audio contracts. The local browser advanced through eight consecutive 8px forward drags and four 8px reverse drags, retained one active card, and settled to exactly depths 0–3 without console errors.
+
+## November 12: mobile recording and native-pan cancellation
+
+The supplied 29.8-second mobile recording shows an overview card moving left then returning to its starting page, with vertical browser/page movement visible around the attempts. The recording also shows the earlier vertically centred copy. The gesture interruption suggests browser pan arbitration; the exact device event stream was not available.
+
+Fitting papers now use `touch-action: pinch-zoom` instead of allowing native vertical panning across every paper. Actual overflow is measured before contact, with reads batched before attribute writes; expanded papers use `pan-y pinch-zoom`. Modes refresh after viewport changes, font readiness, and accordion toggles. A non-passive touchmove fallback prevents native panning only on fitting papers or after horizontal intent is established. Multi-touch remains unblocked, and a second finger cancels the active card drag without changing pages. Root overscroll is disabled to prevent page bounce. Source dialogs retain their normal scroll behavior.
+
+The touch-action contract and pointercancel interaction are documented at https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/touch-action . The relevant distinction is established before the gesture begins, rather than changing touch-action partway through contact.
+
+Local Chrome verification at 390×640: the collapsed overview reports no overflow and pinch-zoom; opening Thoughts & perspectives produces 155px of overflow and switches to pan-y pinch-zoom; closing it restores the swipe mode. Ten successive 8px horizontal / 3px vertical diagonal drags advanced exactly one page each. All 33 default papers reported no overflow; the stack settled to depths 0–3 with one active paper and no console errors. The iPhone/WebKit cancellation path is covered with event-policy regressions, not physical-device reproduction.

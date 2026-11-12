@@ -97,3 +97,10 @@ body{background-color:var(--color-v6-desk);background-image:url('assets/v5-newsp
 .image-retry{position:absolute;inset:0;z-index:2;width:100%;display:grid;place-items:center;background:#ffffffdd;color:#000;font-size:14px;pointer-events:auto}
 
 #credit-art{position:relative}
+
+/* One-screen papers own their drag; native panning otherwise cancels diagonal
+   thumb swipes on mobile. Overflowing/expanded papers retain reading scroll. */
+html,body{overscroll-behavior-y:none}
+#track .sheet-scroll,#track .sheet-scroll a,#track .sheet-scroll button,#track .sheet-scroll summary{touch-action:pinch-zoom}
+#track .sheet-scroll[data-scrollable="true"],#track .sheet-scroll[data-scrollable="true"] a,#track .sheet-scroll[data-scrollable="true"] button,#track .sheet-scroll[data-scrollable="true"] summary{touch-action:pan-y pinch-zoom}
+#track .sheet-scroll:not([data-scrollable="true"]){overscroll-behavior:none}

@@ -46,6 +46,15 @@ const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'")
   // Vertical intent relinquishes the gesture without turning a page.
   listeners.pointerdown(evt(200,100,kind));listeners.pointermove(evt(201,140,kind));listeners.pointerup(evt(201,140,kind));assert.equal(vm.runInContext('current',context),2,kind+' vertical scroll');
  }
+ // Mobile native-scroll arbitration: protect fitting papers and horizontal intent,
+ // while retaining vertical reading on overflow and allowing multi-touch zoom.
+ vm.runInContext('gesture=null',context);
+ const touch=(scrollable,count=1)=>{let prevented=false;return{event:{touches:Array(count).fill({}),cancelable:true,target:{closest:()=>({dataset:{scrollable}})},preventDefault(){prevented=true}},prevented:()=>prevented}};
+ let t=touch('false');listeners.touchmove(t.event);assert(t.prevented(),'Fitting paper must not bounce the browser viewport');
+ t=touch('true');listeners.touchmove(t.event);assert(!t.prevented(),'Expanded paper retains vertical scroll');
+ vm.runInContext('gesture={started:true}',context);t=touch('true');listeners.touchmove(t.event);assert(t.prevented(),'An established horizontal drag owns its gesture');
+ t=touch('false',2);listeners.touchmove(t.event);assert(!t.prevented(),'Pinch zoom is preserved');
+ vm.runInContext('gesture=null;current=1',context);now+=100;listeners.pointerdown(evt(200,100));now+=20;listeners.pointermove(evt(180,100));listeners.pointerdown({...evt(170,120),isPrimary:false,pointerType:'touch'});assert.equal(vm.runInContext('gesture',context),null);assert.equal(vm.runInContext('current',context),1,'Second finger cancels, never turns the page');
  // Keyboard clicks are never suppressed after a pointer swipe.
  vm.runInContext('suppress=performance.now()+300',context);let keyboardBlocked=false;listeners.click({detail:0,preventDefault(){keyboardBlocked=true},stopImmediatePropagation(){}});assert(!keyboardBlocked);
  // Faster release shortens departure, while retaining the opaque return to the stack.

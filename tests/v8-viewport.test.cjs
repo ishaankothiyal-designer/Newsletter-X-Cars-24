@@ -2,7 +2,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('nod
 const js=fs.readFileSync(path.join(__dirname,'../dist/reader.js'),'utf8');
 const source=js.slice(js.indexOf('let lastViewportWidth='),js.indexOf("window.addEventListener('resize'"));
 let settles=0,cancels=0,timer=null,frame=null,height=null;
-const context=vm.createContext({window:{},visualViewport:{width:393,height:852,scale:1},innerWidth:393,innerHeight:852,track:{clientWidth:340,clientHeight:700},gesture:null,motions:new Map(),current:0,viewportFrame:0,document:{documentElement:{style:{setProperty:(k,v)=>height=v}},querySelector:()=>({getAttribute:()=> 'assets/cover-portrait.png'})},cancel:()=>cancels++,settle:()=>settles++,clearTimeout(){},setTimeout:fn=>{timer=fn;return 1},requestAnimationFrame:fn=>{frame=fn;return 1},Math});
+const context=vm.createContext({window:{},visualViewport:{width:393,height:852,scale:1},innerWidth:393,innerHeight:852,track:{clientWidth:340,clientHeight:700},gesture:null,motions:new Map(),current:0,viewportFrame:0,document:{documentElement:{style:{setProperty:(k,v)=>height=v}},querySelector:()=>({getAttribute:()=> 'assets/cover-portrait.png'})},cancel:()=>cancels++,scheduleReadingModes(){},settle:()=>settles++,clearTimeout(){},setTimeout:fn=>{timer=fn;return 1},requestAnimationFrame:fn=>{frame=fn;return 1},Math});
 vm.runInContext(source+'\nviewport()',context);assert.equal(settles,1);assert.equal(height,'852px');
 vm.runInContext('gesture={started:true};visualViewport.height=800;viewport()',context);assert.equal(settles,1,'Toolbar height must not reset an active drag');assert(timer);
 vm.runInContext('gesture=null;motions.set(1,{});viewport()',context);assert.equal(settles,1,'Toolbar height must not cancel a settling card');

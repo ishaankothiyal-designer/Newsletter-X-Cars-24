@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const root=path.join(__dirname,'../dist'),source=fs.readFileSync(path.join(root,'reader.js'),'utf8');
+const scrollers=[{scrollHeight:530,clientHeight:530,dataset:{}},{scrollHeight:920,clientHeight:530,dataset:{}},{scrollHeight:531,clientHeight:530,dataset:{}}];
+const context=vm.createContext({cards:scrollers.map(scroller=>({querySelector:()=>scroller}))});
+vm.runInContext(source.slice(source.indexOf('function updateReadingModes()'),source.indexOf('function scheduleReadingModes()'))+';updateReadingModes();',context);
+assert.deepEqual(scrollers.map(s=>s.dataset.scrollable),['false','true','false']);
+scrollers[0].scrollHeight=800;scrollers[1].scrollHeight=500;vm.runInContext('updateReadingModes()',context);assert.deepEqual(scrollers.map(s=>s.dataset.scrollable),['true','false','false'],'Re-evaluate expanded/collapsed or resized reading content');
+const css=fs.readFileSync(path.join(root,'reader.css'),'utf8');assert(css.includes('touch-action:pinch-zoom'));assert(css.includes('[data-scrollable="true"]'));assert(!css.includes('touch-action:none'),'Zoom remains enabled');
+assert(source.includes("details.addEventListener('toggle',scheduleReadingModes)"));assert(source.includes('document.fonts?.ready.then(scheduleReadingModes)'));
+console.log('V8 touch policy checks passed: fitting cards own swipes, real overflow retains reading scroll, mode updates on expansion/font/viewport changes, and pinch zoom remains enabled.');

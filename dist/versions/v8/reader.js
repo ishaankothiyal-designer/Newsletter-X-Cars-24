@@ -31,6 +31,15 @@ track.querySelectorAll('.sheet').forEach((card,i)=>{
  card.dataset.flatland=paper;card.style.setProperty('--flatland-background',`url('assets/flatland/${paper}.svg')`);card.style.setProperty('--page-stock',data.colourSystem.stocks[paper].hex);
 });
 const cards=[...track.children],reduced=matchMedia('(prefers-reduced-motion: reduce)'),storageKey='pitstop-v8-clean-last-story';let current=0,revision=0,gesture=null,suppress=0,dragFrame=0,viewportFrame=0;const motions=new Map(),departures=new Set();
+// Decide the native reading mode before contact, never during a gesture.
+let readingFrame=0;
+function updateReadingModes(){
+ const readings=cards.map(card=>{const scroller=card.querySelector('.sheet-scroll');return{scroller,scrollable:scroller.scrollHeight>scroller.clientHeight+1}});
+ for(const {scroller,scrollable} of readings){const value=String(scrollable);if(scroller.dataset.scrollable!==value)scroller.dataset.scrollable=value;}
+}
+function scheduleReadingModes(){if(!readingFrame)readingFrame=requestAnimationFrame(()=>{readingFrame=0;updateReadingModes()});}
+for(const details of track.querySelectorAll('details'))details.addEventListener('toggle',scheduleReadingModes);
+document.fonts?.ready.then(scheduleReadingModes);
 // V6's original geometry and opaque card-to-back animation, kept intact.
 const stateTransform=d=>d===0?'translate3d(0,0,0) rotate(0deg) scale(1)':d===1?'translate3d(19px,8px,0) rotate(2deg) scale(.975)':d===2?'translate3d(37px,16px,0) rotate(4deg) scale(.95)':`translate3d(${d<0?-track.clientWidth-100:50}px,12px,0) rotate(${d<0?-12:5}deg) scale(.95)`;
 // Read all in-flight transforms before any writes. A re-grab starts exactly here.
@@ -104,7 +113,8 @@ track.addEventListener('dragstart',e=>e.preventDefault());
 // untouched taps and keyboard activation keep their normal behaviour.
 track.addEventListener('click',e=>{if(performance.now()<suppress&&e.detail!==0){e.preventDefault();e.stopImmediatePropagation();}},true);
 track.addEventListener('pointerdown',e=>{
- if(!e.isPrimary||e.button!==0||e.target.closest('input,textarea,select,[contenteditable="true"],dialog'))return;
+ if(!e.isPrimary){if(e.pointerType==='touch'&&gesture){cancel();settle(true,current);}return;}
+ if(e.button!==0||e.target.closest('input,textarea,select,[contenteditable="true"],dialog'))return;
  suppress=0;
  // A tap or vertical scroll must not reset an animation already in flight.
  gesture={id:e.pointerId,x:e.clientX,y:e.clientY,dx:0,started:false,samples:[{x:e.clientX,t:performance.now()}]};
@@ -131,6 +141,13 @@ function release(e,canceled=false){
  const depart=Math.max(140,Math.min(240,(g.width-Math.min(Math.abs(g.dx),g.width*.85))/Math.max(.7,Math.abs(velocity))*.7));
  cancel();suppress=performance.now()+300;go(!canceled&&!reversed&&enough?current+(g.dx<0?1:-1):current,true,{depart});
 }
+// WebKit can arbitrate native scroll before pointer capture; prevent it only
+// for a one-screen paper or an already horizontal drag. Pinch gestures pass through.
+track.addEventListener('touchmove',e=>{
+ if(e.touches.length!==1||!e.cancelable)return;
+ const scroller=e.target.closest('.sheet-scroll');
+ if(gesture?.started||scroller?.dataset.scrollable==='false')e.preventDefault();
+},{passive:false});
 track.addEventListener('pointerup',e=>release(e));track.addEventListener('pointercancel',e=>release(e,true));
 track.addEventListener('lostpointercapture',e=>{if(e.target===track&&gesture?.started){cancel();settle(true,current)}});
 let wheelDistance=0,wheelDirection=0,wheelTimer=0,wheelLocked=false;
@@ -149,7 +166,7 @@ function viewport(){
  if(width===lastViewportWidth&&height===lastViewportHeight)return;
  // Safari toolbar height changes must not reset a drag or a card in flight.
  if(width===lastViewportWidth&&(gesture?.started||motions.size)){clearTimeout(viewportTimer);viewportTimer=setTimeout(scheduleViewport,100);return;}
- lastViewportWidth=width;lastViewportHeight=height;document.documentElement.style.setProperty('--viewport-height',`${height}px`);const coverImage=document.querySelector('#cover img'),coverSource=track.clientWidth/track.clientHeight>=.82?'assets/cover-wide.webp':'assets/cover-portrait.webp';window.PITSTOP_IMAGES?.load(coverImage,coverSource,coverSource.replace('.webp','.png'),'high');cancel();settle(false,current);
+ lastViewportWidth=width;lastViewportHeight=height;document.documentElement.style.setProperty('--viewport-height',`${height}px`);const coverImage=document.querySelector('#cover img'),coverSource=track.clientWidth/track.clientHeight>=.82?'assets/cover-wide.webp':'assets/cover-portrait.webp';window.PITSTOP_IMAGES?.load(coverImage,coverSource,coverSource.replace('.webp','.png'),'high');cancel();settle(false,current);scheduleReadingModes();
 }
 function scheduleViewport(){if(!viewportFrame)viewportFrame=requestAnimationFrame(()=>{viewportFrame=0;viewport()});}
 window.addEventListener('resize',scheduleViewport);window.visualViewport?.addEventListener('resize',scheduleViewport);reduced.addEventListener('change',()=>settle(false,current));window.addEventListener('hashchange',()=>{try{target(decodeURIComponent(location.hash.slice(1)))}catch{target('overview')}});
