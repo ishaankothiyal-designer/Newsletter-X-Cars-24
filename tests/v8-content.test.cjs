@@ -25,14 +25,14 @@ assert.equal(new Set(stories.map(s=>s.visual.src)).size,26);
 assert.equal(stories.filter(s=>s.visual.type==='spot').length,18);
 for(const story of stories){
  assert(story.visual.alt.length>30,story.id+' visual needs descriptive alt text');
- for(const base of [dist,v8])assert(fs.statSync(path.join(base,story.visual.src)).size>0,story.id+' missing art');
+ for(const base of [dist,v8]){assert(fs.statSync(path.join(base,story.visual.src)).size>0,story.id+' missing art');assert(fs.statSync(path.join(base,story.visual.fallbackSrc)).size>0,story.id+' missing fallback');}
  assert.equal(fs.readFileSync(path.join(dist,story.visual.src)).compare(fs.readFileSync(path.join(v8,story.visual.src))),0,story.id+' art parity');
 }
 const diwali=stories.find(s=>s.id==='diwali');assert.equal(diwali.sourceLinks.length,2);for(const file of Object.values(diwali.imageFiles))assert(fs.statSync(path.join(v8,file)).size>0);
-for(const file of ['index.html','sources.js','stories.js','reader.js','reader.css','reader-tokens.css','flatland-ui.css'])assert.equal(fs.readFileSync(path.join(dist,file),'utf8'),fs.readFileSync(path.join(v8,file),'utf8'),file);
+for(const file of ['index.html','reader-images.js','sources.js','stories.js','reader.js','reader.css','reader-tokens.css','flatland-ui.css'])assert.equal(fs.readFileSync(path.join(dist,file),'utf8'),fs.readFileSync(path.join(v8,file),'utf8'),file);
 const js=fs.readFileSync(path.join(v8,'reader.js'),'utf8');
 assert(js.includes('rotate(-10deg) scale(.97)'));
-assert(js.includes('duration:outgoing?total:previous===current?200:forward?depart+80:340'));
+assert(js.includes('duration:outgoing?total:previous===current?160:forward?depart+40:260'));
 assert(js.includes('width===lastViewportWidth&&(gesture?.started||motions.size)'));
 for(const file of ['cover-portrait.png','cover-wide.png','cars24-logo-black.svg'])assert(fs.statSync(path.join(v8,'assets',file)).size>0);
 assert(!fs.readFileSync(path.join(v8,'index.html'),'utf8').includes('page-footer'));

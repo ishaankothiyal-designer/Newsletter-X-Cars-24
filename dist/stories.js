@@ -20,9 +20,10 @@ window.PITSTOP = {
       "chapterId": "business",
       "originalBody": "In the company-wide H1 FY27 update, Aditya Mittal shared that GMV grew about 29% year on year to ₹5,300 Cr+, adjusted net revenue rose more than 33% to ₹921 Cr, and the EBITDA loss narrowed to around 1% of GMV. Consumer deliveries grew about 68% year on year in H1.",
       "visual": {
-        "src": "assets/story-graphics/growth.svg",
+        "src": "assets/story-graphics/growth.png",
         "alt": "A rising road carries a car upwards, an editorial metaphor for growth.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/growth.svg"
       }
     },
     {
@@ -40,9 +41,10 @@ window.PITSTOP = {
       "chapterId": "business",
       "originalBody": "Ecosystem services and insurance generated ₹160 Cr+ in margin, up fourfold year on year. UAE and Australia each crossed roughly 700 cars in a month for the first time in September.",
       "visual": {
-        "src": "assets/story-graphics/ecosystem.svg",
+        "src": "assets/story-graphics/ecosystem.png",
         "alt": "A car, a protective shield, and finance papers connected as one ecosystem.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/ecosystem.svg"
       }
     },
     {
@@ -63,7 +65,8 @@ window.PITSTOP = {
       "visual": {
         "src": "assets/frontier.webp",
         "alt": "Illustration of a team at an AI event.",
-        "type": "scene"
+        "type": "scene",
+        "fallbackSrc": "assets/frontier-fallback.jpg"
       }
     },
     {
@@ -85,9 +88,10 @@ window.PITSTOP = {
       "chapterId": "business",
       "originalBody": "Cars24 is running the Grand Startup Challenge with Startup India (DPIIT), MeitY Startup Hub and Startup Policy Forum. It invites early-stage teams across Lending & Fintech, Mobility & Road Safety, Logistics & Supply Chain, and Sovereign AI.",
       "visual": {
-        "src": "assets/story-graphics/startup.svg",
+        "src": "assets/story-graphics/startup.png",
         "alt": "A seedling grows from an open notebook beside a pencil.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/startup.svg"
       }
     },
     {
@@ -107,9 +111,10 @@ window.PITSTOP = {
       "chapterId": "business",
       "originalBody": "Ujjwal Mehrotra reported a record single-day for C2C and Loans24: 414 disbursals and ₹22 Cr disbursed , alongside 771 deliveries. Disbursal volume was twice last Navratri’s Day 1, with 50% internal attach and 53.7% overall attach.",
       "visual": {
-        "src": "assets/story-graphics/lending.svg",
+        "src": "assets/story-graphics/lending.png",
         "alt": "A stack of coins beside a car and a completed loan document.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/lending.svg"
       }
     },
     {
@@ -126,9 +131,10 @@ window.PITSTOP = {
       "chapterId": "business",
       "originalBody": "Nishant Arora shared that the Australia Finance team has started a War Room to revisit end-to-end processes, surface pain points and process gaps, and prepare a roadmap to address them.",
       "visual": {
-        "src": "assets/story-graphics/finance.svg",
+        "src": "assets/story-graphics/finance.png",
         "alt": "A process map under review with a magnifying glass and pencil.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/finance.svg"
       }
     },
     {
@@ -145,9 +151,10 @@ window.PITSTOP = {
       "chapterId": "business",
       "originalBody": "Across Finance, Raghav Khanna and Shivanshu Makkar also highlighted September close, clearer city and region reporting, and repeatable process automation.",
       "visual": {
-        "src": "assets/story-graphics/close.svg",
+        "src": "assets/story-graphics/close.png",
         "alt": "A ruled ledger with a magnifying glass focusing on a reconciled entry.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/close.svg"
       }
     },
     {
@@ -164,9 +171,10 @@ window.PITSTOP = {
       "chapterId": "tech",
       "originalBody": "Dealer App terms — Rishabh: Dealers can customise and generate offer terms directly in the app, with the existing approval flow retained. The change is expected to shorten offer-to-terms turnaround.",
       "visual": {
-        "src": "assets/story-graphics/dealer.svg",
+        "src": "assets/story-graphics/dealer.png",
         "alt": "A phone and an offer document, with a pencil for customising terms.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/dealer.svg"
       }
     },
     {
@@ -185,9 +193,10 @@ window.PITSTOP = {
       "chapterId": "tech",
       "originalBody": "Miles field visits — Rishabh and team: FOS can record ad-hoc visits with new dealers and loan customers. The release targets 15% more monthly visits and 10% more leads entering the system.",
       "visual": {
-        "src": "assets/story-graphics/miles.svg",
+        "src": "assets/story-graphics/miles.png",
         "alt": "A dotted field-visit route links three location pins to a car.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/miles.svg"
       }
     },
     {
@@ -204,9 +213,10 @@ window.PITSTOP = {
       "chapterId": "tech",
       "originalBody": "C2C lead priorities — Diya Mariya Manoj and team: The refreshed queue gives stronger priority to customers showing intent through AIRO handoffs or interested calls, while bringing booking progress into the next tiers.",
       "visual": {
-        "src": "assets/story-graphics/leads.svg",
+        "src": "assets/story-graphics/leads.png",
         "alt": "A priority queue of three customer conversations with one brought forward.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/leads.svg"
       }
     },
     {
@@ -223,9 +233,10 @@ window.PITSTOP = {
       "chapterId": "tech",
       "originalBody": "Partner approval visibility — Diya Mariya Manoj and team: Sales teams can now see pending, in-progress or completed partner approvals directly in the C2C panel, reducing status-chasing.",
       "visual": {
-        "src": "assets/story-graphics/approvals.svg",
+        "src": "assets/story-graphics/approvals.png",
         "alt": "An approval journey moves from waiting to in progress to a check mark.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/approvals.svg"
       }
     },
     {
@@ -243,9 +254,10 @@ window.PITSTOP = {
       "chapterId": "tech",
       "originalBody": "Saarathi offer tools — Monu Goyal and team: Ground agents can adjust ROI and down payment, review offer history, and generate terms for eligible system offers—helping keep the customer conversation moving at the yard.",
       "visual": {
-        "src": "assets/story-graphics/saarathi.svg",
+        "src": "assets/story-graphics/saarathi.png",
         "alt": "A car at the yard next to adjustable offer controls on a clipboard.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/saarathi.svg"
       }
     },
     {
@@ -263,9 +275,10 @@ window.PITSTOP = {
       "chapterId": "tech",
       "originalBody": "Deemed Ownership backend — Hemant Garg and teams: All backend systems moved into production on 28 October. Teams were completing production and app checks, with the app release targeted for 29 October once sanity checks were clear.",
       "visual": {
-        "src": "assets/story-graphics/ownership.svg",
+        "src": "assets/story-graphics/ownership.png",
         "alt": "Connected backend servers lead to a separate phone awaiting final checks.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/ownership.svg"
       }
     },
     {
@@ -283,9 +296,10 @@ window.PITSTOP = {
       "chapterId": "tech",
       "originalBody": "Technology watch: A dependency security advisory is being handled as a priority patch-and-redeploy effort, with affected service owners asked to confirm completion.",
       "visual": {
-        "src": "assets/story-graphics/security.svg",
+        "src": "assets/story-graphics/security.png",
         "alt": "A software package receives a stitched security patch.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/security.svg"
       }
     },
     {
@@ -306,7 +320,8 @@ window.PITSTOP = {
       "visual": {
         "src": "assets/academy.webp",
         "alt": "Illustration of colleagues learning beside a car in a workshop.",
-        "type": "scene"
+        "type": "scene",
+        "fallbackSrc": "assets/academy-fallback.jpg"
       }
     },
     {
@@ -326,7 +341,8 @@ window.PITSTOP = {
       "visual": {
         "src": "assets/team.webp",
         "alt": "Illustration of colleagues working together around a laptop.",
-        "type": "scene"
+        "type": "scene",
+        "fallbackSrc": "assets/team-fallback.jpg"
       }
     },
     {
@@ -349,7 +365,8 @@ window.PITSTOP = {
         "src": "assets/story-graphics/hackathon.webp",
         "alt": "Editorial illustration of three colleagues working through a paper workflow together.",
         "type": "scene",
-        "position": "50% 45%"
+        "position": "50% 45%",
+        "fallbackSrc": "assets/story-graphics/hackathon-fallback.jpg"
       }
     },
     {
@@ -370,7 +387,8 @@ window.PITSTOP = {
         "src": "assets/story-graphics/milo.webp",
         "alt": "Editorial illustration of a colleague taking a quiet tea break beside a laptop.",
         "type": "scene",
-        "position": "50% 45%"
+        "position": "50% 45%",
+        "fallbackSrc": "assets/story-graphics/milo-fallback.jpg"
       }
     },
     {
@@ -391,7 +409,8 @@ window.PITSTOP = {
         "src": "assets/story-graphics/badminton.webp",
         "alt": "Editorial illustration of colleagues celebrating a badminton match with rackets and a trophy.",
         "type": "scene",
-        "position": "50% 45%"
+        "position": "50% 45%",
+        "fallbackSrc": "assets/story-graphics/badminton-fallback.jpg"
       }
     },
     {
@@ -409,9 +428,10 @@ window.PITSTOP = {
       "chapterId": "life",
       "originalBody": "A fresh Voice of Autonauts survey is live in Darwinbox. Previous feedback has informed work on incentive clarity, WeCare tickets, IT infrastructure and hub hygiene.",
       "visual": {
-        "src": "assets/story-graphics/survey.svg",
+        "src": "assets/story-graphics/survey.png",
         "alt": "Three different speech bubbles meet an open feedback notebook.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/survey.svg"
       }
     },
     {
@@ -433,7 +453,7 @@ window.PITSTOP = {
       ],
       "imageFiles": {
         "diwali": "assets/diwali.png",
-        "diwali-detail": "assets/diwali-detail.png"
+        "diwali-detail": "assets/diwali-detail.webp"
       },
       "sourceLinks": [
         {
@@ -450,9 +470,10 @@ window.PITSTOP = {
       "chapterId": "life",
       "originalBody": "Desk-side gifts, festive decor and plenty of Diwali banter: a little surprise brought extra warmth to the workday.\n\nOn 5 November, a Slack surprise turned gift delivery into a team countdown: the gifts had arrived, would reach desks in 15 minutes, and there would be no queues or treasure hunts. Colleagues joked that focus was officially on pause; in #builders-cars24, the Diwali mood continued with Jethalal-style song requests and playful character guesses. The decorated hub, festive gifts and shared sweets made the occasion a warm moment across the team.",
       "visual": {
-        "src": "assets/diwali.png",
+        "src": "assets/diwali-optimized.webp",
         "alt": "Painted Diwali celebration at a Cars24 hub.",
-        "type": "scene"
+        "type": "scene",
+        "fallbackSrc": "assets/diwali.png"
       }
     },
     {
@@ -469,9 +490,10 @@ window.PITSTOP = {
       "chapterId": "life",
       "originalBody": "Winter Arc fun fact: SAS Tower’s thermostat is taking more feedback than a product launch—and still can’t find a setting everyone likes.",
       "visual": {
-        "src": "assets/story-graphics/thermostat.svg",
+        "src": "assets/story-graphics/thermostat.png",
         "alt": "A thermostat between a winter scarf and a small desk fan.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/thermostat.svg"
       }
     },
     {
@@ -492,7 +514,8 @@ window.PITSTOP = {
       "visual": {
         "src": "assets/perspective.webp",
         "alt": "Illustration of colleagues looking towards a road and city.",
-        "type": "scene"
+        "type": "scene",
+        "fallbackSrc": "assets/perspective-fallback.jpg"
       }
     },
     {
@@ -511,9 +534,10 @@ window.PITSTOP = {
       "chapterId": "perspectives",
       "originalBody": "When a rule is clear, let the system check routine cases continuously. Keep people focused on genuine exceptions instead of making every request wait for a manual approval.",
       "visual": {
-        "src": "assets/story-graphics/controls.svg",
+        "src": "assets/story-graphics/controls.png",
         "alt": "Routine checks flow through a system while one exception is separated.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/controls.svg"
       }
     },
     {
@@ -532,9 +556,10 @@ window.PITSTOP = {
       "chapterId": "perspectives",
       "originalBody": "When the full Deemed Ownership backend reached production, Ruchit called it the start of a paradigm shift. The milestone came from many teams landing their pieces together, with app sanity checks next.",
       "visual": {
-        "src": "assets/story-graphics/inflection.svg",
+        "src": "assets/story-graphics/inflection.png",
         "alt": "Different interlocking pieces assemble into a shared bridge.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/inflection.svg"
       }
     },
     {
@@ -553,9 +578,10 @@ window.PITSTOP = {
       "chapterId": "perspectives",
       "originalBody": "As infrastructure and products grow, data, infrastructure and code security need to grow alongside them—especially when customer and payment information is involved.",
       "visual": {
-        "src": "assets/story-graphics/safeguards.svg",
+        "src": "assets/story-graphics/safeguards.png",
         "alt": "A growing branch is supported by a protective shield.",
-        "type": "spot"
+        "type": "spot",
+        "fallbackSrc": "assets/story-graphics/safeguards.svg"
       }
     }
   ],

@@ -12,7 +12,7 @@ const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'")
  // All reads must precede every write/cancel, avoiding read/write layout thrashing.
  vm.runInContext('motions.set(cards[0],{cancel(){}});freezeMotion()',context);const firstWrite=log.indexOf('write');assert(log.slice(firstWrite).every(x=>x!=='read'));
  // V6's exit, opaque layer handoff and landing are preserved.
- vm.runInContext('current=1;settle(true,0)',context);const animation=vm.runInContext('motions.get(cards[0])',context);assert.equal(animation.options.duration,560);assert.equal(animation.options.easing,'linear');assert(animation.frames.every(f=>f.opacity===1));assert.equal(cards[0].dataset.depth,'3');assert.equal(cards[5].style.visibility,'visible');animation.finish();await Promise.resolve();await Promise.resolve();assert.equal(cards[5].style.visibility,'hidden');
+ vm.runInContext('current=1;settle(true,0)',context);const animation=vm.runInContext('motions.get(cards[0])',context);assert.equal(animation.options.duration,450);assert.equal(animation.options.easing,'linear');assert(animation.frames.every(f=>f.opacity===1));assert.equal(cards[0].dataset.depth,'3');assert.equal(cards[5].style.visibility,'visible');animation.finish();await Promise.resolve();await Promise.resolve();assert.equal(cards[5].style.visibility,'hidden');
  // Merely touching or scrolling vertically must leave an in-flight turn alone.
  const evt=(x,y,kind=null)=>({isPrimary:true,button:0,pointerId:1,clientX:x,clientY:y,target:{closest(selector){return kind&&selector.split(',').some(s=>s.trim()===kind)?this:null}},preventDefault(){}});
  const cancels=()=>log.filter(x=>x==='cancel').length;let before=cancels();listeners.pointerdown(evt(200,100));assert.equal(cancels(),before);listeners.pointermove(evt(201,130));assert.equal(cancels(),before);
@@ -21,6 +21,13 @@ const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'")
  listeners.pointerup(evt(110,100));assert.equal(vm.runInContext('current',context),2);
  // A short fast flick qualifies.
  vm.runInContext('current=1',context);listeners.pointerdown(evt(200,100));now=40;listeners.pointermove(evt(170,100));listeners.pointerup(evt(170,100));assert.equal(vm.runInContext('current',context),2);
+ // Light, deliberate drags and small flicks work without traversing the card.
+ vm.runInContext('current=1',context);now=80;listeners.pointerdown(evt(200,100));now=280;listeners.pointermove(evt(172,100));listeners.pointerup(evt(172,100));assert.equal(vm.runInContext('current',context),2,'28px slow drag');
+ vm.runInContext('current=1',context);now=300;listeners.pointerdown(evt(200,100));now=330;listeners.pointermove(evt(188,100));listeners.pointerup(evt(188,100));assert.equal(vm.runInContext('current',context),2,'12px light flick');
+ // Chrome may coalesce the final move: the pointerup coordinate still commits it.
+ vm.runInContext('current=1',context);now=400;listeners.pointerdown(evt(200,100));now=410;listeners.pointermove(evt(194,100));now=440;listeners.pointerup(evt(170,100));assert.equal(vm.runInContext('current',context),2,'Release position');
+ // Tiny backwards drift at lift-off must not cancel a valid swipe.
+ vm.runInContext('current=1',context);now=500;listeners.pointerdown(evt(200,100));now=520;listeners.pointermove(evt(165,100));now=640;listeners.pointermove(evt(167,100));listeners.pointerup(evt(167,100));assert.equal(vm.runInContext('current',context),2,'2px release wobble');
  // Re-grabbing a moving sheet continues from its rendered transform, never its rest pose.
  vm.runInContext('current=1;cards[1].rendered="matrix(1,0,0,1,80,0)"',context);now=100;listeners.pointerdown(evt(200,100));now=110;listeners.pointermove(evt(180,100));Array.from(raf.values())[0]();raf.clear();assert(cards[1].style.transform.includes('60px'));listeners.pointercancel(evt(180,100));delete cards[1].rendered;
  // A reversal near release cancels even a drag beyond the distance threshold.
@@ -39,7 +46,7 @@ const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'")
  vm.runInContext('suppress=performance.now()+300',context);let keyboardBlocked=false;listeners.click({detail:0,preventDefault(){keyboardBlocked=true},stopImmediatePropagation(){}});assert(!keyboardBlocked);
  // Faster release shortens departure, while retaining the opaque return to the stack.
  vm.runInContext('current=1;cards[0].rendered="matrix(1,0,0,1,0,0)";settle(true,0,{depart:150})',context);
- const fast=vm.runInContext('motions.get(cards[0])',context);assert.equal(fast.options.duration,450);assert.equal(fast.frames[1].offset,1/3);delete cards[0].rendered;
+ const fast=vm.runInContext('motions.get(cards[0])',context);assert.equal(fast.options.duration,390);assert.equal(fast.frames[1].offset,150/390);delete cards[0].rendered;
  // No synchronous last-frame drag write is inserted before settling on release.
  assert(!pointers.includes('drawDrag();'));
  // Reduced motion preserves immediate stacking without launching animations.

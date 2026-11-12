@@ -9,14 +9,14 @@ const pages=[{id:'cover',kind:'cover'},{id:'overview',kind:'overview'}];
 for(const ch of data.chapters){pages.push({id:'chapter-'+ch.id,kind:'chapter',chapter:ch});for(const id of ch.stories)pages.push({...data.stories.find(s=>s.id===id),kind:'story'});}
 pages.push({id:'caught-up',kind:'ending'});
 // Story art is editorial illustration, not a product screenshot or a data chart.
-const image=s=>`<figure class="story-image story-visual visual-${esc(s.visual.type)}"><img src="${esc(s.visual.src)}" alt="${esc(s.visual.alt)}" width="${s.visual.type==='spot'?400:1200}" height="${s.visual.type==='spot'?205:800}" loading="lazy" decoding="async" draggable="false"${s.visual.position?` style="object-position:${esc(s.visual.position)}"`:''}></figure>`;
+const image=s=>`<figure class="story-image story-visual visual-${esc(s.visual.type)}"><img data-src="${esc(s.visual.src)}" data-fallback="${esc(s.visual.fallbackSrc||s.visual.src)}" alt="${esc(s.visual.alt)}" width="${s.visual.type==='spot'?400:1200}" height="${s.visual.type==='spot'?205:800}" decoding="async" draggable="false"${s.visual.position?` style="object-position:${esc(s.visual.position)}"`:''}></figure>`;
 function storyTitle(p){
  const emphasis=data.colourSystem.pages[p.id].emphasis,index=p.title.indexOf(emphasis);
  if(index<0)return esc(p.title);
  return esc(p.title.slice(0,index))+`<span class="headline-mark">${esc(emphasis)}</span>`+esc(p.title.slice(index+emphasis.length));
 }
 function content(p){
- if(p.kind==='cover')return `<figure class="cover-bleed"><picture><img src="assets/cover-portrait.png" width="941" height="1672" alt="The original Pitstop colleagues gathered around their laptop, extended into an edge-to-edge illustration." fetchpriority="high" draggable="false"></picture></figure><div class="cover-heading"><h1>The Pitstop</h1><p class="cover-subtitle">What’s happening across Cars24.</p></div><div class="card-bottom">${jump('overview','Open this issue →','primary-action')}</div>`;
+ if(p.kind==='cover')return `<figure class="cover-bleed"><picture><img data-src="assets/cover-portrait.webp" data-fallback="assets/cover-portrait.png" width="941" height="1672" alt="The original Pitstop colleagues gathered around their laptop, extended into an edge-to-edge illustration." fetchpriority="high" draggable="false"></picture></figure><div class="cover-heading"><h1>The Pitstop</h1><p class="cover-subtitle">What’s happening across Cars24.</p></div><div class="card-bottom">${jump('overview','Open this issue →','primary-action')}</div>`;
  if(p.kind==='overview')return `<h2>In this issue</h2><div class="chapter-list">${indices}</div>`;
  if(p.kind==='chapter'){const ch=p.chapter;return `<p class="chapter-label">Chapter ${ch.number}</p><h2>${esc(ch.name)}</h2><p class="chapter-description">${esc(ch.body)}</p><div class="chapter-stories">${ch.stories.map(id=>jump(id,data.stories.find(s=>s.id===id).title)).join('')}</div><div class="card-bottom">${jump(ch.stories[0],'Start reading →','chapter-open')}</div>`;}
  if(p.kind==='ending')return `<h2>That’s this month’s Pitstop.</h2><p>Have a win, a lesson, or a teammate’s story for the next issue?</p><div class="ending-actions">${jump('cover','Read again','secondary-action')}<a class="primary-action" href="${esc(data.form)}" target="_blank" rel="noopener">Add your story ↗</a></div>`;
@@ -43,7 +43,7 @@ function freezeMotion(){
 function settle(animate=true,previous=current,motion={}){
  const width=track.clientWidth,ticket=++revision,positions=freezeMotion(),back=(current-1+cards.length)%cards.length;
  const forward=current===previous+1,oldBack=(previous-1+cards.length)%cards.length;
- const depart=Math.max(140,Math.min(300,motion.depart||260)),returnMs=300,total=depart+returnMs,handoff=depart/total;
+ const depart=Math.max(140,Math.min(240,motion.depart||210)),returnMs=240,total=depart+returnMs,handoff=depart/total;
  let outgoingAnimation=null;
  cards.forEach((card,i)=>{
   const d=(i-current+cards.length)%cards.length,depth=i===back?3:d>=3?d+1:d;
@@ -65,7 +65,7 @@ function settle(animate=true,previous=current,motion={}){
    {transform:target,opacity:1,zIndex:z,offset:1}
   ]:[{transform:start,opacity:1},{transform:target,opacity:1}];
   if(start===target)return;
-  const animation=card.animate(frames,{duration:outgoing?total:previous===current?200:forward?depart+80:340,easing:outgoing?'linear':'cubic-bezier(.22,.68,.2,1)',fill:'none'});
+  const animation=card.animate(frames,{duration:outgoing?total:previous===current?160:forward?depart+40:260,easing:outgoing?'linear':'cubic-bezier(.22,.68,.2,1)',fill:'none'});
   motions.set(card,animation);if(outgoing)outgoingAnimation=animation;
   animation.finished.then(()=>{if(motions.get(card)===animation)motions.delete(card)}).catch(()=>{});
  });
@@ -83,10 +83,10 @@ function drawDrag(){
  if(!reduced.matches&&dx<0){const amount=Math.min(Math.abs(dx)/g.width,1);[1,2].forEach(d=>{const card=cards[(current+d)%cards.length],from=g.followers[d-1],end={x:19*d*.3,y:8*d*.3,angle:2*d*.3,scale:1-.025*d*.3};if(card)card.style.transform=`translate3d(${from.x+(end.x-from.x)*amount}px,${from.y+(end.y-from.y)*amount}px,0) rotate(${from.angle+(end.angle-from.angle)*amount}deg) scale(${from.scale+(end.scale-from.scale)*amount})`;});}
 }
 
-function go(index,animate=true,motion={}){window.PITSTOP_SOUND?.stop?.();cancel();index=Math.max(0,Math.min(cards.length-1,index));const previous=current;current=index;if(previous!==current)cards[current].querySelector('.sheet-scroll').scrollTop=0;const startedAt=performance.now(),turn=settle(animate,previous,motion);if(previous!==current&&animate)window.PITSTOP_SOUND?.play({...turn,startedAt});$('back').disabled=$('menu-back').disabled=current===0;$('next').disabled=$('menu-next').disabled=current===cards.length-1;const p=pages[current];$('announcement').textContent=p.kind==='story'?`Story ${p.number} of ${data.storyCount}. ${p.title}`:p.kind==='chapter'?`Chapter ${p.chapter.number}. ${p.chapter.name}`:p.kind==='overview'?'In this issue':p.kind==='cover'?'The Pitstop cover':'End of the issue';try{history.replaceState(null,'','#'+p.id);localStorage.setItem(storageKey,p.id)}catch{}}
+function go(index,animate=true,motion={}){window.PITSTOP_SOUND?.stop?.();cancel();index=Math.max(0,Math.min(cards.length-1,index));const previous=current;current=index;if(previous!==current)cards[current].querySelector('.sheet-scroll').scrollTop=0;const startedAt=performance.now(),turn=settle(animate,previous,motion);window.PITSTOP_IMAGES?.warm(cards,current);if(previous!==current&&animate)window.PITSTOP_SOUND?.play({...turn,startedAt});$('back').disabled=$('menu-back').disabled=current===0;$('next').disabled=$('menu-next').disabled=current===cards.length-1;const p=pages[current];$('announcement').textContent=p.kind==='story'?`Story ${p.number} of ${data.storyCount}. ${p.title}`:p.kind==='chapter'?`Chapter ${p.chapter.number}. ${p.chapter.name}`:p.kind==='overview'?'In this issue':p.kind==='cover'?'The Pitstop cover':'End of the issue';try{history.replaceState(null,'','#'+p.id);localStorage.setItem(storageKey,p.id)}catch{}}
 function target(id){const n=pages.findIndex(p=>p.id===id);go(n<0?1:n,false)}
 function showContents(){for(const details of $('contents').querySelectorAll('details'))details.open=false;const p=pages[current],ch=p.kind==='chapter'?p.chapter.id:p.chapterId;if(ch){const at=data.chapters.findIndex(x=>x.id===ch);const d=$('contents-list').querySelectorAll('details')[at];if(d)d.open=true;}$('contents').showModal();}
-function notes(id){const s=data.stories.find(s=>s.id===id);if(!s)return;$('credit-title').textContent=s.title;$('credit-source').textContent=s.sourceCredit||s.credit;$('credit-note').textContent=[s.note,window.PITSTOP_SOURCES?.context?.[id],window.PITSTOP_SOURCES?.unavailable?.[id]].filter(Boolean).join('\n\n');$('original-update').textContent=s.originalBody||s.body;$('credit-links').replaceChildren();const links=s.sourceLinks||window.PITSTOP_SOURCES?.stories?.[id]||[];for(const source of links){let url;try{url=new URL(source.url)}catch{continue}if(url.protocol!=='https:')continue;const a=document.createElement('a');a.href=url.href;a.target='_blank';a.rel='noopener noreferrer';const label=document.createElement('span');label.textContent=source.label+' ↗';const detail=document.createElement('small');detail.textContent=source.detail||'';a.append(label,detail);$('credit-links').append(a);}$('credit-art').replaceChildren();if(s.images?.length>1){for(const name of s.images.slice(1)){const img=document.createElement('img');img.src=s.imageFiles[name];img.alt='Additional supplied illustration of the Diwali celebration.';$('credit-art').append(img);}}$('credits').querySelector('.full-update').open=false;$('credits').showModal();}
+function notes(id){const s=data.stories.find(s=>s.id===id);if(!s)return;$('credit-title').textContent=s.title;$('credit-source').textContent=s.sourceCredit||s.credit;$('credit-note').textContent=[s.note,window.PITSTOP_SOURCES?.context?.[id],window.PITSTOP_SOURCES?.unavailable?.[id]].filter(Boolean).join('\n\n');$('original-update').textContent=s.originalBody||s.body;$('credit-links').replaceChildren();const links=s.sourceLinks||window.PITSTOP_SOURCES?.stories?.[id]||[];for(const source of links){let url;try{url=new URL(source.url)}catch{continue}if(url.protocol!=='https:')continue;const a=document.createElement('a');a.href=url.href;a.target='_blank';a.rel='noopener noreferrer';const label=document.createElement('span');label.textContent=source.label+' ↗';const detail=document.createElement('small');detail.textContent=source.detail||'';a.append(label,detail);$('credit-links').append(a);}$('credit-art').replaceChildren();if(s.images?.length>1){for(const name of s.images.slice(1)){const img=document.createElement('img');img.dataset.src=s.imageFiles[name];img.dataset.fallback=s.imageFiles[name].replace('.webp','.png');img.alt='Additional supplied illustration of the Diwali celebration.';$('credit-art').append(img);window.PITSTOP_IMAGES?.load(img,img.dataset.src,img.dataset.fallback,'high');}}$('credits').querySelector('.full-update').open=false;$('credits').showModal();}
 document.addEventListener('click',e=>{const jump=e.target.closest('[data-target]');if(jump){document.querySelectorAll('dialog[open]').forEach(d=>d.close());target(jump.dataset.target);return}if(e.target.closest('[data-contents]'))showContents();const source=e.target.closest('[data-source]');if(source)notes(source.dataset.source);});
 $('back').addEventListener('click',()=>go(current-1));$('next').addEventListener('click',()=>go(current+1));$('menu').addEventListener('click',showContents);$('menu-back').addEventListener('click',()=>{$('contents').close();go(current-1)});$('menu-next').addEventListener('click',()=>{$('contents').close();go(current+1)});
 for(const dialog of document.querySelectorAll('dialog')){dialog.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('keydown',e=>e.stopPropagation());dialog.addEventListener('click',e=>{const r=dialog.getBoundingClientRect();if(e.target===dialog&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))dialog.close();});}
@@ -103,7 +103,7 @@ track.addEventListener('pointerdown',e=>{
 });
 track.addEventListener('pointermove',e=>{
  const g=gesture;if(!g||e.pointerId!==g.id)return;const dx=e.clientX-g.x,dy=e.clientY-g.y;
- if(!g.started){if(Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>8){gesture=null;return;}if(Math.abs(dx)<8||Math.abs(dx)<Math.abs(dy)*1.1)return;
+ if(!g.started){if(Math.abs(dy)>Math.abs(dx)*1.2&&Math.abs(dy)>8){gesture=null;return;}if(Math.abs(dx)<6||Math.abs(dx)<Math.abs(dy)*1.05)return;
   window.PITSTOP_SOUND?.stop?.();const positions=freezeMotion();g.origin=matrixParts(positions[current]);g.followers=[1,2].map(d=>matrixParts(positions[(current+d)%cards.length]||stateTransform(d)));
   g.width=track.clientWidth;g.started=true;track.setPointerCapture(e.pointerId);track.setAttribute('data-dragging','true');
  }
@@ -115,10 +115,12 @@ function release(e,canceled=false){
  if(!g.started){gesture=null;return;}
  // Settle from the last painted frame, without a write/read layout flush on release.
  if(dragFrame){cancelAnimationFrame(dragFrame);dragFrame=0;}
+ // Include the release position even if Chrome coalesced the final move event.
+ const releasedAt=performance.now();if(!canceled&&Number.isFinite(e.clientX)){g.dx=e.clientX-g.x;if(g.samples.at(-1)?.x!==e.clientX)g.samples.push({x:e.clientX,t:releasedAt});g.samples=g.samples.filter(p=>releasedAt-p.t<110);}
  const last=g.samples.at(-1),first=g.samples[0],velocity=last&&first&&performance.now()-last.t<110&&last.t>first.t?(last.x-first.x)/(last.t-first.t):0;
- const reversed=Math.abs(velocity)>.18&&Math.sign(velocity)!==Math.sign(g.dx);
- const enough=Math.abs(g.dx)>Math.min(72,track.clientWidth*.18)||(Math.abs(g.dx)>18&&Math.abs(velocity)>.45);
- const depart=Math.max(140,Math.min(300,(g.width-Math.min(Math.abs(g.dx),g.width*.85))/Math.max(.7,Math.abs(velocity))*.7));
+ const reversed=last&&first&&Math.abs(last.x-first.x)>=14&&Math.abs(velocity)>.25&&Math.sign(velocity)!==Math.sign(g.dx);
+ const enough=Math.abs(g.dx)>=Math.min(28,track.clientWidth*.065)||(Math.abs(g.dx)>=12&&Math.abs(velocity)>=.22);
+ const depart=Math.max(140,Math.min(240,(g.width-Math.min(Math.abs(g.dx),g.width*.85))/Math.max(.7,Math.abs(velocity))*.7));
  cancel();suppress=performance.now()+300;go(!canceled&&!reversed&&enough?current+(g.dx<0?1:-1):current,true,{depart});
 }
 track.addEventListener('pointerup',e=>release(e));track.addEventListener('pointercancel',e=>release(e,true));
@@ -132,7 +134,7 @@ function viewport(){
  if(width===lastViewportWidth&&height===lastViewportHeight)return;
  // Safari toolbar height changes must not reset a drag or a card in flight.
  if(width===lastViewportWidth&&(gesture?.started||motions.size)){clearTimeout(viewportTimer);viewportTimer=setTimeout(scheduleViewport,100);return;}
- lastViewportWidth=width;lastViewportHeight=height;document.documentElement.style.setProperty('--viewport-height',`${height}px`);const coverImage=document.querySelector('#cover img'),coverSource=track.clientWidth/track.clientHeight>=.82?'assets/cover-wide.png':'assets/cover-portrait.png';if(coverImage.getAttribute('src')!==coverSource)coverImage.src=coverSource;cancel();settle(false,current);
+ lastViewportWidth=width;lastViewportHeight=height;document.documentElement.style.setProperty('--viewport-height',`${height}px`);const coverImage=document.querySelector('#cover img'),coverSource=track.clientWidth/track.clientHeight>=.82?'assets/cover-wide.webp':'assets/cover-portrait.webp';window.PITSTOP_IMAGES?.load(coverImage,coverSource,coverSource.replace('.webp','.png'),'high');cancel();settle(false,current);
 }
 function scheduleViewport(){if(!viewportFrame)viewportFrame=requestAnimationFrame(()=>{viewportFrame=0;viewport()});}
 window.addEventListener('resize',scheduleViewport);window.visualViewport?.addEventListener('resize',scheduleViewport);reduced.addEventListener('change',()=>settle(false,current));window.addEventListener('hashchange',()=>{try{target(decodeURIComponent(location.hash.slice(1)))}catch{target('overview')}});

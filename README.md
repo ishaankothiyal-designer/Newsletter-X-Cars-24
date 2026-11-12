@@ -27,6 +27,7 @@ Requires Node.js 22 or later.
 
 ```sh
 node tests/v8-content.test.cjs
+node tests/v8-images.test.cjs
 node tests/v8-motion.test.cjs
 node tests/v8-viewport.test.cjs
 node tests/v8-sound.test.cjs

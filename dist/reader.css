@@ -90,3 +90,10 @@ body{background-color:var(--color-v6-desk);background-image:url('assets/v5-newsp
 @media(max-height:450px){.cover-subtitle{font-size:12px}}
 
 .menu-actions [data-target="cover"]{grid-column:1/-1}
+
+/* Reserve illustration space and show decoded artwork, including on upcoming sheets. */
+.story-visual img[data-src]:not([data-ready]),.cover-bleed img[data-src]:not([data-ready]){opacity:0}
+.story-visual[data-image-state="loading"]{background:#ffffff18}
+.image-retry{position:absolute;inset:0;z-index:2;width:100%;display:grid;place-items:center;background:#ffffffdd;color:#000;font-size:14px;pointer-events:auto}
+
+#credit-art{position:relative}
