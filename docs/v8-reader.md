@@ -42,3 +42,13 @@ At the default text size, 16px story text and responsive artwork fit all 33 card
 Audio uses one asynchronously decoded Web Audio buffer. The release handler never awaits decoding, resume, or playback; locked, loading, failed, or late audio cues are skipped. The cue is scheduled on the next animation frame, uses the recording’s natural pitch, and fades its tail to the paper’s departure timing. Repeated gestures cancel old cues, and reduced motion suppresses the cue. A short gain fade avoids abrupt cancellation clicks. Implementation references: https://developer.mozilla.org/en-US/docs/Web/API/AudioBufferSourceNode and https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/decodeAudioData .
 
 Resting sheets reuse known transforms; only in-flight animations need computed-style reads. Image warming is deferred to the next frame. Trackpad deltas accumulate to 18px and lock to one turn per momentum burst, resetting after 110ms without horizontal input. Regression tests cover tiny deltas, inertia, reverse gestures, interruption, links, cancellation, reduced motion, and unavailable audio. Six consecutive 26px Chrome drags with sound enabled each advanced one page and retained exactly one active card.
+
+## November 12: top alignment and very short repeated swipes
+
+Story content now starts at the top of the sheet; the source row remains at the bottom, leaving open space below the summary. The main story group has no auto vertical margins.
+
+Horizontal intent begins at 4px. A slow 8px drag or 6px flick at 0.14px/ms commits a turn. Stationary taps, 2px pointer jitter, and vertical movement do not turn the card. This supersedes the larger thresholds in earlier notes.
+
+Rapid forward swipes preserve an earlier outgoing paper’s return animation instead of cancelling and freezing it mid-path. Each return retires independently; its completion cannot clear a newer transition. Re-grabbing a returning paper itself still freezes that paper at its rendered transform. Immediate jumps, viewport resets, and reduced motion cancel outstanding transitions as before.
+
+Regression checks cover retained outgoing animations, cleanup of stale returns, reverse re-grabs, tiny drags, tap jitter, and previous gesture/audio contracts. The local browser advanced through eight consecutive 8px forward drags and four 8px reverse drags, retained one active card, and settled to exactly depths 0–3 without console errors.

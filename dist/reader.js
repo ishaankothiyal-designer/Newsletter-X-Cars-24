@@ -30,22 +30,25 @@ track.querySelectorAll('.sheet').forEach((card,i)=>{
  const paper=data.colourSystem.pages[pages[i].id].paper;
  card.dataset.flatland=paper;card.style.setProperty('--flatland-background',`url('assets/flatland/${paper}.svg')`);card.style.setProperty('--page-stock',data.colourSystem.stocks[paper].hex);
 });
-const cards=[...track.children],reduced=matchMedia('(prefers-reduced-motion: reduce)'),storageKey='pitstop-v8-clean-last-story';let current=0,revision=0,gesture=null,suppress=0,dragFrame=0,viewportFrame=0;const motions=new Map();
+const cards=[...track.children],reduced=matchMedia('(prefers-reduced-motion: reduce)'),storageKey='pitstop-v8-clean-last-story';let current=0,revision=0,gesture=null,suppress=0,dragFrame=0,viewportFrame=0;const motions=new Map(),departures=new Set();
 // V6's original geometry and opaque card-to-back animation, kept intact.
 const stateTransform=d=>d===0?'translate3d(0,0,0) rotate(0deg) scale(1)':d===1?'translate3d(19px,8px,0) rotate(2deg) scale(.975)':d===2?'translate3d(37px,16px,0) rotate(4deg) scale(.95)':`translate3d(${d<0?-track.clientWidth-100:50}px,12px,0) rotate(${d<0?-12:5}deg) scale(.95)`;
 // Read all in-flight transforms before any writes. A re-grab starts exactly here.
-function freezeMotion(){
- const positions=cards.map(card=>card.style.visibility==='visible'?(motions.has(card)?getComputedStyle(card).transform:card.style.transform):null);
- for(const animation of motions.values())animation.cancel();motions.clear();
+function freezeMotion(preserveDepartures=true){
+ const retain=card=>preserveDepartures&&departures.has(card)&&card!==cards[current];
+ const positions=cards.map(card=>card.style.visibility==='visible'&&!retain(card)?(motions.has(card)?getComputedStyle(card).transform:card.style.transform):null);
+ for(const [card,animation] of motions){if(retain(card))continue;animation.cancel();motions.delete(card);departures.delete(card);}
  cards.forEach((card,i)=>{if(positions[i])card.style.transform=positions[i]});
  return positions;
 }
 function settle(animate=true,previous=current,motion={}){
- const width=track.clientWidth,ticket=++revision,positions=freezeMotion(),back=(current-1+cards.length)%cards.length;
+ const width=track.clientWidth,ticket=++revision,positions=freezeMotion(animate&&!reduced.matches),back=(current-1+cards.length)%cards.length;
  const forward=current===previous+1,oldBack=(previous-1+cards.length)%cards.length;
  const depart=Math.max(140,Math.min(240,motion.depart||210)),returnMs=240,total=depart+returnMs,handoff=depart/total;
  let outgoingAnimation=null;
  cards.forEach((card,i)=>{
+  // A fast new swipe must not freeze or teleport an earlier outgoing paper.
+  if(animate&&!reduced.matches&&departures.has(card)&&i!==current&&i!==previous)return;
   const d=(i-current+cards.length)%cards.length,depth=i===back?3:d>=3?d+1:d;
   const visible=d<=2||i===back,carryTail=animate&&!reduced.matches&&forward&&i===oldBack;
   const target=stateTransform(depth),z=String(4-depth);
@@ -66,11 +69,15 @@ function settle(animate=true,previous=current,motion={}){
   ]:[{transform:start,opacity:1},{transform:target,opacity:1}];
   if(start===target)return;
   const animation=card.animate(frames,{duration:outgoing?total:previous===current?160:forward?depart+40:260,easing:outgoing?'linear':'cubic-bezier(.22,.68,.2,1)',fill:'none'});
-  motions.set(card,animation);if(outgoing)outgoingAnimation=animation;
-  animation.finished.then(()=>{if(motions.get(card)===animation)motions.delete(card)}).catch(()=>{});
+  motions.set(card,animation);if(outgoing){outgoingAnimation=animation;departures.add(card);}
+  animation.finished.then(()=>{
+   if(motions.get(card)!==animation)return;motions.delete(card);departures.delete(card);
+   // Only the most recent back paper remains once an older return is complete.
+   if(outgoing&&i!==current&&i!==(current-1+cards.length)%cards.length)card.style.visibility='hidden';
+  }).catch(()=>{});
  });
  // Keep the existing back sheet underneath until the outgoing sheet lands on it.
- const finish=()=>{if(ticket!==revision)return;cards.forEach((card,i)=>{if(card.dataset.depth==='0'||Number(card.dataset.depth)<=2||i===back)return;card.style.visibility='hidden';});};
+ const finish=()=>{if(ticket!==revision)return;cards.forEach((card,i)=>{if(departures.has(card)||card.dataset.depth==='0'||Number(card.dataset.depth)<=2||i===back)return;card.style.visibility='hidden';});};
  if(outgoingAnimation)outgoingAnimation.finished.then(finish).catch(()=>{});else finish();
  return {duration:forward?depart:260};
 }
@@ -104,7 +111,7 @@ track.addEventListener('pointerdown',e=>{
 });
 track.addEventListener('pointermove',e=>{
  const g=gesture;if(!g||e.pointerId!==g.id)return;const dx=e.clientX-g.x,dy=e.clientY-g.y;
- if(!g.started){if(Math.abs(dy)>Math.abs(dx)*1.2&&Math.abs(dy)>8){gesture=null;return;}if(Math.abs(dx)<6||Math.abs(dx)<Math.abs(dy)*1.05)return;
+ if(!g.started){if(Math.abs(dy)>Math.abs(dx)*1.2&&Math.abs(dy)>8){gesture=null;return;}if(Math.abs(dx)<4||Math.abs(dx)<Math.abs(dy)*1.1)return;
   window.PITSTOP_SOUND?.stop?.();const positions=freezeMotion();g.origin=matrixParts(positions[current]);g.followers=[1,2].map(d=>matrixParts(positions[(current+d)%cards.length]||stateTransform(d)));
   g.width=track.clientWidth;g.started=true;track.setPointerCapture(e.pointerId);track.setAttribute('data-dragging','true');
  }
@@ -120,7 +127,7 @@ function release(e,canceled=false){
  const releasedAt=performance.now();if(!canceled&&Number.isFinite(e.clientX)){g.dx=e.clientX-g.x;if(g.samples.at(-1)?.x!==e.clientX)g.samples.push({x:e.clientX,t:releasedAt});g.samples=g.samples.filter(p=>releasedAt-p.t<110);}
  const last=g.samples.at(-1),first=g.samples[0],velocity=last&&first&&performance.now()-last.t<110&&last.t>first.t?(last.x-first.x)/(last.t-first.t):0;
  const reversed=last&&first&&Math.abs(last.x-first.x)>=14&&Math.abs(velocity)>.25&&Math.sign(velocity)!==Math.sign(g.dx);
- const enough=Math.abs(g.dx)>=Math.min(28,track.clientWidth*.065)||(Math.abs(g.dx)>=12&&Math.abs(velocity)>=.22);
+ const enough=Math.abs(g.dx)>=8||(Math.abs(g.dx)>=6&&Math.abs(velocity)>=.14);
  const depart=Math.max(140,Math.min(240,(g.width-Math.min(Math.abs(g.dx),g.width*.85))/Math.max(.7,Math.abs(velocity))*.7));
  cancel();suppress=performance.now()+300;go(!canceled&&!reversed&&enough?current+(g.dx<0?1:-1):current,true,{depart});
 }

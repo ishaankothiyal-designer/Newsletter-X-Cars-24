@@ -3,10 +3,10 @@
 @font-face{font-family:Parkinsans;src:url('fonts/Parkinsans.ttf') format('truetype');font-weight:300 800;font-display:swap}
 .sheet:not(.cover) h2{font-family:Parkinsans,Geist,sans-serif;font-weight:750;text-transform:none;letter-spacing:-.055em;font-size:clamp(32px,3.2vw,46px);line-height:1.08;text-wrap:balance}
 .story .sheet-scroll{padding:30px;gap:22px}
-.story-main{display:flex;flex-direction:column;gap:20px;min-width:0;margin-block:auto}
+.story-main{display:flex;flex-direction:column;gap:20px;min-width:0;margin-block:0}
 .story h2{border:0;padding:0}
 .story-body{font-size:16px;line-height:1.65}
-.story .card-bottom{flex-shrink:0;margin-top:0;border-top-color:#00000055}
+.story .card-bottom{flex-shrink:0;margin-top:auto;border-top-color:#00000055}
 .story .headline-mark{box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .story .story-link{color:#000;text-decoration-thickness:1px}
 .story .story-visual img{height:clamp(125px,20dvh,180px)}

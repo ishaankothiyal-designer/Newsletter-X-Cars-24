@@ -8,7 +8,7 @@ const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'")
  class Matrix{constructor(v){const parts=v?.startsWith('matrix(')?v.slice(7,-1).split(',').map(Number):[1,0,0,1,0,0];[this.m11,this.m12,this.m21,this.m22,this.m41,this.m42]=parts}}
  const track={clientWidth:400,addEventListener:(n,fn)=>listeners[n]=fn,focus(){},setPointerCapture(){},releasePointerCapture(){},setAttribute(){},removeAttribute(){}};
  const context=vm.createContext({window:{},cards,track,document:{activeElement:null},getComputedStyle:c=>{log.push('read');return{transform:c.rendered||c.style.transform}},DOMMatrixReadOnly:Matrix,performance:{now:()=>now},requestAnimationFrame:fn=>{raf.set(++frame,fn);return frame},cancelAnimationFrame:id=>raf.delete(id),Map,Math});
- vm.runInContext('let current=0,revision=0,gesture=null,suppress=0,dragFrame=0;const motions=new Map(),reduced={matches:false};const go=index=>{current=index};'+motion+'\n'+pointers,context);
+ vm.runInContext('let current=0,revision=0,gesture=null,suppress=0,dragFrame=0;const motions=new Map(),departures=new Set(),reduced={matches:false};const go=index=>{current=index};'+motion+'\n'+pointers,context);
  // All reads must precede every write/cancel, avoiding read/write layout thrashing.
  vm.runInContext('motions.set(cards[0],{cancel(){}});freezeMotion()',context);const firstWrite=log.indexOf('write');assert(log.slice(firstWrite).every(x=>x!=='read'));
  // V6's exit, opaque layer handoff and landing are preserved.
@@ -24,6 +24,10 @@ const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'")
  // Light, deliberate drags and small flicks work without traversing the card.
  vm.runInContext('current=1',context);now=80;listeners.pointerdown(evt(200,100));now=280;listeners.pointermove(evt(172,100));listeners.pointerup(evt(172,100));assert.equal(vm.runInContext('current',context),2,'28px slow drag');
  vm.runInContext('current=1',context);now=300;listeners.pointerdown(evt(200,100));now=330;listeners.pointermove(evt(188,100));listeners.pointerup(evt(188,100));assert.equal(vm.runInContext('current',context),2,'12px light flick');
+ // Tiny deliberate drags turn the sheet; natural tap jitter does not.
+ vm.runInContext('current=1',context);now=350;listeners.pointerdown(evt(200,100));now=550;listeners.pointermove(evt(192,100));listeners.pointerup(evt(192,100));assert.equal(vm.runInContext('current',context),2,'8px slow drag');
+ vm.runInContext('current=1',context);now=600;listeners.pointerdown(evt(200,100));now=630;listeners.pointermove(evt(194,100));listeners.pointerup(evt(194,100));assert.equal(vm.runInContext('current',context),2,'6px flick');
+ vm.runInContext('current=1',context);now=700;listeners.pointerdown(evt(200,100));now=730;listeners.pointermove(evt(198,101));listeners.pointerup(evt(198,101));assert.equal(vm.runInContext('current',context),1,'2px tap jitter');
  // Chrome may coalesce the final move: the pointerup coordinate still commits it.
  vm.runInContext('current=1',context);now=400;listeners.pointerdown(evt(200,100));now=410;listeners.pointermove(evt(194,100));now=440;listeners.pointerup(evt(170,100));assert.equal(vm.runInContext('current',context),2,'Release position');
  // Tiny backwards drift at lift-off must not cancel a valid swipe.
@@ -49,6 +53,13 @@ const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'")
  const fast=vm.runInContext('motions.get(cards[0])',context);assert.equal(fast.options.duration,390);assert.equal(fast.frames[1].offset,150/390);delete cards[0].rendered;
  // No synchronous last-frame drag write is inserted before settling on release.
  assert(!pointers.includes('drawDrag();'));
+ // An outgoing return survives the next swipe, then retires behind the stack.
+ vm.runInContext('current=0;settle(false);current=1;settle(true,0)',context);
+ const firstReturn=vm.runInContext('motions.get(cards[0])',context);vm.runInContext('freezeMotion()',context);assert.equal(vm.runInContext('motions.get(cards[0])',context),firstReturn,'Re-grab must retain the earlier outgoing animation');
+ vm.runInContext('current=2;settle(true,1)',context);assert.equal(vm.runInContext('motions.get(cards[0])',context),firstReturn,'Next release retains the earlier return');assert.equal(cards[0].style.visibility,'visible');
+ const secondReturn=vm.runInContext('motions.get(cards[1])',context);firstReturn.finish();await Promise.resolve();await Promise.resolve();assert.equal(cards[0].style.visibility,'hidden');assert.equal(vm.runInContext('motions.get(cards[1])',context),secondReturn,'Old completion cannot clear the new return');
+ // Reverse re-grab freezes the returning card itself at its rendered position.
+ vm.runInContext('current=1;freezeMotion()',context);assert(!vm.runInContext('departures.has(cards[1])',context));
  // Trackpad samples accumulate, then inertia cannot cause extra page turns.
  let timerId=0;const timers=new Map();context.setTimeout=fn=>{timers.set(++timerId,fn);return timerId};context.clearTimeout=id=>timers.delete(id);context.document.querySelector=()=>null;
  const wheel=source.slice(source.indexOf('let wheelDistance='),source.indexOf('\nlet lastViewportWidth'));
@@ -57,7 +68,7 @@ const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'")
  for(let i=0;i<20;i++)listeners.wheel(event(12));assert.equal(vm.runInContext('current',context),2,'Momentum stays within one turn');
  [...timers.values()].forEach(fn=>fn());listeners.wheel(event(-20));assert.equal(vm.runInContext('current',context),1,'A fresh reverse gesture turns back');
  // Resting cards use their known transforms without computed-style reads.
- vm.runInContext('motions.clear()',context);log.length=0;vm.runInContext('freezeMotion()',context);assert(!log.includes('read'));
+ vm.runInContext('motions.clear();departures.clear()',context);log.length=0;vm.runInContext('freezeMotion()',context);assert(!log.includes('read'));
  // Reduced motion preserves immediate stacking without launching animations.
  vm.runInContext('reduced.matches=true;current=2;settle(true,1)',context);assert.equal(vm.runInContext('motions.size',context),0);assert.equal(cards[1].dataset.depth,'3');
  console.log('V8 motion regressions passed: batched reads, V6 opacity/layering, retained back sheet, no tap/vertical reset, rAF coalescing, fast flick, re-grab continuity, reversal, links/buttons/summary tap-versus-drag, keyboard activation, reduced motion.');
