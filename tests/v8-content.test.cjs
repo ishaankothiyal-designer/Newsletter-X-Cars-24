@@ -11,9 +11,12 @@ for(const base of [dist,v8]){
 }
 vm.runInNewContext(fs.readFileSync(path.join(v8,'stories.js'),'utf8'),context);
 const d=context.window.PITSTOP,stories=d.stories;
-assert.equal(stories.length,26);assert.equal(d.chapters.length,5);assert.equal(stories.length+d.chapters.length+3,34);
-assert.deepEqual(Array.from(d.chapters,ch=>ch.stories.length),[7,7,3,5,4]);
+assert.equal(stories.length,26);assert.equal(d.chapters.length,4);assert.equal(stories.length+d.chapters.length+3,33);
+assert.deepEqual(Array.from(d.chapters,ch=>ch.stories.length),[7,10,5,4]);
 assert.equal(new Set(stories.map(s=>s.id)).size,26);
+assert.equal(d.chapters[1].name,'Builders at Work');assert(!d.chapters.some(ch=>ch.id==='tech'));
+assert.equal(d.chapterAliases['chapter-tech'],'chapter-builders');
+for(const s of stories){assert(s.body.split(/\s+/).length<=38,s.id+' exceeds the reading budget');assert(s.navTitle.length<=24,s.id+' navigation label');}
 for(const id of ['handovers','waits','dehradun','pdi','telugu'])assert(!stories.find(s=>s.id===id),id);
 for(const ch of d.chapters)for(const id of ch.stories)assert.equal(stories.find(s=>s.id===id).chapterId,ch.id);
 assert.equal(stories.filter(s=>s.id==='academy').length,1);
@@ -52,4 +55,4 @@ assert.equal(d.colourSystem.ink,'#000000');
 assert(!js.includes('Issue 10'),'Cover must not display an issue number');
 function luminance(hex){const c=hex.slice(1).match(/../g).map(x=>parseInt(x,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return .2126*c[0]+.7152*c[1]+.0722*c[2];}
 for(const [id,style] of Object.entries(d.colourSystem.pages)){const paper=d.colourSystem.stocks[style.paper].hex,muted=style.paper==='magenta-grid'?'#111111':'#333333';assert((luminance(paper)+.05)/(luminance(muted)+.05)>=4.5,id+' muted text contrast');}
-console.log('V8 contract passed: 26 stories, five chapters, 34 pages, V6-style animation, responsive original-art cover, source status, root parity.');
+console.log('V8 contract passed: 26 stories, four chapters, 33 pages, V6-style animation, responsive original-art cover, source status, root parity.');

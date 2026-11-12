@@ -1,4 +1,3 @@
-// V8: Flatland-inspired editorial page rhythm, 26 stories, five chapters.
 window.PITSTOP = {
   "issue": "October 2026",
   "period": "1 October–5 November",
@@ -11,10 +10,10 @@ window.PITSTOP = {
       "label": "H1 FY27",
       "stat": "₹5,300",
       "unit": "crore+ in gross merchandise value",
-      "title": "H1 growth comes with stronger economics",
-      "body": "In the company-wide H1 FY27 update, Aditya Mittal shared that GMV grew about 29% year on year to ₹5,300 Cr+, adjusted net revenue rose more than 33% to ₹921 Cr, and the EBITDA loss narrowed to around 1% of GMV. Consumer deliveries grew about 68% year on year in H1.",
+      "title": "H1 growth, stronger economics",
+      "body": "H1 FY27 GMV grew about 29% year on year to ₹5,300 crore+, while adjusted net revenue rose over 33% to ₹921 crore. EBITDA loss narrowed to around 1% of GMV.",
       "credit": "Aditya Mittal · Company-wide H1 FY27 update",
-      "note": "Gross merchandise value is the total value of transactions. EBITDA is a measure of operating earnings. Figures are as reported in the supplied edition.",
+      "note": "Gross merchandise value is the total value of transactions. EBITDA is a measure of operating earnings. Figures are as reported in the supplied edition. Consumer deliveries grew about 68% year on year in H1. Update shared by Aditya Mittal.",
       "kind": "story",
       "number": 1,
       "chapterId": "business",
@@ -24,7 +23,8 @@ window.PITSTOP = {
         "alt": "A rising road carries a car upwards, an editorial metaphor for growth.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/growth.svg"
-      }
+      },
+      "navTitle": "H1 results"
     },
     {
       "id": "ecosystem",
@@ -45,7 +45,8 @@ window.PITSTOP = {
         "alt": "A car, a protective shield, and finance papers connected as one ecosystem.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/ecosystem.svg"
-      }
+      },
+      "navTitle": "Ecosystem growth"
     },
     {
       "id": "frontier",
@@ -53,8 +54,8 @@ window.PITSTOP = {
       "layout": "image",
       "image": "frontier",
       "label": "Coming up · 29ᵗʰ November",
-      "title": "Frontier ’26 will bring 30+ AI releases",
-      "body": "VC announced that Cars24 and Deployment Inc will unveil more than 30 first-of-their-kind AI releases in New Delhi on 29 November. The event will also open up the company’s effort to rebuild an enterprise around AI.",
+      "title": "Frontier ’26: 30+ AI releases",
+      "body": "Cars24 and Deployment Inc will unveil 30+ AI releases in New Delhi on 29 November. VC’s announcement sets out the company’s effort to rebuild an enterprise around AI.",
       "credit": "VC · #announcements · 28ᵗʰ October",
       "note": "Future event, as announced in the October edition. Artwork is an imagined editorial illustration.",
       "kind": "story",
@@ -67,21 +68,22 @@ window.PITSTOP = {
         "alt": "Illustration of a team at an AI event.",
         "type": "scene",
         "fallbackSrc": "assets/frontier-fallback.jpg"
-      }
+      },
+      "navTitle": "Frontier ’26"
     },
     {
       "id": "startup",
       "chapter": "Business highlights",
       "layout": "statement",
       "label": "Grand Startup Challenge",
-      "title": "Backing early-stage founders through the Grand Startup Challenge",
+      "title": "₹1 crore for early-stage founders",
       "accent": "₹1 crore prize pool",
-      "body": "Cars24 is running the Grand Startup Challenge with Startup India (DPIIT), MeitY Startup Hub, and Startup Policy Forum. It invites early-stage teams in lending and fintech, mobility and road safety, logistics and supply chains, and sovereign AI.\n\nThe ₹1 crore prize pool includes a month of mentorship for the top 20 startups in December, followed by a New Delhi finale in January 2027. Applications close on 10 November at 11:59 p.m. IST.",
+      "body": "The Grand Startup Challenge offers a ₹1 crore prize pool. The top 20 startups receive mentorship in December, ahead of a January 2027 finale. Applications close on 10 November.",
       "foot": "Apply by 10 November, 11:59 p.m. IST · ₹1 crore total prize pool. Top 20: mentorship in December; New Delhi finale in January 2027.",
       "link": "https://gsc.cars24.com",
       "linkLabel": "Explore the challenge",
       "credit": "Yuvika Sharma · #announcements / #builders-cars24 · 29ᵗʰ October",
-      "note": "Partners: Startup India (DPIIT), MeitY Startup Hub, and Startup Policy Forum. The four tracks are Lending & Fintech, Mobility & Road Safety, Logistics & Supply Chain, and Sovereign AI.",
+      "note": "Partners: Startup India (DPIIT), MeitY Startup Hub, and Startup Policy Forum. The four tracks are Lending & Fintech, Mobility & Road Safety, Logistics & Supply Chain, and Sovereign AI. The top 20 receive a month of mentorship in December. The finale is in New Delhi in January 2027. The supplied deadline is 10 November, 11:59 p.m. IST.",
       "kind": "story",
       "number": 4,
       "sourceCredit": "Shared by Yuvika Sharma in #announcements and #builders-cars24 · 29 October",
@@ -92,7 +94,8 @@ window.PITSTOP = {
         "alt": "A seedling grows from an open notebook beside a pencil.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/startup.svg"
-      }
+      },
+      "navTitle": "Startup challenge"
     },
     {
       "id": "lending",
@@ -115,16 +118,17 @@ window.PITSTOP = {
         "alt": "A stack of coins beside a car and a completed loan document.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/lending.svg"
-      }
+      },
+      "navTitle": "Loans24 milestone"
     },
     {
       "id": "finance",
       "chapter": "Business highlights",
       "layout": "statement",
       "label": "Australia Finance",
-      "title": "Australia Finance starts an end-to-end process review",
+      "title": "Australia Finance reviews its processes",
       "accent": "The War Room has begun.",
-      "body": "Nishant Arora shared that the Australia Finance team has started a War Room to revisit end-to-end processes, surface pain points and process gaps, and prepare a roadmap to address them.",
+      "body": "The Australia Finance team has opened a War Room to identify process gaps and pain points, then build a roadmap to address them.",
       "credit": "Nishant Arora · Australia Finance update",
       "kind": "story",
       "number": 6,
@@ -135,7 +139,8 @@ window.PITSTOP = {
         "alt": "A process map under review with a magnifying glass and pencil.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/finance.svg"
-      }
+      },
+      "navTitle": "Finance review"
     },
     {
       "id": "close",
@@ -155,7 +160,8 @@ window.PITSTOP = {
         "alt": "A ruled ledger with a magnifying glass focusing on a reconciled entry.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/close.svg"
-      }
+      },
+      "navTitle": "September close"
     },
     {
       "id": "dealer",
@@ -168,14 +174,15 @@ window.PITSTOP = {
       "credit": "Rishabh · Product release update",
       "kind": "story",
       "number": 8,
-      "chapterId": "tech",
+      "chapterId": "builders",
       "originalBody": "Dealer App terms — Rishabh: Dealers can customise and generate offer terms directly in the app, with the existing approval flow retained. The change is expected to shorten offer-to-terms turnaround.",
       "visual": {
         "src": "assets/story-graphics/dealer.png",
         "alt": "A phone and an offer document, with a pencil for customising terms.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/dealer.svg"
-      }
+      },
+      "navTitle": "Dealer offer terms"
     },
     {
       "id": "miles",
@@ -190,14 +197,15 @@ window.PITSTOP = {
       "note": "These are release targets, not measured outcomes.",
       "kind": "story",
       "number": 9,
-      "chapterId": "tech",
+      "chapterId": "builders",
       "originalBody": "Miles field visits — Rishabh and team: FOS can record ad-hoc visits with new dealers and loan customers. The release targets 15% more monthly visits and 10% more leads entering the system.",
       "visual": {
         "src": "assets/story-graphics/miles.png",
         "alt": "A dotted field-visit route links three location pins to a car.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/miles.svg"
-      }
+      },
+      "navTitle": "Miles field visits"
     },
     {
       "id": "leads",
@@ -210,14 +218,15 @@ window.PITSTOP = {
       "credit": "Diya Mariya Manoj and team · C2C release update",
       "kind": "story",
       "number": 10,
-      "chapterId": "tech",
+      "chapterId": "builders",
       "originalBody": "C2C lead priorities — Diya Mariya Manoj and team: The refreshed queue gives stronger priority to customers showing intent through AIRO handoffs or interested calls, while bringing booking progress into the next tiers.",
       "visual": {
         "src": "assets/story-graphics/leads.png",
         "alt": "A priority queue of three customer conversations with one brought forward.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/leads.svg"
-      }
+      },
+      "navTitle": "C2C lead priorities"
     },
     {
       "id": "approvals",
@@ -230,14 +239,15 @@ window.PITSTOP = {
       "credit": "Diya Mariya Manoj and team · C2C release update",
       "kind": "story",
       "number": 11,
-      "chapterId": "tech",
+      "chapterId": "builders",
       "originalBody": "Partner approval visibility — Diya Mariya Manoj and team: Sales teams can now see pending, in-progress or completed partner approvals directly in the C2C panel, reducing status-chasing.",
       "visual": {
         "src": "assets/story-graphics/approvals.png",
         "alt": "An approval journey moves from waiting to in progress to a check mark.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/approvals.svg"
-      }
+      },
+      "navTitle": "Partner approvals"
     },
     {
       "id": "saarathi",
@@ -246,19 +256,20 @@ window.PITSTOP = {
       "label": "Saarathi · Monu Goyal and team",
       "title": "More offer tools for agents at the yard",
       "accent": "More tools at the yard.",
-      "body": "Ground agents can adjust ROI and down payment, review offer history, and generate terms for eligible system offers—helping keep the customer conversation moving at the yard.",
+      "body": "Ground agents can adjust offer details and down payments, review offer history, and generate terms for eligible system offers at the yard.",
       "credit": "Monu Goyal and team · Saarathi release update",
       "note": "The source calls the adjustable field “ROI”. Its expansion is not established in the source, so the short copy uses “offer details”.",
       "kind": "story",
       "number": 12,
-      "chapterId": "tech",
+      "chapterId": "builders",
       "originalBody": "Saarathi offer tools — Monu Goyal and team: Ground agents can adjust ROI and down payment, review offer history, and generate terms for eligible system offers—helping keep the customer conversation moving at the yard.",
       "visual": {
         "src": "assets/story-graphics/saarathi.png",
         "alt": "A car at the yard next to adjustable offer controls on a clipboard.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/saarathi.svg"
-      }
+      },
+      "navTitle": "Saarathi offer tools"
     },
     {
       "id": "ownership",
@@ -267,19 +278,20 @@ window.PITSTOP = {
       "label": "Deemed Ownership",
       "title": "Deemed Ownership’s backend is live",
       "accent": "App checks come next.",
-      "body": "All backend systems moved into production on 28 October. Teams were completing production and app checks, with the app release targeted for 29 October once sanity checks were clear.",
+      "body": "The backend reached production on 28 October. App and production checks were continuing, with the app release targeted for 29 October, subject to final checks.",
       "credit": "Hemant Garg and teams · 28ᵗʰ October",
       "note": "The supplied edition does not confirm the app shipped. This card preserves the status at the edition’s reporting cut-off.",
       "kind": "story",
       "number": 13,
-      "chapterId": "tech",
+      "chapterId": "builders",
       "originalBody": "Deemed Ownership backend — Hemant Garg and teams: All backend systems moved into production on 28 October. Teams were completing production and app checks, with the app release targeted for 29 October once sanity checks were clear.",
       "visual": {
         "src": "assets/story-graphics/ownership.png",
         "alt": "Connected backend servers lead to a separate phone awaiting final checks.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/ownership.svg"
-      }
+      },
+      "navTitle": "Ownership backend"
     },
     {
       "id": "security",
@@ -293,14 +305,15 @@ window.PITSTOP = {
       "note": "The source does not identify the dependency or provide an advisory link. Do not treat this card as a substitute for the technical advisory.",
       "kind": "story",
       "number": 14,
-      "chapterId": "tech",
+      "chapterId": "builders",
       "originalBody": "Technology watch: A dependency security advisory is being handled as a priority patch-and-redeploy effort, with affected service owners asked to confirm completion.",
       "visual": {
         "src": "assets/story-graphics/security.png",
         "alt": "A software package receives a stitched security patch.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/security.svg"
-      }
+      },
+      "navTitle": "Security update"
     },
     {
       "id": "academy",
@@ -308,8 +321,8 @@ window.PITSTOP = {
       "layout": "image",
       "image": "academy",
       "label": "Frontline learning",
-      "title": "Bangalore’s first training academy opens in Jakkur",
-      "body": "Opened on 26 October , the academy gives frontline teams a place to learn through classroom refreshers and hands-on practice with real cars. The first sessions began with CJ refreshers.",
+      "title": "A new training academy in Jakkur",
+      "body": "Bangalore’s first Cars24 training academy opened on 26 October. Frontline teams combine classroom refreshers with hands-on practice using real cars. The first sessions covered CJ refreshers.",
       "credit": "Sejal Sanjay Sangole · #builders-cars24",
       "note": "Illustration created for The Pitstop. An imagined academy scene, not a photograph of the opening.",
       "kind": "story",
@@ -322,7 +335,8 @@ window.PITSTOP = {
         "alt": "Illustration of colleagues learning beside a car in a workshop.",
         "type": "scene",
         "fallbackSrc": "assets/academy-fallback.jpg"
-      }
+      },
+      "navTitle": "Training academy"
     },
     {
       "id": "codex",
@@ -330,10 +344,10 @@ window.PITSTOP = {
       "layout": "image",
       "image": "team",
       "label": "Builders at work",
-      "title": "Testing a faster route from Figma to the CMS",
-      "body": "Ishaan Kothiyal shared an early Codex + Figma workflow that produced a usable V3 homepage draft in the CMS. Estimated effort savings are 20–30% so far; the workflow still needs production-readiness validation. Next: test it across 23 SEO pages. Nitin Sharma, Premveer Tomar, Sumit Sharma and Mayank were credited.",
+      "title": "From Figma to a CMS draft",
+      "body": "Ishaan’s Codex + Figma trial produced a usable homepage draft, with estimated effort savings of 20–30%. Production validation is still pending. Next: test it across 23 SEO pages.",
       "credit": "Ishaan Kothiyal · Workflow update",
-      "note": "Also credited: Nitin Sharma, Premveer Tomar, Sumit Sharma, and Mayank. Savings are an early estimate. The artwork is an imagined team scene.",
+      "note": "Also credited: Nitin Sharma, Premveer Tomar, Sumit Sharma, and Mayank. Savings are an early estimate. The artwork is an imagined team scene. Trial shared by Ishaan Kothiyal; produced a usable V3 homepage draft in the CMS.",
       "kind": "story",
       "number": 16,
       "chapterId": "builders",
@@ -343,7 +357,8 @@ window.PITSTOP = {
         "alt": "Illustration of colleagues working together around a laptop.",
         "type": "scene",
         "fallbackSrc": "assets/team-fallback.jpg"
-      }
+      },
+      "navTitle": "Figma to CMS"
     },
     {
       "id": "hackathon",
@@ -352,8 +367,8 @@ window.PITSTOP = {
       "label": "People & Culture Hackathon",
       "stat": "48",
       "unit": "hours of building",
-      "title": "What teams built at the People & Culture Hackathon",
-      "body": "Over two days, teams tackled payroll inputs, compliance tracking, recurring WeCare tickets and a Manager Hub for feedback and reviews. The update reported overall automation progress reaching 36% in 48 hours; a proposed workflow aims to reduce WeCare tickets by 40%. Teams rethought induction and built a shared hub for SOPs, agents and data.",
+      "title": "Two days of People & Culture ideas",
+      "body": "Teams tackled payroll, compliance, WeCare, and manager feedback. Reported automation progress reached 36% in 48 hours. A proposed workflow targets 40% fewer WeCare tickets.",
       "credit": "Gaurav Saxena · Outcomes highlighted by Shivanshu Makkar",
       "note": "Contributors included Aayush Gupta, Divyansh Bansal, Nikhil Meena, Shreeya Arora, Manvi Mehrotra, Shloka Patnaik, Shobhan Suri, Gaurav Saxena, and Vivek Naiwal. Teams also rethought induction and built a shared hub for SOPs, agents, and data. The 40% reduction is a proposed target, not a result.",
       "kind": "story",
@@ -367,7 +382,8 @@ window.PITSTOP = {
         "type": "scene",
         "position": "50% 45%",
         "fallbackSrc": "assets/story-graphics/hackathon-fallback.jpg"
-      }
+      },
+      "navTitle": "P&C Hackathon"
     },
     {
       "id": "milo",
@@ -389,16 +405,17 @@ window.PITSTOP = {
         "type": "scene",
         "position": "50% 45%",
         "fallbackSrc": "assets/story-graphics/milo-fallback.jpg"
-      }
+      },
+      "navTitle": "Meet Milo"
     },
     {
       "id": "badminton",
       "chapter": "Life at Cars24",
       "layout": "statement",
       "label": "Badminton championship",
-      "title": "Celebrating the badminton champions",
+      "title": "Celebrating our badminton champions",
       "accent": "A round of applause.",
-      "body": "At the badminton championship, Goldarin Kumar and Harshita Khajuria won singles and mixed doubles, Kunal Singla and Vasu Chauhan won men’s doubles, and Aditya Ghai received the Spirit of the Games award.",
+      "body": "Goldarin Kumar and Harshita Khajuria won singles and mixed doubles. Kunal Singla and Vasu Chauhan won men’s doubles. Aditya Ghai received the Spirit of the Games award.",
       "credit": "Arjun Lal · Championship results",
       "kind": "story",
       "number": 19,
@@ -411,7 +428,8 @@ window.PITSTOP = {
         "type": "scene",
         "position": "50% 45%",
         "fallbackSrc": "assets/story-graphics/badminton-fallback.jpg"
-      }
+      },
+      "navTitle": "Badminton champions"
     },
     {
       "id": "survey",
@@ -432,7 +450,8 @@ window.PITSTOP = {
         "alt": "Three different speech bubbles meet an open feedback notebook.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/survey.svg"
-      }
+      },
+      "navTitle": "Team feedback"
     },
     {
       "id": "diwali",
@@ -445,7 +464,7 @@ window.PITSTOP = {
       "kind": "story",
       "chapter": "Life at Cars24",
       "number": 21,
-      "body": "Desk-side gifts, festive decor and plenty of Diwali banter: a little surprise brought extra warmth to the workday.\n\nOn 5 November, a Slack surprise turned gift delivery into a team countdown: the gifts had arrived, would reach desks in 15 minutes, and there would be no queues or treasure hunts. Colleagues joked that focus was officially on pause; in #builders-cars24, the Diwali mood continued with Jethalal-style song requests and playful character guesses. The decorated hub, festive gifts and shared sweets made the occasion a warm moment across the team.",
+      "body": "Gifts arrived at desks, the hub filled with festive decor, and Slack turned into a countdown. Shared sweets, song requests, and plenty of banter brought colleagues together.",
       "sourceCredit": "Sources: #sas-office-announcement · #builders-cars24 . Artwork inspired by the supplied celebration photos.",
       "images": [
         "diwali",
@@ -474,7 +493,8 @@ window.PITSTOP = {
         "alt": "Painted Diwali celebration at a Cars24 hub.",
         "type": "scene",
         "fallbackSrc": "assets/diwali.png"
-      }
+      },
+      "navTitle": "Diwali together"
     },
     {
       "id": "thermostat",
@@ -494,7 +514,8 @@ window.PITSTOP = {
         "alt": "A thermostat between a winter scarf and a small desk fan.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/thermostat.svg"
-      }
+      },
+      "navTitle": "Thermostat talks"
     },
     {
       "id": "ambition",
@@ -516,16 +537,17 @@ window.PITSTOP = {
         "alt": "Illustration of colleagues looking towards a road and city.",
         "type": "scene",
         "fallbackSrc": "assets/perspective-fallback.jpg"
-      }
+      },
+      "navTitle": "VC on ambition"
     },
     {
       "id": "controls",
       "chapter": "Thoughts & perspectives",
       "layout": "statement",
       "label": "A thought from Shivanshu Makkar",
-      "title": "Shivanshu on putting routine checks into the system",
+      "title": "Shivanshu on automating routine checks",
       "accent": "Save people for the exceptions.",
-      "body": "When a rule is clear, let the system check routine cases continuously. Keep people focused on genuine exceptions instead of making every request wait for a manual approval.",
+      "body": "Let the system check clear rules continuously. Keep people focused on exceptions, instead of making every request wait for manual approval.",
       "credit": "Shivanshu Makkar · #builders-cars24 · 23ʳᵈ October",
       "note": "Paraphrase, not a direct quotation.",
       "kind": "story",
@@ -538,7 +560,8 @@ window.PITSTOP = {
         "alt": "Routine checks flow through a system while one exception is separated.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/controls.svg"
-      }
+      },
+      "navTitle": "Routine checks"
     },
     {
       "id": "inflection",
@@ -560,16 +583,17 @@ window.PITSTOP = {
         "alt": "Different interlocking pieces assemble into a shared bridge.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/inflection.svg"
-      }
+      },
+      "navTitle": "Ownership milestone"
     },
     {
       "id": "safeguards",
       "chapter": "Thoughts & perspectives",
       "layout": "statement",
       "label": "A thought from Himanshu Rathore",
-      "title": "Himanshu on helping security keep pace with growth",
+      "title": "Himanshu on security as we grow",
       "accent": "Security grows with the work.",
-      "body": "As infrastructure and products grow, data, infrastructure and code security need to grow alongside them—especially when customer and payment information is involved.",
+      "body": "Data, infrastructure, and code security need to grow with our products, especially where customer and payment information is involved.",
       "credit": "Himanshu Rathore · #cfi-product-tech · 27ᵗʰ October",
       "note": "Paraphrase, not a direct quotation.",
       "kind": "story",
@@ -582,7 +606,8 @@ window.PITSTOP = {
         "alt": "A growing branch is supported by a protective shield.",
         "type": "spot",
         "fallbackSrc": "assets/story-graphics/safeguards.svg"
-      }
+      },
+      "navTitle": "Security as we grow"
     }
   ],
   "storyCount": 26,
@@ -603,9 +628,9 @@ window.PITSTOP = {
       "number": 1
     },
     {
-      "id": "tech",
-      "name": "Tech highlights",
-      "body": "Product releases and technical updates from the teams building them.",
+      "id": "builders",
+      "name": "Builders at Work",
+      "body": "Product releases, new ways to work, and ideas put into practice.",
       "stories": [
         "dealer",
         "miles",
@@ -613,20 +638,12 @@ window.PITSTOP = {
         "approvals",
         "saarathi",
         "ownership",
-        "security"
-      ],
-      "number": 2
-    },
-    {
-      "id": "builders",
-      "name": "Builders at work",
-      "body": "New places to learn, new ways to work, and ideas put into practice.",
-      "stories": [
+        "security",
         "academy",
         "codex",
         "hackathon"
       ],
-      "number": 3
+      "number": 2
     },
     {
       "id": "life",
@@ -639,7 +656,7 @@ window.PITSTOP = {
         "diwali",
         "thermostat"
       ],
-      "number": 4
+      "number": 3
     },
     {
       "id": "perspectives",
@@ -651,7 +668,7 @@ window.PITSTOP = {
         "inflection",
         "safeguards"
       ],
-      "number": 5
+      "number": 4
     }
   ],
   "sourceHtmlSha256": "a99c003719fa54b41a19fa47af32b355b5f1a8fe937759da46eed8e36ac47265",
@@ -750,7 +767,7 @@ window.PITSTOP = {
       "finance": {
         "paper": "cream-grid",
         "layout": "open",
-        "emphasis": "end-to-end process review",
+        "emphasis": "reviews its processes",
         "referencePage": 27
       },
       "close": {
@@ -758,10 +775,6 @@ window.PITSTOP = {
         "layout": "poster",
         "emphasis": "clearer view",
         "referencePage": 16
-      },
-      "chapter-tech": {
-        "paper": "green-grid",
-        "layout": "chapter"
       },
       "dealer": {
         "paper": "pink-grid",
@@ -818,13 +831,13 @@ window.PITSTOP = {
       "codex": {
         "paper": "yellow-grid",
         "layout": "feature",
-        "emphasis": "Figma to the CMS",
+        "emphasis": "CMS draft",
         "referencePage": 17
       },
       "hackathon": {
         "paper": "blue-grid",
         "layout": "feature",
-        "emphasis": "People & Culture Hackathon",
+        "emphasis": "People & Culture",
         "referencePage": 25
       },
       "chapter-life": {
@@ -852,7 +865,7 @@ window.PITSTOP = {
       "diwali": {
         "paper": "green-grid",
         "layout": "feature",
-        "emphasis": "together",
+        "emphasis": "together at Cars24",
         "referencePage": 7
       },
       "thermostat": {
@@ -886,7 +899,7 @@ window.PITSTOP = {
       "safeguards": {
         "paper": "pink-grid",
         "layout": "perspective",
-        "emphasis": "keep pace with growth",
+        "emphasis": "security as we grow",
         "referencePage": 12
       },
       "caught-up": {
@@ -894,5 +907,8 @@ window.PITSTOP = {
         "layout": "caught-up"
       }
     }
+  },
+  "chapterAliases": {
+    "chapter-tech": "chapter-builders"
   }
 };

@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const source=fs.readFileSync(require('node:path').join(__dirname,'../dist/versions/v8/reader.js'),'utf8');
 const motion=source.slice(source.indexOf('const stateTransform='),source.indexOf('\nfunction go('));
-const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'"),source.indexOf("track.addEventListener('wheel'"));
+const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'"),source.indexOf("let wheelDistance="));
 (async()=>{
  const log=[],listeners={},raf=new Map();let now=0,frame=0;
  const cards=Array.from({length:6},(_,i)=>{const state={visibility:i<4?'visible':'hidden',transform:`matrix(1,0,0,1,${i*10},0)`};return {style:new Proxy(state,{set(o,k,v){log.push('write');o[k]=v;return true}}),dataset:{},contains:()=>false,setAttribute(){},animate(frames,options){let finish;const finished=new Promise(resolve=>finish=resolve);return{frames,options,finished,finish,cancel(){log.push('cancel')}}}}});
@@ -29,7 +29,7 @@ const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'")
  // Tiny backwards drift at lift-off must not cancel a valid swipe.
  vm.runInContext('current=1',context);now=500;listeners.pointerdown(evt(200,100));now=520;listeners.pointermove(evt(165,100));now=640;listeners.pointermove(evt(167,100));listeners.pointerup(evt(167,100));assert.equal(vm.runInContext('current',context),2,'2px release wobble');
  // Re-grabbing a moving sheet continues from its rendered transform, never its rest pose.
- vm.runInContext('current=1;cards[1].rendered="matrix(1,0,0,1,80,0)"',context);now=100;listeners.pointerdown(evt(200,100));now=110;listeners.pointermove(evt(180,100));Array.from(raf.values())[0]();raf.clear();assert(cards[1].style.transform.includes('60px'));listeners.pointercancel(evt(180,100));delete cards[1].rendered;
+ vm.runInContext('current=1;motions.set(cards[1],{cancel(){}});cards[1].rendered="matrix(1,0,0,1,80,0)"',context);now=100;listeners.pointerdown(evt(200,100));now=110;listeners.pointermove(evt(180,100));Array.from(raf.values())[0]();raf.clear();assert(cards[1].style.transform.includes('60px'));listeners.pointercancel(evt(180,100));delete cards[1].rendered;
  // A reversal near release cancels even a drag beyond the distance threshold.
  now=200;listeners.pointerdown(evt(200,100));now=210;listeners.pointermove(evt(50,100));now=300;listeners.pointermove(evt(20,100));now=330;listeners.pointermove(evt(80,100));listeners.pointerup(evt(80,100));assert.equal(vm.runInContext('current',context),1);
  // Link/button/accordion-row swipes turn the card, without activating the action.
@@ -45,10 +45,19 @@ const pointers=source.slice(source.indexOf("track.addEventListener('dragstart'")
  // Keyboard clicks are never suppressed after a pointer swipe.
  vm.runInContext('suppress=performance.now()+300',context);let keyboardBlocked=false;listeners.click({detail:0,preventDefault(){keyboardBlocked=true},stopImmediatePropagation(){}});assert(!keyboardBlocked);
  // Faster release shortens departure, while retaining the opaque return to the stack.
- vm.runInContext('current=1;cards[0].rendered="matrix(1,0,0,1,0,0)";settle(true,0,{depart:150})',context);
+ vm.runInContext('current=1;motions.set(cards[0],{cancel(){}});cards[0].rendered="matrix(1,0,0,1,0,0)";settle(true,0,{depart:150})',context);
  const fast=vm.runInContext('motions.get(cards[0])',context);assert.equal(fast.options.duration,390);assert.equal(fast.frames[1].offset,150/390);delete cards[0].rendered;
  // No synchronous last-frame drag write is inserted before settling on release.
  assert(!pointers.includes('drawDrag();'));
+ // Trackpad samples accumulate, then inertia cannot cause extra page turns.
+ let timerId=0;const timers=new Map();context.setTimeout=fn=>{timers.set(++timerId,fn);return timerId};context.clearTimeout=id=>timers.delete(id);context.document.querySelector=()=>null;
+ const wheel=source.slice(source.indexOf('let wheelDistance='),source.indexOf('\nlet lastViewportWidth'));
+ vm.runInContext(wheel+';current=1;',context);const event=dx=>({deltaX:dx,deltaY:0,deltaMode:0,preventDefault(){}});
+ for(let i=0;i<6;i++)listeners.wheel(event(3));assert.equal(vm.runInContext('current',context),2,'Accumulate small horizontal samples');
+ for(let i=0;i<20;i++)listeners.wheel(event(12));assert.equal(vm.runInContext('current',context),2,'Momentum stays within one turn');
+ [...timers.values()].forEach(fn=>fn());listeners.wheel(event(-20));assert.equal(vm.runInContext('current',context),1,'A fresh reverse gesture turns back');
+ // Resting cards use their known transforms without computed-style reads.
+ vm.runInContext('motions.clear()',context);log.length=0;vm.runInContext('freezeMotion()',context);assert(!log.includes('read'));
  // Reduced motion preserves immediate stacking without launching animations.
  vm.runInContext('reduced.matches=true;current=2;settle(true,1)',context);assert.equal(vm.runInContext('motions.size',context),0);assert.equal(cards[1].dataset.depth,'3');
  console.log('V8 motion regressions passed: batched reads, V6 opacity/layering, retained back sheet, no tap/vertical reset, rAF coalescing, fast flick, re-grab continuity, reversal, links/buttons/summary tap-versus-drag, keyboard activation, reduced motion.');

@@ -107,3 +107,39 @@
 
 /* Keep secondary ink legible on Flatland’s saturated pink stock. */
 .sheet[data-flatland="magenta-grid"]{--color-print-muted:#111;--color-muted:#111}
+
+/* Small-screen reading budget: short copy first, then responsive art and spacing.
+   Overflow stays available for enlarged text and expanded navigation, never clipped. */
+@media(max-width:760px){
+ .story .sheet-scroll{padding:20px;gap:14px}
+ .story-main,.layout-feature .story-main,.layout-poster .story-main,.layout-perspective .story-main{gap:14px}
+ .story-body{font-size:16px;line-height:1.5}
+ .sheet.story h2{font-size:29px;line-height:1.1}
+ .layout-poster .headline-mark,.layout-perspective .headline-mark{margin-top:2px;padding-block:1px 3px}
+ .story .story-visual img,.story .visual-spot img{height:clamp(90px,16dvh,140px)}
+ .layout-feature .story-visual img{height:clamp(112px,18dvh,164px)}
+ .layout-panel .story-main{padding:16px 14px;gap:12px}
+ .layout-panel .story-body{font-size:16px;line-height:1.5}
+ .layout-panel .story-visual img{height:clamp(76px,13dvh,112px)}
+ .sheet.layout-panel h2{font-size:26px}
+ .chapter-card .sheet-scroll{padding:20px;gap:12px}
+ .sheet.chapter-card h2{font-size:32px}
+ .chapter-card .chapter-description{font-size:14px;line-height:1.4}
+ .chapter-card .chapter-stories{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px}
+ .chapter-card .chapter-stories .story-jump{font-size:13px;line-height:1.25;padding-block:8px;min-height:48px}
+ .chapter-card .card-bottom{padding-top:4px;min-height:44px}
+}
+@media(max-width:760px) and (max-height:700px){
+ .story .sheet-scroll{padding:16px;gap:10px}
+ .story-main,.layout-feature .story-main,.layout-poster .story-main,.layout-perspective .story-main{gap:10px}
+ .sheet.story h2{font-size:26px}
+ .sheet.layout-panel h2{font-size:24px}
+ .story .story-visual img,.story .visual-spot img,.layout-feature .story-visual img{height:92px}
+ .layout-panel .story-visual img{height:76px}
+ .layout-panel .story-main{padding:12px;gap:10px}
+ .story .card-bottom{padding-top:4px}
+ .chapter-card .sheet-scroll{padding:16px;gap:10px}
+ .sheet.chapter-card h2{font-size:28px}
+ .chapter-card .chapter-label{padding:3px 10px}
+ .chapter-card .chapter-stories .story-jump{min-height:44px;font-size:12px}
+}

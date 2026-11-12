@@ -9,7 +9,7 @@ The Pitstop — Cars24’s October 2026 newsletter. A responsive, swipeable edit
 - [Public repository](https://github.com/ishaankothiyal-designer/Newsletter-X-Cars-24)
 - [Vercel project dashboard](https://vercel.com/design-ea38/newsletter-x-cars-24)
 
-The current V8 edition includes 26 stories in five chapters, eight paper colours, varied editorial layouts, story illustrations, source notes, and a soft page-turn sound. V8 is the only edition. The version menu and older releases have been removed.
+The current V8 edition includes 26 stories in four chapters, eight paper colours, varied editorial layouts, story illustrations, source notes, and a soft page-turn sound. V8 is the only edition. The version menu and older releases have been removed.
 
 ## Local preview
 

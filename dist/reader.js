@@ -18,7 +18,7 @@ function storyTitle(p){
 function content(p){
  if(p.kind==='cover')return `<figure class="cover-bleed"><picture><img data-src="assets/cover-portrait.webp" data-fallback="assets/cover-portrait.png" width="941" height="1672" alt="The original Pitstop colleagues gathered around their laptop, extended into an edge-to-edge illustration." fetchpriority="high" draggable="false"></picture></figure><div class="cover-heading"><h1>The Pitstop</h1><p class="cover-subtitle">What’s happening across Cars24.</p></div><div class="card-bottom">${jump('overview','Open this issue →','primary-action')}</div>`;
  if(p.kind==='overview')return `<h2>In this issue</h2><div class="chapter-list">${indices}</div>`;
- if(p.kind==='chapter'){const ch=p.chapter;return `<p class="chapter-label">Chapter ${ch.number}</p><h2>${esc(ch.name)}</h2><p class="chapter-description">${esc(ch.body)}</p><div class="chapter-stories">${ch.stories.map(id=>jump(id,data.stories.find(s=>s.id===id).title)).join('')}</div><div class="card-bottom">${jump(ch.stories[0],'Start reading →','chapter-open')}</div>`;}
+ if(p.kind==='chapter'){const ch=p.chapter;return `<p class="chapter-label">Chapter ${ch.number}</p><h2>${esc(ch.name)}</h2><p class="chapter-description">${esc(ch.body)}</p><div class="chapter-stories">${ch.stories.map(id=>jump(id,data.stories.find(s=>s.id===id).navTitle)).join('')}</div><div class="card-bottom">${jump(ch.stories[0],'Start reading →','chapter-open')}</div>`;}
  if(p.kind==='ending')return `<h2>That’s this month’s Pitstop.</h2><p>Have a win, a lesson, or a teammate’s story for the next issue?</p><div class="ending-actions">${jump('cover','Read again','secondary-action')}<a class="primary-action" href="${esc(data.form)}" target="_blank" rel="noopener">Add your story ↗</a></div>`;
  return `<div class="story-main"><h2>${storyTitle(p)}</h2>${p.visual?image(p):''}<div class="story-body">${p.body.split(/\n\n/).map(t=>`<p>${esc(t)}</p>`).join('')}</div>${p.link?`<a class="story-link" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkLabel||'Read more')} ↗</a>`:''}</div><div class="card-bottom"><button class="source-button" data-source="${esc(p.id)}">Story notes & sources</button><button class="page-counter" aria-label="Story ${p.number} of ${data.storyCount}. Open contents." data-contents>${p.number} / ${data.storyCount}</button></div>`;
 }
@@ -30,12 +30,12 @@ track.querySelectorAll('.sheet').forEach((card,i)=>{
  const paper=data.colourSystem.pages[pages[i].id].paper;
  card.dataset.flatland=paper;card.style.setProperty('--flatland-background',`url('assets/flatland/${paper}.svg')`);card.style.setProperty('--page-stock',data.colourSystem.stocks[paper].hex);
 });
-const cards=[...track.children],reduced=matchMedia('(prefers-reduced-motion: reduce)'),storageKey='pitstop-v8-clean-last-story';let current=0,revision=0,gesture=null,suppress=0,wheelAt=0,dragFrame=0,viewportFrame=0;const motions=new Map();
+const cards=[...track.children],reduced=matchMedia('(prefers-reduced-motion: reduce)'),storageKey='pitstop-v8-clean-last-story';let current=0,revision=0,gesture=null,suppress=0,dragFrame=0,viewportFrame=0;const motions=new Map();
 // V6's original geometry and opaque card-to-back animation, kept intact.
 const stateTransform=d=>d===0?'translate3d(0,0,0) rotate(0deg) scale(1)':d===1?'translate3d(19px,8px,0) rotate(2deg) scale(.975)':d===2?'translate3d(37px,16px,0) rotate(4deg) scale(.95)':`translate3d(${d<0?-track.clientWidth-100:50}px,12px,0) rotate(${d<0?-12:5}deg) scale(.95)`;
 // Read all in-flight transforms before any writes. A re-grab starts exactly here.
 function freezeMotion(){
- const positions=cards.map(card=>card.style.visibility==='visible'?getComputedStyle(card).transform:null);
+ const positions=cards.map(card=>card.style.visibility==='visible'?(motions.has(card)?getComputedStyle(card).transform:card.style.transform):null);
  for(const animation of motions.values())animation.cancel();motions.clear();
  cards.forEach((card,i)=>{if(positions[i])card.style.transform=positions[i]});
  return positions;
@@ -72,7 +72,7 @@ function settle(animate=true,previous=current,motion={}){
  // Keep the existing back sheet underneath until the outgoing sheet lands on it.
  const finish=()=>{if(ticket!==revision)return;cards.forEach((card,i)=>{if(card.dataset.depth==='0'||Number(card.dataset.depth)<=2||i===back)return;card.style.visibility='hidden';});};
  if(outgoingAnimation)outgoingAnimation.finished.then(finish).catch(()=>{});else finish();
- return {duration:forward?depart:300};
+ return {duration:forward?depart:260};
 }
 function cancel(){if(dragFrame){cancelAnimationFrame(dragFrame);dragFrame=0;}if(!gesture)return;const id=gesture.id;gesture=null;track.removeAttribute('data-dragging');try{track.releasePointerCapture(id)}catch{}}
 function matrixParts(value){const m=new DOMMatrixReadOnly(value==='none'||!value?undefined:value);return{x:m.m41,y:m.m42,angle:Math.atan2(m.m12,m.m11)*180/Math.PI,scale:Math.hypot(m.m11,m.m12)}}
@@ -83,8 +83,9 @@ function drawDrag(){
  if(!reduced.matches&&dx<0){const amount=Math.min(Math.abs(dx)/g.width,1);[1,2].forEach(d=>{const card=cards[(current+d)%cards.length],from=g.followers[d-1],end={x:19*d*.3,y:8*d*.3,angle:2*d*.3,scale:1-.025*d*.3};if(card)card.style.transform=`translate3d(${from.x+(end.x-from.x)*amount}px,${from.y+(end.y-from.y)*amount}px,0) rotate(${from.angle+(end.angle-from.angle)*amount}deg) scale(${from.scale+(end.scale-from.scale)*amount})`;});}
 }
 
-function go(index,animate=true,motion={}){window.PITSTOP_SOUND?.stop?.();cancel();index=Math.max(0,Math.min(cards.length-1,index));const previous=current;current=index;if(previous!==current)cards[current].querySelector('.sheet-scroll').scrollTop=0;const startedAt=performance.now(),turn=settle(animate,previous,motion);window.PITSTOP_IMAGES?.warm(cards,current);if(previous!==current&&animate)window.PITSTOP_SOUND?.play({...turn,startedAt});$('back').disabled=$('menu-back').disabled=current===0;$('next').disabled=$('menu-next').disabled=current===cards.length-1;const p=pages[current];$('announcement').textContent=p.kind==='story'?`Story ${p.number} of ${data.storyCount}. ${p.title}`:p.kind==='chapter'?`Chapter ${p.chapter.number}. ${p.chapter.name}`:p.kind==='overview'?'In this issue':p.kind==='cover'?'The Pitstop cover':'End of the issue';try{history.replaceState(null,'','#'+p.id);localStorage.setItem(storageKey,p.id)}catch{}}
-function target(id){const n=pages.findIndex(p=>p.id===id);go(n<0?1:n,false)}
+let warmFrame=0;function queueWarm(index){if(warmFrame)cancelAnimationFrame(warmFrame);warmFrame=requestAnimationFrame(()=>{warmFrame=0;window.PITSTOP_IMAGES?.warm(cards,index)});}
+function go(index,animate=true,motion={}){cancel();index=Math.max(0,Math.min(cards.length-1,index));const previous=current;current=index;if(previous!==current)cards[current].querySelector('.sheet-scroll').scrollTop=0;const startedAt=performance.now(),turn=settle(animate,previous,motion);queueWarm(current);if(previous!==current&&animate&&!reduced.matches)window.PITSTOP_SOUND?.play({...turn,startedAt});else window.PITSTOP_SOUND?.stop?.();$('back').disabled=$('menu-back').disabled=current===0;$('next').disabled=$('menu-next').disabled=current===cards.length-1;const p=pages[current];$('announcement').textContent=p.kind==='story'?`Story ${p.number} of ${data.storyCount}. ${p.title}`:p.kind==='chapter'?`Chapter ${p.chapter.number}. ${p.chapter.name}`:p.kind==='overview'?'In this issue':p.kind==='cover'?'The Pitstop cover':'End of the issue';try{history.replaceState(null,'','#'+p.id);localStorage.setItem(storageKey,p.id)}catch{}}
+function target(id){id=data.chapterAliases?.[id]||id;const n=pages.findIndex(p=>p.id===id);go(n<0?1:n,false)}
 function showContents(){for(const details of $('contents').querySelectorAll('details'))details.open=false;const p=pages[current],ch=p.kind==='chapter'?p.chapter.id:p.chapterId;if(ch){const at=data.chapters.findIndex(x=>x.id===ch);const d=$('contents-list').querySelectorAll('details')[at];if(d)d.open=true;}$('contents').showModal();}
 function notes(id){const s=data.stories.find(s=>s.id===id);if(!s)return;$('credit-title').textContent=s.title;$('credit-source').textContent=s.sourceCredit||s.credit;$('credit-note').textContent=[s.note,window.PITSTOP_SOURCES?.context?.[id],window.PITSTOP_SOURCES?.unavailable?.[id]].filter(Boolean).join('\n\n');$('original-update').textContent=s.originalBody||s.body;$('credit-links').replaceChildren();const links=s.sourceLinks||window.PITSTOP_SOURCES?.stories?.[id]||[];for(const source of links){let url;try{url=new URL(source.url)}catch{continue}if(url.protocol!=='https:')continue;const a=document.createElement('a');a.href=url.href;a.target='_blank';a.rel='noopener noreferrer';const label=document.createElement('span');label.textContent=source.label+' ↗';const detail=document.createElement('small');detail.textContent=source.detail||'';a.append(label,detail);$('credit-links').append(a);}$('credit-art').replaceChildren();if(s.images?.length>1){for(const name of s.images.slice(1)){const img=document.createElement('img');img.dataset.src=s.imageFiles[name];img.dataset.fallback=s.imageFiles[name].replace('.webp','.png');img.alt='Additional supplied illustration of the Diwali celebration.';$('credit-art').append(img);window.PITSTOP_IMAGES?.load(img,img.dataset.src,img.dataset.fallback,'high');}}$('credits').querySelector('.full-update').open=false;$('credits').showModal();}
 document.addEventListener('click',e=>{const jump=e.target.closest('[data-target]');if(jump){document.querySelectorAll('dialog[open]').forEach(d=>d.close());target(jump.dataset.target);return}if(e.target.closest('[data-contents]'))showContents();const source=e.target.closest('[data-source]');if(source)notes(source.dataset.source);});
@@ -125,7 +126,14 @@ function release(e,canceled=false){
 }
 track.addEventListener('pointerup',e=>release(e));track.addEventListener('pointercancel',e=>release(e,true));
 track.addEventListener('lostpointercapture',e=>{if(e.target===track&&gesture?.started){cancel();settle(true,current)}});
-track.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)<=Math.abs(e.deltaY)||e.ctrlKey||e.metaKey||document.querySelector('dialog[open]'))return;if(Math.abs(e.deltaX)<12)return;e.preventDefault();const now=performance.now();if(now-wheelAt>500)go(current+(e.deltaX>0?1:-1));wheelAt=now;},{passive:false});
+let wheelDistance=0,wheelDirection=0,wheelTimer=0,wheelLocked=false;
+track.addEventListener('wheel',e=>{
+ if(Math.abs(e.deltaX)<=Math.abs(e.deltaY)||e.ctrlKey||e.metaKey||document.querySelector('dialog[open]'))return;
+ e.preventDefault();clearTimeout(wheelTimer);wheelTimer=setTimeout(()=>{wheelDistance=0;wheelDirection=0;wheelLocked=false},110);
+ if(wheelLocked)return;const direction=Math.sign(e.deltaX),unit=e.deltaMode===1?16:e.deltaMode===2?track.clientWidth:1;
+ if(direction!==wheelDirection)wheelDistance=0;wheelDirection=direction;wheelDistance+=Math.abs(e.deltaX)*unit;
+ if(wheelDistance>=18){wheelLocked=true;go(current+direction);}
+},{passive:false});
 let lastViewportWidth=0,lastViewportHeight=0,viewportTimer=0;
 function viewport(){
  const v=visualViewport;if(v&&Math.abs(v.scale-1)>.01)return;

@@ -1,36 +1,33 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 const root=path.join(__dirname,'../dist'),source=fs.readFileSync(path.join(root,'page-sound.js'),'utf8');
-async function main(){
- const events={},mediaEvents={};let time=0,plays=0,pauses=0,nextPlay=()=>Promise.resolve();
- const audio={readyState:4,ended:false,attrs:{},setAttribute(k,v){this.attrs[k]=v},getAttribute(k){return this.attrs[k]},addEventListener:(name,fn)=>mediaEvents[name]=fn,pause(){pauses++},play(){plays++;return nextPlay()}};
- const document={hidden:false,currentScript:{src:'https://example.test/versions/v8/page-sound.js'},createElement:()=>audio,body:{append(){}},addEventListener:(name,fn)=>events[name]=fn};
- const window={};
- const flush=async()=>{await Promise.resolve();await Promise.resolve()};
- vm.runInNewContext(source,{window,document,URL,Date,Promise,performance:{now:()=>time}});
- assert.equal(plays,0,'No autoplay at load');assert.equal(audio.preload,'auto');assert.equal(audio.src,'https://example.test/versions/v8/assets/page-turn-soft.wav');
- events.pointerdown();assert(audio.muted,'Contact warm-up is silent');await flush();assert(!audio.muted);assert.equal(audio.attrs['data-state'],'ready');
- window.PITSTOP_SOUND.play();await flush();assert.equal(audio.attrs['data-state'],'playing');assert.equal(audio.currentTime,0);assert(audio.volume===1);
- mediaEvents.ended();assert.equal(audio.attrs['data-state'],'ended');
- window.PITSTOP_SOUND.play();await flush();assert(pauses>=3,'Turns reuse one player rather than overlapping');
- document.hidden=true;events.visibilitychange();const hiddenPlays=plays;window.PITSTOP_SOUND.play();assert.equal(plays,hiddenPlays);document.hidden=false;
- // Pending native playback must not be restarted by touchend.
- let pendingResolve;nextPlay=()=>new Promise(resolve=>pendingResolve=resolve);window.PITSTOP_SOUND.play();const pendingPlays=plays;events.touchend();assert.equal(plays,pendingPlays);pendingResolve();await flush();
- // A sound delayed beyond its visual cue is suppressed; a smaller delay is trimmed.
- let lateResolve;nextPlay=()=>new Promise(resolve=>lateResolve=resolve);time=100;window.PITSTOP_SOUND.play();time=220;lateResolve();await flush();assert.equal(audio.attrs['data-state'],'late-skipped');
- nextPlay=()=>Promise.resolve();time=300;window.PITSTOP_SOUND.play({startedAt:260,duration:260});await flush();assert(audio.currentTime>0,'Trim to the current animation phase');
- nextPlay=()=>Promise.reject({name:'NotAllowedError'});window.PITSTOP_SOUND.play();await flush();assert.equal(audio.attrs['data-state'],'blocked');nextPlay=()=>Promise.resolve();events.touchend();await flush();assert.equal(audio.attrs['data-state'],'playing','Blocked swipe retries within touchend activation');
- // A late silent warm-up must not pause a newly committed turn.
- let resolvePrime;const raceAudio={...audio,attrs:{},play(){return nextPlay()}};const raceWindow={},raceEvents={};
- nextPlay=()=>new Promise(resolve=>resolvePrime=resolve);
- vm.runInNewContext(source,{window:raceWindow,document:{...document,createElement:()=>raceAudio,addEventListener:(name,fn)=>raceEvents[name]=fn},URL,Date,Promise,performance:{now:()=>time}});
- raceEvents.pointerdown();nextPlay=()=>Promise.resolve();raceWindow.PITSTOP_SOUND.play();await flush();const beforePause=pauses;resolvePrime();await flush();assert.equal(pauses,beforePause);assert.equal(raceAudio.attrs['data-state'],'playing');assert(!raceAudio.muted);
- const wav=fs.readFileSync(path.join(root,'assets/page-turn-soft.wav'));assert.equal(wav.toString('ascii',0,4),'RIFF');assert.equal(wav.readUInt32LE(24),44100);assert(wav.length<40000);let sum=0;for(let i=44;i<wav.length;i+=2)sum+=(wav.readInt16LE(i)/32768)**2;const rms=Math.sqrt(sum/((wav.length-44)/2));assert(rms>.015&&rms<.05,'Paper sound must be soft, not a loud noise burst');
- // Sound is tied to committed animated navigation, not drag samples or jumps.
- const reader=fs.readFileSync(path.join(root,'reader.js'),'utf8'),go=reader.slice(reader.indexOf('function go('),reader.indexOf('\nfunction target('));let turns=0;
- const context=vm.createContext({window:{PITSTOP_SOUND:{play:()=>turns++}},cards:Array.from({length:3},()=>({querySelector:()=>({scrollTop:0})})),pages:[{id:'a',kind:'cover'},{id:'b',kind:'overview'},{id:'c',kind:'ending'}],cancel(){},settle(){},performance:{now:()=>time},$:()=>({}),Math});
- vm.runInContext('let current=0;'+go+';go(0);go(-1);go(1,false);',context);assert.equal(turns,0);
- vm.runInContext('go(2);go(3);go(1);',context);assert.equal(turns,2,'One sound per actual animated card change');
- assert.equal(fs.readFileSync(path.join(root,'versions/v8/page-sound.js'),'utf8'),source);
- console.log('V8 native sound checks passed: silent load/warm-up, preloaded audible clip, gesture retry, warm-up race protection, no menu controls, no overlaps, and committed-turn integration.');
+async function environment({pendingDecode=false,broken=false,suspended=false}={}){
+ const events={},frames=new Map(),voices=[];let time=0,id=0,fetches=0,decodes=0,resumeCalls=0,decodeResolve;
+ const status={attrs:{},setAttribute(k,v){this.attrs[k]=v},getAttribute(k){return this.attrs[k]}};
+ class AudioContext{
+  constructor(){this.state=suspended?'suspended':'running';this.currentTime=2;this.destination={};}
+  resume(){resumeCalls++;if(!suspended)this.state='running';return Promise.resolve();}
+  decodeAudioData(){decodes++;if(broken)return Promise.reject(Error('decode'));if(pendingDecode)return new Promise(resolve=>decodeResolve=resolve);return Promise.resolve({duration:.35});}
+  createGain(){return{gain:{value:0,cancelScheduledValues(){},setTargetAtTime(){},setValueAtTime(){},linearRampToValueAtTime(){}},connect(){},disconnect(){}};}
+  createBufferSource(){const voice={playbackRate:{},connect(){},disconnect(){},start(at,offset){this.at=at;this.offset=offset;this.started=true},stop(){this.stopped=true}};voices.push(voice);return voice;}
+ }
+ const document={hidden:false,currentScript:{src:'https://example.test/versions/v8/page-sound.js'},createElement:()=>status,body:{append(){}},addEventListener:(name,fn)=>events[name]=fn};
+ const window={AudioContext};const flush=async()=>{for(let i=0;i<8;i++)await Promise.resolve()};
+ vm.runInNewContext(source,{window,document,URL,performance:{now:()=>time},fetch:()=>{fetches++;return Promise.resolve({ok:true,arrayBuffer:()=>Promise.resolve(new ArrayBuffer(4))})},requestAnimationFrame:fn=>{frames.set(++id,fn);return id},cancelAnimationFrame:id=>frames.delete(id)});
+ await flush();return{window,document,events,status,voices,frames,flush,setTime:t=>time=t,stats:()=>({fetches,decodes,resumeCalls}),decode:async()=>{decodeResolve({duration:.35});await flush()},paint(){const callbacks=[...frames.values()];frames.clear();callbacks.forEach(fn=>fn())}};
 }
-main().catch(e=>{console.error(e);process.exit(1)});
+(async()=>{
+ const e=await environment();assert.equal(e.voices.length,0,'No audio on load');assert.equal(e.status.attrs['data-state'],'ready');
+ e.events.pointerdown();e.window.PITSTOP_SOUND.play({startedAt:0,duration:210});assert.equal(e.voices.length,0,'Visual turn starts before audio work');e.setTime(12);e.paint();assert.equal(e.voices.length,1);assert.equal(e.status.attrs['data-state'],'playing');assert.equal(e.voices[0].playbackRate.value,1,'Preserve the soft recording’s natural pitch');assert(e.voices[0].offset>0,'Cue catches up to the animation phase');
+ e.window.PITSTOP_SOUND.play();e.window.PITSTOP_SOUND.play();assert.equal(e.frames.size,1,'Latest turn replaces queued audio');assert(e.voices[0].stopped);e.paint();assert.equal(e.voices.length,2);assert.deepEqual(e.stats(),{fetches:1,decodes:1,resumeCalls:0},'One decode for every turn');
+ e.window.PITSTOP_SOUND.play({startedAt:0});e.setTime(120);e.paint();assert.equal(e.voices.length,2,'Drop cues that missed the turn');assert.equal(e.status.attrs['data-state'],'late-skipped');
+ e.window.PITSTOP_SOUND.play();e.document.hidden=true;e.events.visibilitychange();e.paint();assert.equal(e.frames.size,0);assert.equal(e.voices.length,2,'Hide cancels queued sounds');
+ const loading=await environment({pendingDecode:true});loading.window.PITSTOP_SOUND.play();assert.equal(loading.frames.size,0);await loading.decode();loading.paint();assert.equal(loading.voices.length,0,'Late decoding never replays an old turn');loading.window.PITSTOP_SOUND.play();loading.paint();assert.equal(loading.voices.length,1);
+ const locked=await environment({suspended:true});locked.events.pointerdown();locked.window.PITSTOP_SOUND.play();locked.paint();assert.equal(locked.voices.length,0,'A locked context never stalls or queues navigation');assert.equal(locked.stats().resumeCalls,1);
+ const broken=await environment({broken:true});broken.window.PITSTOP_SOUND.play();broken.paint();assert.equal(broken.voices.length,0,'Audio decode failure remains silent');
+ const wav=fs.readFileSync(path.join(root,'assets/page-turn-soft.wav'));assert.equal(wav.toString('ascii',0,4),'RIFF');assert(wav.length<40000);let sum=0;for(let i=44;i<wav.length;i+=2)sum+=(wav.readInt16LE(i)/32768)**2;const rms=Math.sqrt(sum/((wav.length-44)/2));assert(rms>.015&&rms<.05,'Keep the soft paper recording');
+ const reader=fs.readFileSync(path.join(root,'reader.js'),'utf8'),go=reader.slice(reader.indexOf('function go('),reader.indexOf('\nfunction target('));let turns=0;
+ const c=vm.createContext({window:{PITSTOP_SOUND:{play:()=>turns++}},cards:Array.from({length:3},()=>({querySelector:()=>({scrollTop:0})})),pages:[{id:'a',kind:'cover'},{id:'b',kind:'overview'},{id:'c',kind:'ending'}],reduced:{matches:false},queueWarm(){},cancel(){},settle(){},performance:{now:()=>0},$:()=>({}),Math});
+ vm.runInContext('let current=0;'+go+';go(0);go(-1);go(1,false);',c);assert.equal(turns,0);vm.runInContext('go(2);go(3);go(1);',c);assert.equal(turns,2);vm.runInContext('reduced.matches=true;go(2);',c);assert.equal(turns,2,'Reduced motion also suppresses page sound');
+ assert(!source.includes('currentTime=')&&!source.includes('audio.play('),'No synchronous media seeking or media play promises on release');assert.equal(fs.readFileSync(path.join(root,'versions/v8/page-sound.js'),'utf8'),source);
+ console.log('V8 buffered sound checks passed: one asynchronous decode, no playback wait, silent loading/locked/failure states, stale cue suppression, no overlaps, cancellation, and reduced motion.');
+})().catch(error=>{console.error(error);process.exit(1)});

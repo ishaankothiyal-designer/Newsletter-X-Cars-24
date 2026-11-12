@@ -1,0 +1,2178 @@
+{
+  "browser": "Chrome desktop with CSS viewport overrides; not physical-device testing",
+  "defaultTextSize": true,
+  "overviewState": "Collapsed; expanded navigation and source dialogs may scroll",
+  "results": [
+    {
+      "cards": [
+        {
+          "client": 530,
+          "id": "cover",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "overview",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "chapter-business",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "growth",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "ecosystem",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "frontier",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "startup",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "lending",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "finance",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "close",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "chapter-builders",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "dealer",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "miles",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "leads",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "approvals",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "saarathi",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "ownership",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "security",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "academy",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "codex",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "hackathon",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "chapter-life",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "milo",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "badminton",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "survey",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "diwali",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "thermostat",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "chapter-perspectives",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "ambition",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "controls",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "inflection",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "safeguards",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        },
+        {
+          "client": 530,
+          "id": "caught-up",
+          "overflow": 0,
+          "scroll": 530,
+          "widthOverflow": 0
+        }
+      ],
+      "height": 640,
+      "width": 360
+    },
+    {
+      "cards": [
+        {
+          "client": 690,
+          "id": "cover",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "overview",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "chapter-business",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "growth",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "ecosystem",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "frontier",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "startup",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "lending",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "finance",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "close",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "chapter-builders",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "dealer",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "miles",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "leads",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "approvals",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "saarathi",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "ownership",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "security",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "academy",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "codex",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "hackathon",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "chapter-life",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "milo",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "badminton",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "survey",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "diwali",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "thermostat",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "chapter-perspectives",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "ambition",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "controls",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "inflection",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "safeguards",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        },
+        {
+          "client": 690,
+          "id": "caught-up",
+          "overflow": 0,
+          "scroll": 690,
+          "widthOverflow": 0
+        }
+      ],
+      "height": 800,
+      "width": 360
+    },
+    {
+      "cards": [
+        {
+          "client": 557,
+          "id": "cover",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "overview",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "chapter-business",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "growth",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "ecosystem",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "frontier",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "startup",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "lending",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "finance",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "close",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "chapter-builders",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "dealer",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "miles",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "leads",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "approvals",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "saarathi",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "ownership",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "security",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "academy",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "codex",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "hackathon",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "chapter-life",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "milo",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "badminton",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "survey",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "diwali",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "thermostat",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "chapter-perspectives",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "ambition",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "controls",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "inflection",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "safeguards",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        },
+        {
+          "client": 557,
+          "id": "caught-up",
+          "overflow": 0,
+          "scroll": 557,
+          "widthOverflow": 0
+        }
+      ],
+      "height": 667,
+      "width": 375
+    },
+    {
+      "cards": [
+        {
+          "client": 734,
+          "id": "cover",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "overview",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "chapter-business",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "growth",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "ecosystem",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "frontier",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "startup",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "lending",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "finance",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "close",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "chapter-builders",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "dealer",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "miles",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "leads",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "approvals",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "saarathi",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "ownership",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "security",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "academy",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "codex",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "hackathon",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "chapter-life",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "milo",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "badminton",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "survey",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "diwali",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "thermostat",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "chapter-perspectives",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "ambition",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "controls",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "inflection",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "safeguards",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        },
+        {
+          "client": 734,
+          "id": "caught-up",
+          "overflow": 0,
+          "scroll": 734,
+          "widthOverflow": 0
+        }
+      ],
+      "height": 844,
+      "width": 390
+    },
+    {
+      "cards": [
+        {
+          "client": 742,
+          "id": "cover",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "overview",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "chapter-business",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "growth",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "ecosystem",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "frontier",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "startup",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "lending",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "finance",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "close",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "chapter-builders",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "dealer",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "miles",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "leads",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "approvals",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "saarathi",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "ownership",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "security",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "academy",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "codex",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "hackathon",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "chapter-life",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "milo",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "badminton",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "survey",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "diwali",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "thermostat",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "chapter-perspectives",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "ambition",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "controls",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "inflection",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "safeguards",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        },
+        {
+          "client": 742,
+          "id": "caught-up",
+          "overflow": 0,
+          "scroll": 742,
+          "widthOverflow": 0
+        }
+      ],
+      "height": 852,
+      "width": 393
+    },
+    {
+      "cards": [
+        {
+          "client": 764,
+          "id": "cover",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "overview",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "chapter-business",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "growth",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "ecosystem",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "frontier",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "startup",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "lending",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "finance",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "close",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "chapter-builders",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "dealer",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "miles",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "leads",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "approvals",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "saarathi",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "ownership",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "security",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "academy",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "codex",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "hackathon",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "chapter-life",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "milo",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "badminton",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "survey",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "diwali",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "thermostat",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "chapter-perspectives",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "ambition",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "controls",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "inflection",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "safeguards",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "caught-up",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        }
+      ],
+      "height": 874,
+      "width": 402
+    },
+    {
+      "cards": [
+        {
+          "client": 764,
+          "id": "cover",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "overview",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "chapter-business",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "growth",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "ecosystem",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "frontier",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "startup",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "lending",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "finance",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "close",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "chapter-builders",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "dealer",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "miles",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "leads",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "approvals",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "saarathi",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "ownership",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "security",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "academy",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "codex",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "hackathon",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "chapter-life",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "milo",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "badminton",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "survey",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "diwali",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "thermostat",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "chapter-perspectives",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "ambition",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "controls",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "inflection",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "safeguards",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        },
+        {
+          "client": 764,
+          "id": "caught-up",
+          "overflow": 0,
+          "scroll": 764,
+          "widthOverflow": 0
+        }
+      ],
+      "height": 932,
+      "width": 430
+    },
+    {
+      "cards": [
+        {
+          "client": 846,
+          "id": "cover",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "overview",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "chapter-business",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "growth",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "ecosystem",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "frontier",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "startup",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "lending",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "finance",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "close",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "chapter-builders",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "dealer",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "miles",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "leads",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "approvals",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "saarathi",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "ownership",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "security",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "academy",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "codex",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "hackathon",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "chapter-life",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "milo",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "badminton",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "survey",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "diwali",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "thermostat",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "chapter-perspectives",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "ambition",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "controls",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "inflection",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "safeguards",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        },
+        {
+          "client": 846,
+          "id": "caught-up",
+          "overflow": 0,
+          "scroll": 846,
+          "widthOverflow": 0
+        }
+      ],
+      "height": 956,
+      "width": 440
+    },
+    {
+      "cards": [
+        {
+          "client": 766,
+          "id": "cover",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "overview",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "chapter-business",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "growth",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "ecosystem",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "frontier",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "startup",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "lending",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "finance",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "close",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "chapter-builders",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "dealer",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "miles",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "leads",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "approvals",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "saarathi",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "ownership",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "security",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "academy",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "codex",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "hackathon",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "chapter-life",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "milo",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "badminton",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "survey",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "diwali",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "thermostat",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "chapter-perspectives",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "ambition",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "controls",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "inflection",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "safeguards",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        },
+        {
+          "client": 766,
+          "id": "caught-up",
+          "overflow": 0,
+          "scroll": 766,
+          "widthOverflow": 0
+        }
+      ],
+      "height": 900,
+      "width": 1440
+    }
+  ],
+  "swipeChecks": [
+    {
+      "active": 1,
+      "hash": "#hackathon",
+      "latency": "4",
+      "sound": "playing"
+    },
+    {
+      "active": 1,
+      "hash": "#chapter-life",
+      "latency": "3",
+      "sound": "playing"
+    },
+    {
+      "active": 1,
+      "hash": "#milo",
+      "latency": "3",
+      "sound": "playing"
+    },
+    {
+      "active": 1,
+      "hash": "#badminton",
+      "latency": "4",
+      "sound": "playing"
+    },
+    {
+      "active": 1,
+      "hash": "#survey",
+      "latency": "4",
+      "sound": "playing"
+    },
+    {
+      "active": 1,
+      "hash": "#diwali",
+      "latency": "5",
+      "sound": "playing"
+    }
+  ]
+}
