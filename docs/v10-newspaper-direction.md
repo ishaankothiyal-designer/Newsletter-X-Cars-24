@@ -8,7 +8,7 @@ Neutral #F5F5F5 paper with restrained grain, ink #161616, CARS24 blue #4736FE, o
 
 The compact masthead contains the official CARS24 logo, The Pitstop, and one issue date. The opening illustration leads directly into useful headlines and a single chapter navigation. There are no taglines, visible version badges, repeated date furniture, decorative image captions, generic chapter descriptions, duplicate contents blocks, or repeated editorial images.
 
-Mobile headlines form a full-width vertical list. Story grids adapt to their content width. Every article uses consistent spacing after its divider and between its label, headline, figure, copy, and source notes; source notes follow content without bottom alignment. Long URLs wrap inside their columns. Navigation height is measured for anchor scrolling; in short landscape windows it scrolls with the document.
+Mobile headlines form a full-width vertical list. Story grids adapt to their content width. Every article uses consistent spacing after its divider and between its label, headline, figure, copy, and source controls; source notes open in a native modal dialog without changing article geometry. Long URLs wrap inside their columns. Navigation height is measured for anchor scrolling; in short landscape windows it scrolls with the document.
 
 ## Image direction
 
@@ -34,6 +34,12 @@ With a separately installed Playwright:
 PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node tests/v10-layout.test.cjs
 ```
 
-The browser audit checks 162 widths from 160–3840px, component overflow, grid collisions, expanded sources, 200%/300% text, compact header heights, full-width mobile headlines, consistent article spacing, deep links, and short landscape behavior. Results: `docs/v10-layout-audit.json`. `PITSTOP_URL` overrides the default `http://localhost:8010/versions/v10/`.
+The browser audit checks 162 widths from 160–3840px, component overflow, grid collisions, closed source dialogs, 200%/300% text, compact header heights, full-width mobile headlines, consistent article spacing, deep links, and short landscape behavior. Results: `docs/v10-layout-audit.json`. `PITSTOP_URL` overrides the default `http://localhost:8010/versions/v10/`.
 
 `python3 scripts/package-v10.py` creates the self-contained `../output/The-Pitstop-V10.html`.
+
+## Source-note popups
+
+Each article's “Story notes & sources” button opens a native dialog. The popup contains the story title, attribution, all source notes/links, the full supplied update, and supplementary artwork. It closes with the cross button, Escape, or an intentional backdrop click. Focus stays inside the popup and returns to its trigger; background scrolling is locked and long notes scroll within the popup. The header and close control remain visible.
+
+`tests/v10-notes-dialog.test.cjs` verifies all 25 stories at four widths (100 combinations), unchanged article geometry/reading position, focus containment and restoration, all dismissal methods, internal scrolling, and the inline “48 hours of building” callout. Supports the same Playwright module and URL overrides as the layout audit.

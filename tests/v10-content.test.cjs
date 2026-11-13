@@ -10,6 +10,8 @@ assert.equal(JSON.stringify(context.window.PITSTOP),before,'V10 must not mutate 
 const html=root.innerHTML,d=context.window.PITSTOP,sources=context.window.PITSTOP_SOURCES;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 assert.equal((html.match(/data-story=/g)||[]).length,25);
+assert.equal((html.match(/<dialog /g)||[]).length,25,'Each story has source notes in a dialog');
+assert(!html.includes('<details'),'Source notes do not use inline accordions');
 for(const s of d.stories){
  assert.equal(html.split(`data-story="${s.id}"`).length-1,1,s.id+' must appear once');
  const card=html.split(`data-story="${s.id}"`)[1].split('</article>')[0];

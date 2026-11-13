@@ -29,16 +29,13 @@ async function geometry(page) {
     await page.evaluate(() => document.fonts.ready);
     assert.equal(await page.locator('[data-story]').count(), 25);
     const samples = [];
-    // Open notes exercise long source URLs and supplied text, not just the cover.
-    await page.locator('details').evaluateAll(nodes => nodes.forEach(node => { node.open = true; }));
+    // Closed source dialogs must never change the article grid.
     for (const width of widths) {
       await page.setViewportSize({ width, height: 900 });
       samples.push(await geometry(page));
     }
-    await page.locator('details').evaluateAll(nodes => nodes.forEach(node => { node.open = false; }));
-    const type = await page.locator('.story h3').evaluateAll(nodes => [...new Set(nodes.map(e => getComputedStyle(e).fontSize))]);
+    const type = await page.locator('.story-copy h3').evaluateAll(nodes => [...new Set(nodes.map(e => getComputedStyle(e).fontSize))]);
     assert.deepEqual(type, ['28px'], 'Every story must use the same headline size');
-    await page.locator('details').evaluateAll(nodes => nodes.forEach(node => { node.open = true; }));
     for (const width of [320, 393, 540, 768, 1100, 1440]) {
       await page.setViewportSize({ width, height: 1000 });
       const header = await page.locator('.masthead').boundingBox();
@@ -74,6 +71,6 @@ async function geometry(page) {
     fs.writeFileSync(path.join(__dirname, '../docs/v10-layout-audit.json'), JSON.stringify(report, null, 2) + '\n');
     assert.equal(failed.length, 0, JSON.stringify(failed.slice(0, 3)));
     assert.deepEqual(errors, []);
-    console.log(`V10 layout passed: ${samples.length} widths (${widths[0]}–${widths.at(-1)}px), expanded sources, 200%/300% text, consistent headlines, wrapped-nav deep link, and short landscape.`);
+    console.log(`V10 layout passed: ${samples.length} widths (${widths[0]}–${widths.at(-1)}px), closed source dialogs, 200%/300% text, consistent headlines, wrapped-nav deep link, and short landscape.`);
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });
