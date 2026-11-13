@@ -50,7 +50,7 @@ window.PITSTOP = {
     },
     {
       "id": "frontier",
-      "chapter": "Business highlights",
+      "chapter": "Tech Updates",
       "layout": "image",
       "image": "frontier",
       "label": "Coming up · 29ᵗʰ November",
@@ -59,9 +59,9 @@ window.PITSTOP = {
       "credit": "VC · #announcements · 28ᵗʰ October",
       "note": "Future event, as announced in the October edition. Artwork is an imagined editorial illustration.",
       "kind": "story",
-      "number": 3,
+      "number": 12,
       "sourceCredit": "Shared in #announcements · 28 October",
-      "chapterId": "business",
+      "chapterId": "builders",
       "originalBody": "VC announced that Cars24 and Deployment Inc will unveil more than 30 first-of-their-kind AI releases in New Delhi on 29 November. The event will also open up the company’s effort to rebuild an enterprise around AI.",
       "visual": {
         "src": "assets/frontier.webp",
@@ -85,7 +85,7 @@ window.PITSTOP = {
       "credit": "Yuvika Sharma · #announcements / #builders-cars24 · 29ᵗʰ October",
       "note": "Partners: Startup India (DPIIT), MeitY Startup Hub, and Startup Policy Forum. The four tracks are Lending & Fintech, Mobility & Road Safety, Logistics & Supply Chain, and Sovereign AI. The top 20 receive a month of mentorship in December. The finale is in New Delhi in January 2027. The supplied deadline is 10 November, 11:59 p.m. IST.",
       "kind": "story",
-      "number": 4,
+      "number": 3,
       "sourceCredit": "Shared by Yuvika Sharma in #announcements and #builders-cars24 · 29 October",
       "chapterId": "business",
       "originalBody": "Cars24 is running the Grand Startup Challenge with Startup India (DPIIT), MeitY Startup Hub and Startup Policy Forum. It invites early-stage teams across Lending & Fintech, Mobility & Road Safety, Logistics & Supply Chain, and Sovereign AI.",
@@ -109,7 +109,7 @@ window.PITSTOP = {
       "credit": "Ujjwal Mehrotra · #loans24 · 12ᵗʰ October",
       "note": "The lending source reports 771 deliveries; the customer story reports 770 handovers. Both are retained from the supplied HTML and remain an editorial reconciliation point.",
       "kind": "story",
-      "number": 5,
+      "number": 4,
       "sourceCredit": "Shared in #loans24 · 12 October",
       "chapterId": "business",
       "originalBody": "Ujjwal Mehrotra reported a record single-day for C2C and Loans24: 414 disbursals and ₹22 Cr disbursed , alongside 771 deliveries. Disbursal volume was twice last Navratri’s Day 1, with 50% internal attach and 53.7% overall attach.",
@@ -122,58 +122,16 @@ window.PITSTOP = {
       "navTitle": "Loans24 milestone"
     },
     {
-      "id": "finance",
-      "chapter": "Business highlights",
-      "layout": "statement",
-      "label": "Australia Finance",
-      "title": "Australia Finance reviews its processes",
-      "accent": "The War Room has begun.",
-      "body": "The Australia Finance team has opened a War Room to identify process gaps and pain points, then build a roadmap to address them.",
-      "credit": "Nishant Arora · Australia Finance update",
-      "kind": "story",
-      "number": 6,
-      "chapterId": "business",
-      "originalBody": "Nishant Arora shared that the Australia Finance team has started a War Room to revisit end-to-end processes, surface pain points and process gaps, and prepare a roadmap to address them.",
-      "visual": {
-        "src": "assets/story-graphics/finance.png",
-        "alt": "A process map under review with a magnifying glass and pencil.",
-        "type": "spot",
-        "fallbackSrc": "assets/story-graphics/finance.svg"
-      },
-      "navTitle": "Finance review"
-    },
-    {
-      "id": "close",
-      "chapter": "Business highlights",
-      "layout": "statement",
-      "label": "Finance · Operating rhythm",
-      "title": "A clearer view of the numbers",
-      "accent": "Repeatable work, done better.",
-      "body": "Across Finance, Raghav Khanna and Shivanshu Makkar also highlighted September close, clearer city and region reporting, and repeatable process automation.",
-      "credit": "Raghav Khanna and Shivanshu Makkar · Finance updates",
-      "kind": "story",
-      "number": 7,
-      "chapterId": "business",
-      "originalBody": "Across Finance, Raghav Khanna and Shivanshu Makkar also highlighted September close, clearer city and region reporting, and repeatable process automation.",
-      "visual": {
-        "src": "assets/story-graphics/close.png",
-        "alt": "A ruled ledger with a magnifying glass focusing on a reconciled entry.",
-        "type": "spot",
-        "fallbackSrc": "assets/story-graphics/close.svg"
-      },
-      "navTitle": "September close"
-    },
-    {
       "id": "dealer",
-      "chapter": "Tech highlights",
+      "chapter": "Tech Updates",
       "layout": "statement",
-      "label": "Dealer App · Rishabh",
+      "label": "Dealer App",
       "title": "Dealers can now create offer terms in the app",
       "accent": "Create them in the app.",
       "body": "Dealers can customise and generate offer terms directly in the app, with the existing approval flow retained. The change is expected to shorten offer-to-terms turnaround.",
       "credit": "Rishabh · Product release update",
       "kind": "story",
-      "number": 8,
+      "number": 6,
       "chapterId": "builders",
       "originalBody": "Dealer App terms — Rishabh: Dealers can customise and generate offer terms directly in the app, with the existing approval flow retained. The change is expected to shorten offer-to-terms turnaround.",
       "visual": {
@@ -186,9 +144,9 @@ window.PITSTOP = {
     },
     {
       "id": "miles",
-      "chapter": "Tech highlights",
+      "chapter": "Tech Updates",
       "layout": "stat",
-      "label": "Miles · Rishabh and team",
+      "label": "Miles",
       "stat": "+15%",
       "unit": "monthly visits targeted",
       "title": "Miles now captures unplanned field visits",
@@ -196,7 +154,7 @@ window.PITSTOP = {
       "credit": "Rishabh and team · Miles release update",
       "note": "These are release targets, not measured outcomes.",
       "kind": "story",
-      "number": 9,
+      "number": 7,
       "chapterId": "builders",
       "originalBody": "Miles field visits — Rishabh and team: FOS can record ad-hoc visits with new dealers and loan customers. The release targets 15% more monthly visits and 10% more leads entering the system.",
       "visual": {
@@ -209,15 +167,15 @@ window.PITSTOP = {
     },
     {
       "id": "leads",
-      "chapter": "Tech highlights",
+      "chapter": "Tech Updates",
       "layout": "statement",
-      "label": "C2C · Diya Mariya Manoj and team",
+      "label": "C2C",
       "title": "C2C gives higher priority to interested customers",
       "accent": "A clearer lead queue.",
       "body": "The refreshed queue gives stronger priority to customers showing intent through AIRO handoffs or interested calls, while bringing booking progress into the next tiers.",
       "credit": "Diya Mariya Manoj and team · C2C release update",
       "kind": "story",
-      "number": 10,
+      "number": 8,
       "chapterId": "builders",
       "originalBody": "C2C lead priorities — Diya Mariya Manoj and team: The refreshed queue gives stronger priority to customers showing intent through AIRO handoffs or interested calls, while bringing booking progress into the next tiers.",
       "visual": {
@@ -230,15 +188,15 @@ window.PITSTOP = {
     },
     {
       "id": "approvals",
-      "chapter": "Tech highlights",
+      "chapter": "Tech Updates",
       "layout": "statement",
-      "label": "C2C · Diya Mariya Manoj and team",
+      "label": "C2C",
       "title": "Partner approval status is now visible in C2C",
       "accent": "Approval status, in view.",
       "body": "Sales teams can now see pending, in-progress or completed partner approvals directly in the C2C panel, reducing status-chasing.",
       "credit": "Diya Mariya Manoj and team · C2C release update",
       "kind": "story",
-      "number": 11,
+      "number": 9,
       "chapterId": "builders",
       "originalBody": "Partner approval visibility — Diya Mariya Manoj and team: Sales teams can now see pending, in-progress or completed partner approvals directly in the C2C panel, reducing status-chasing.",
       "visual": {
@@ -251,16 +209,16 @@ window.PITSTOP = {
     },
     {
       "id": "saarathi",
-      "chapter": "Tech highlights",
+      "chapter": "Tech Updates",
       "layout": "statement",
-      "label": "Saarathi · Monu Goyal and team",
+      "label": "Saarathi",
       "title": "More offer tools for agents at the yard",
       "accent": "More tools at the yard.",
       "body": "Ground agents can adjust offer details and down payments, review offer history, and generate terms for eligible system offers at the yard.",
       "credit": "Monu Goyal and team · Saarathi release update",
       "note": "The source calls the adjustable field “ROI”. Its expansion is not established in the source, so the short copy uses “offer details”.",
       "kind": "story",
-      "number": 12,
+      "number": 10,
       "chapterId": "builders",
       "originalBody": "Saarathi offer tools — Monu Goyal and team: Ground agents can adjust ROI and down payment, review offer history, and generate terms for eligible system offers—helping keep the customer conversation moving at the yard.",
       "visual": {
@@ -273,7 +231,7 @@ window.PITSTOP = {
     },
     {
       "id": "ownership",
-      "chapter": "Tech highlights",
+      "chapter": "Tech Updates",
       "layout": "statement",
       "label": "Deemed Ownership",
       "title": "Deemed Ownership’s backend is live",
@@ -282,7 +240,7 @@ window.PITSTOP = {
       "credit": "Hemant Garg and teams · 28ᵗʰ October",
       "note": "The supplied edition does not confirm the app shipped. This card preserves the status at the edition’s reporting cut-off.",
       "kind": "story",
-      "number": 13,
+      "number": 11,
       "chapterId": "builders",
       "originalBody": "Deemed Ownership backend — Hemant Garg and teams: All backend systems moved into production on 28 October. Teams were completing production and app checks, with the app release targeted for 29 October once sanity checks were clear.",
       "visual": {
@@ -295,7 +253,7 @@ window.PITSTOP = {
     },
     {
       "id": "security",
-      "chapter": "Tech highlights",
+      "chapter": "Tech Updates",
       "layout": "statement",
       "label": "Technology watch",
       "title": "A dependency update needs priority",
@@ -304,7 +262,7 @@ window.PITSTOP = {
       "credit": "Technology security advisory · Supplied October edition",
       "note": "The source does not identify the dependency or provide an advisory link. Do not treat this card as a substitute for the technical advisory.",
       "kind": "story",
-      "number": 14,
+      "number": 13,
       "chapterId": "builders",
       "originalBody": "Technology watch: A dependency security advisory is being handled as a priority patch-and-redeploy effort, with affected service owners asked to confirm completion.",
       "visual": {
@@ -317,7 +275,7 @@ window.PITSTOP = {
     },
     {
       "id": "academy",
-      "chapter": "Builders at work",
+      "chapter": "Tech Updates",
       "layout": "image",
       "image": "academy",
       "label": "Frontline learning",
@@ -326,7 +284,7 @@ window.PITSTOP = {
       "credit": "Sejal Sanjay Sangole · #builders-cars24",
       "note": "Illustration created for The Pitstop. An imagined academy scene, not a photograph of the opening.",
       "kind": "story",
-      "number": 15,
+      "number": 14,
       "sourceCredit": "Shared by Sejal Sanjay Sangole in #builders-cars24",
       "chapterId": "builders",
       "originalBody": "Opened on 26 October , the academy gives frontline teams a place to learn through classroom refreshers and hands-on practice with real cars. The first sessions began with CJ refreshers.",
@@ -340,7 +298,7 @@ window.PITSTOP = {
     },
     {
       "id": "codex",
-      "chapter": "Builders at work",
+      "chapter": "Tech Updates",
       "layout": "image",
       "image": "team",
       "label": "Builders at work",
@@ -349,7 +307,7 @@ window.PITSTOP = {
       "credit": "Ishaan Kothiyal · Workflow update",
       "note": "Also credited: Nitin Sharma, Premveer Tomar, Sumit Sharma, and Mayank. Savings are an early estimate. The artwork is an imagined team scene. Trial shared by Ishaan Kothiyal; produced a usable V3 homepage draft in the CMS.",
       "kind": "story",
-      "number": 16,
+      "number": 15,
       "chapterId": "builders",
       "originalBody": "Ishaan Kothiyal shared an early Codex + Figma workflow that produced a usable V3 homepage draft in the CMS. Estimated effort savings are 20–30% so far; the workflow still needs production-readiness validation. Next: test it across 23 SEO pages. Nitin Sharma, Premveer Tomar, Sumit Sharma and Mayank were credited.",
       "visual": {
@@ -362,7 +320,7 @@ window.PITSTOP = {
     },
     {
       "id": "hackathon",
-      "chapter": "Builders at work",
+      "chapter": "Tech Updates",
       "layout": "stat",
       "label": "People & Culture Hackathon",
       "stat": "48",
@@ -372,7 +330,7 @@ window.PITSTOP = {
       "credit": "Gaurav Saxena · Outcomes highlighted by Shivanshu Makkar",
       "note": "Contributors included Aayush Gupta, Divyansh Bansal, Nikhil Meena, Shreeya Arora, Manvi Mehrotra, Shloka Patnaik, Shobhan Suri, Gaurav Saxena, and Vivek Naiwal. Teams also rethought induction and built a shared hub for SOPs, agents, and data. The 40% reduction is a proposed target, not a result.",
       "kind": "story",
-      "number": 17,
+      "number": 16,
       "sourceCredit": "Contributors included Aayush Gupta, Divyansh Bansal, Nikhil Meena, Shreeya Arora, Manvi Mehrotra, Shloka Patnaik, Shobhan Suri, Gaurav Saxena and Vivek Naiwal. Shared by Gaurav Saxena; Shivanshu Makkar highlighted the outcomes. The hackathon is planned to recur.",
       "chapterId": "builders",
       "originalBody": "Over two days, teams tackled payroll inputs, compliance tracking, recurring WeCare tickets and a Manager Hub for feedback and reviews. The update reported overall automation progress reaching 36% in 48 hours; a proposed workflow aims to reduce WeCare tickets by 40%. Teams rethought induction and built a shared hub for SOPs, agents and data.",
@@ -389,14 +347,14 @@ window.PITSTOP = {
       "id": "milo",
       "chapter": "Life at Cars24",
       "layout": "statement",
-      "label": "Wellbeing · Rashi Bajaj",
+      "label": "Wellbeing",
       "title": "Meet Milo, the wellbeing companion on Slack",
       "accent": "Meet Milo on Slack.",
       "body": "Rashi Bajaj introduced Milo, a confidential AI wellbeing companion on Slack; it is not a replacement for therapy.",
       "credit": "Rashi Bajaj · Milo introduction",
       "note": "Confidentiality is described as stated in the supplied announcement. No independent privacy or clinical assessment was performed.",
       "kind": "story",
-      "number": 18,
+      "number": 17,
       "chapterId": "life",
       "originalBody": "Rashi Bajaj introduced Milo, a confidential AI wellbeing companion on Slack; it is not a replacement for therapy.",
       "visual": {
@@ -418,7 +376,7 @@ window.PITSTOP = {
       "body": "Goldarin Kumar and Harshita Khajuria won singles and mixed doubles. Kunal Singla and Vasu Chauhan won men’s doubles. Aditya Ghai received the Spirit of the Games award.",
       "credit": "Arjun Lal · Championship results",
       "kind": "story",
-      "number": 19,
+      "number": 18,
       "sourceCredit": "Results shared by Arjun Lal.",
       "chapterId": "life",
       "originalBody": "At the badminton championship, Goldarin Kumar and Harshita Khajuria won singles and mixed doubles, Kunal Singla and Vasu Chauhan won men’s doubles, and Aditya Ghai received the Spirit of the Games award.",
@@ -442,7 +400,7 @@ window.PITSTOP = {
       "credit": "People & culture · Supplied October edition",
       "note": "Survey availability reflects the supplied edition; no current live survey URL was supplied.",
       "kind": "story",
-      "number": 20,
+      "number": 19,
       "chapterId": "life",
       "originalBody": "A fresh Voice of Autonauts survey is live in Darwinbox. Previous feedback has informed work on incentive clarity, WeCare tickets, IT infrastructure and hub hygiene.",
       "visual": {
@@ -463,7 +421,7 @@ window.PITSTOP = {
       "note": "Artwork inspired by supplied celebration photos; painted illustrations, not event photographs. Added in the 7 November HTML update.",
       "kind": "story",
       "chapter": "Life at Cars24",
-      "number": 21,
+      "number": 20,
       "body": "Gifts arrived at desks, the hub filled with festive decor, and Slack turned into a countdown. Shared sweets, song requests, and plenty of banter brought colleagues together.",
       "sourceCredit": "Sources: #sas-office-announcement · #builders-cars24 . Artwork inspired by the supplied celebration photos.",
       "images": [
@@ -506,7 +464,7 @@ window.PITSTOP = {
       "body": "SAS Tower’s thermostat is taking more feedback than a product launch—and still can’t find a setting everyone likes.",
       "credit": "The Pitstop · October’s lighter moment",
       "kind": "story",
-      "number": 22,
+      "number": 21,
       "chapterId": "life",
       "originalBody": "Winter Arc fun fact: SAS Tower’s thermostat is taking more feedback than a product launch—and still can’t find a setting everyone likes.",
       "visual": {
@@ -528,7 +486,7 @@ window.PITSTOP = {
       "credit": "VC · Frontier ’26 announcement · 28ᵗʰ October",
       "note": "Paraphrased from the supplied edition; not a direct quotation. Artwork is an imagined editorial scene.",
       "kind": "story",
-      "number": 23,
+      "number": 22,
       "sourceCredit": "From the Frontier ’26 announcement · 28 October",
       "chapterId": "perspectives",
       "originalBody": "On the road to Frontier ’26, VC’s note was to meet this AI moment with ambition: choose problems worth attempting and build things that change what people think is possible.",
@@ -551,7 +509,7 @@ window.PITSTOP = {
       "credit": "Shivanshu Makkar · #builders-cars24 · 23ʳᵈ October",
       "note": "Paraphrase, not a direct quotation.",
       "kind": "story",
-      "number": 24,
+      "number": 23,
       "sourceCredit": "From #builders-cars24 · 23 October",
       "chapterId": "perspectives",
       "originalBody": "When a rule is clear, let the system check routine cases continuously. Keep people focused on genuine exceptions instead of making every request wait for a manual approval.",
@@ -574,7 +532,7 @@ window.PITSTOP = {
       "credit": "Ruchit · #24-hrs-rct-deemed-ownership · 28ᵗʰ October",
       "note": "Paraphrase, not a direct quotation. Backend launch and app release are separate milestones.",
       "kind": "story",
-      "number": 25,
+      "number": 24,
       "sourceCredit": "From #24-hrs-rct-deemed-ownership · 28 October",
       "chapterId": "perspectives",
       "originalBody": "When the full Deemed Ownership backend reached production, Ruchit called it the start of a paradigm shift. The milestone came from many teams landing their pieces together, with app sanity checks next.",
@@ -597,7 +555,7 @@ window.PITSTOP = {
       "credit": "Himanshu Rathore · #cfi-product-tech · 27ᵗʰ October",
       "note": "Paraphrase, not a direct quotation.",
       "kind": "story",
-      "number": 26,
+      "number": 25,
       "sourceCredit": "From #cfi-product-tech · 27 October",
       "chapterId": "perspectives",
       "originalBody": "As infrastructure and products grow, data, infrastructure and code security need to grow alongside them—especially when customer and payment information is involved.",
@@ -608,9 +566,31 @@ window.PITSTOP = {
         "fallbackSrc": "assets/story-graphics/safeguards.svg"
       },
       "navTitle": "Security as we grow"
+    },
+    {
+      "id": "dhanteras",
+      "chapter": "Business highlights",
+      "chapterId": "business",
+      "kind": "story",
+      "layout": "stat",
+      "label": "Diwali · Dhanteras sales",
+      "stat": "381",
+      "unit": "cars sold in one day",
+      "title": "381 cars sold on Dhanteras",
+      "body": "Cars24 sold 381 cars in a single day on Dhanteras, bringing a festive sales milestone to the Diwali period.",
+      "credit": "Business update · Dhanteras",
+      "originalBody": "On Dhanteras, Cars24 sold 381 cars on a single day.",
+      "navTitle": "Dhanteras sales",
+      "visual": {
+        "src": "assets/story-graphics/dhanteras.svg",
+        "fallbackSrc": "assets/story-graphics/dhanteras.svg",
+        "alt": "Three cars and a glowing diya mark the Dhanteras sales milestone.",
+        "type": "spot"
+      },
+      "number": 5
     }
   ],
-  "storyCount": 26,
+  "storyCount": 25,
   "chapters": [
     {
       "id": "business",
@@ -619,17 +599,15 @@ window.PITSTOP = {
       "stories": [
         "growth",
         "ecosystem",
-        "frontier",
         "startup",
         "lending",
-        "finance",
-        "close"
+        "dhanteras"
       ],
       "number": 1
     },
     {
       "id": "builders",
-      "name": "Builders at Work",
+      "name": "Tech Updates",
       "body": "Product releases, new ways to work, and ideas put into practice.",
       "stories": [
         "dealer",
@@ -638,6 +616,7 @@ window.PITSTOP = {
         "approvals",
         "saarathi",
         "ownership",
+        "frontier",
         "security",
         "academy",
         "codex",
@@ -763,18 +742,6 @@ window.PITSTOP = {
         "layout": "panel",
         "emphasis": "₹22 crore",
         "referencePage": 10
-      },
-      "finance": {
-        "paper": "cream-grid",
-        "layout": "open",
-        "emphasis": "reviews its processes",
-        "referencePage": 27
-      },
-      "close": {
-        "paper": "ice-grid",
-        "layout": "poster",
-        "emphasis": "clearer view",
-        "referencePage": 16
       },
       "dealer": {
         "paper": "pink-grid",
@@ -905,6 +872,12 @@ window.PITSTOP = {
       "caught-up": {
         "paper": "mint-grid",
         "layout": "caught-up"
+      },
+      "dhanteras": {
+        "paper": "ice-grid",
+        "layout": "poster",
+        "emphasis": "381 cars",
+        "referencePage": 4
       }
     }
   },

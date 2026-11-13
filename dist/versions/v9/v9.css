@@ -19,3 +19,6 @@
 @media(max-width:360px){.wordmark{font-size:15px}.edition{font-size:8px}.masthead .brand img{width:58px}.nav-inner a{font-size:10px;padding-inline:8px}.story-inner,.lead .story-inner{padding:20px}.notes{margin-inline:20px}.story h3{font-size:28px}.release h3{font-size:23px}.chapter-heading h2{font-size:28px}.chapter-heading .chapter-number{width:36px;height:32px}.chapter-heading{gap:12px}.cover-copy{padding-inline:20px}.cover-caption{max-width:31ch}.colophon{flex-wrap:wrap}.ending h2{font-size:37px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
 @media print{.chapter-nav,.skip,.chapter-return,.read-again{display:none}.cover{min-height:0}.story{break-inside:avoid}.wrap{width:100%}.chapter{padding-top:30px}.pair{display:block}.pair .story{margin-top:20px}.ending{margin-top:30px}body{background:var(--color-paper)}}
+
+/* The academy and Frontier open the Tech Updates chapter together. */
+.tech-opening{margin-top:0}

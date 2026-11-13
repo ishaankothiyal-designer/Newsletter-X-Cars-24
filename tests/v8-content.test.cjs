@@ -11,11 +11,17 @@ for(const base of [dist,v8]){
 }
 vm.runInNewContext(fs.readFileSync(path.join(v8,'stories.js'),'utf8'),context);
 const d=context.window.PITSTOP,stories=d.stories;
-assert.equal(stories.length,26);assert.equal(d.chapters.length,4);assert.equal(stories.length+d.chapters.length+3,33);
-assert.deepEqual(Array.from(d.chapters,ch=>ch.stories.length),[7,10,5,4]);
-assert.equal(new Set(stories.map(s=>s.id)).size,26);
-assert.equal(d.chapters[1].name,'Builders at Work');assert(!d.chapters.some(ch=>ch.id==='tech'));
+assert.equal(stories.length,25);assert.equal(d.chapters.length,4);assert.equal(stories.length+d.chapters.length+3,32);
+assert.deepEqual(Array.from(d.chapters,ch=>ch.stories.length),[5,11,5,4]);
+assert.equal(new Set(stories.map(s=>s.id)).size,25);
+assert.equal(d.chapters[1].name,'Tech Updates');assert(!d.chapters.some(ch=>ch.id==='tech'));
 assert.equal(d.chapterAliases['chapter-tech'],'chapter-builders');
+for(const id of ['finance','close'])assert(!stories.some(s=>s.id===id),id+' removed in both editions');
+assert(!d.chapters[0].stories.includes('frontier'));
+assert(d.chapters[1].stories.includes('frontier'));
+for(const [id,label] of Object.entries({dealer:'Dealer App',miles:'Miles',leads:'C2C',approvals:'C2C',saarathi:'Saarathi',milo:'Wellbeing'}))assert.equal(stories.find(s=>s.id===id).label,label,id+' functional label without a personal name');
+const dhanteras=stories.find(s=>s.id==='dhanteras');assert.equal(dhanteras.chapterId,'business');assert.equal(dhanteras.stat,'381');assert(dhanteras.body.includes('381 cars in a single day on Dhanteras'));
+
 for(const s of stories){assert(s.body.split(/\s+/).length<=38,s.id+' exceeds the reading budget');assert(s.navTitle.length<=24,s.id+' navigation label');}
 for(const id of ['handovers','waits','dehradun','pdi','telugu'])assert(!stories.find(s=>s.id===id),id);
 for(const ch of d.chapters)for(const id of ch.stories)assert.equal(stories.find(s=>s.id===id).chapterId,ch.id);
@@ -24,8 +30,8 @@ assert(stories.find(s=>s.id==='ownership').body.includes('targeted for 29 Octobe
 assert(stories.find(s=>s.id==='lending').body.includes('771 deliveries'));
 for(const story of stories){assert(story.body.length>40,story.id);assert(story.credit,story.id);assert(story.originalBody,story.id);assert(!story.title.includes('\n'),story.id);}
 // Every story has purposeful, accessible artwork in both published entry points.
-assert.equal(new Set(stories.map(s=>s.visual.src)).size,26);
-assert.equal(stories.filter(s=>s.visual.type==='spot').length,18);
+assert.equal(new Set(stories.map(s=>s.visual.src)).size,25);
+assert.equal(stories.filter(s=>s.visual.type==='spot').length,17);
 for(const story of stories){
  assert(story.visual.alt.length>30,story.id+' visual needs descriptive alt text');
  for(const base of [dist,v8]){assert(fs.statSync(path.join(base,story.visual.src)).size>0,story.id+' missing art');assert(fs.statSync(path.join(base,story.visual.fallbackSrc)).size>0,story.id+' missing fallback');}
@@ -55,4 +61,4 @@ assert.equal(d.colourSystem.ink,'#000000');
 assert(!js.includes('Issue 10'),'Cover must not display an issue number');
 function luminance(hex){const c=hex.slice(1).match(/../g).map(x=>parseInt(x,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return .2126*c[0]+.7152*c[1]+.0722*c[2];}
 for(const [id,style] of Object.entries(d.colourSystem.pages)){const paper=d.colourSystem.stocks[style.paper].hex,muted=style.paper==='magenta-grid'?'#111111':'#333333';assert((luminance(paper)+.05)/(luminance(muted)+.05)>=4.5,id+' muted text contrast');}
-console.log('V8 contract passed: 26 stories, four chapters, 33 pages, V6-style animation, responsive original-art cover, source status, root parity.');
+console.log('V8 contract passed: 25 stories, four chapters, 32 pages, V6-style animation, responsive original-art cover, source status, root parity.');

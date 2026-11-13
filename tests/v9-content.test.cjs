@@ -9,7 +9,7 @@ vm.runInNewContext(fs.readFileSync(path.join(v9,'v9.js'),'utf8'),context);
 assert.equal(JSON.stringify(context.window.PITSTOP),before,'V9 must not mutate V8 content');
 const html=root.innerHTML,d=context.window.PITSTOP,sources=context.window.PITSTOP_SOURCES;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-assert.equal((html.match(/data-story=/g)||[]).length,26);
+assert.equal((html.match(/data-story=/g)||[]).length,25);
 for(const s of d.stories){
  assert.equal(html.split(`data-story="${s.id}"`).length-1,1,s.id+' must appear once');
  const card=html.split(`data-story="${s.id}"`)[1].split('</article>')[0];
@@ -27,9 +27,9 @@ for(const s of d.stories){
  for(const file of [s.visual.src,s.visual.fallbackSrc])assert(fs.statSync(path.join(dist,file)).size>0);
 }
 const entry=fs.readFileSync(path.join(v9,'index.html'),'utf8');
-assert(entry.includes('<base href="../../">'));assert(entry.includes('src="stories.js"'));assert(entry.includes('src="sources.js"'));
+assert(entry.includes('<base href="../../">'));assert(entry.includes('src="stories.js?v=dhanteras-1"'));assert(entry.includes('src="sources.js"'));
 assert(!entry.includes('reader.js'),'The swipe reader must not intercept document scrolling');
 assert(!/inert|aria-hidden="true"[^>]*data-story/.test(html));
 assert(html.includes('aria-label="Newsletter chapters"'));
 assert(html.includes(esc(d.form)));
-console.log('V9 content passed: all 26 headlines, bodies, full updates, artwork, chapters, notes and source URLs preserved; shared data unchanged.');
+console.log('V9 content passed: all 25 headlines, bodies, full updates, artwork, chapters, notes and source URLs preserved; shared data unchanged.');

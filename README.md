@@ -9,7 +9,7 @@ The Pitstop — Cars24’s October 2026 newsletter. A responsive, swipeable edit
 - [Public repository](https://github.com/ishaankothiyal-designer/Newsletter-X-Cars-24)
 - [Vercel project dashboard](https://vercel.com/design-ea38/newsletter-x-cars-24)
 
-The current V8 edition includes 26 stories in four chapters, eight paper colours, varied editorial layouts, story illustrations, source notes, and a soft page-turn sound. V8 remains at the default URL. V9 adds a continuous vertical edition at `/versions/v9/`, with the same 26 stories, artwork, notes, and source links. No version picker or retired editions are restored.
+The current V8 edition includes 25 stories in four chapters, eight paper colours, varied editorial layouts, story illustrations, source notes, and a soft page-turn sound. V8 remains at the default URL. V9 adds a continuous vertical edition at `/versions/v9/`, with the same 25 stories, artwork, notes, and source links. No version picker or retired editions are restored.
 
 ## Local preview
 
@@ -59,3 +59,5 @@ node tests/v8-sound.test.cjs
 The Cars24 name, logo, editorial content, and supplied illustrations retain their respective owners’ rights. Publication of this repository does not grant a general licence to those materials. Third-party assets retain their stated licences. The paper recording’s public-domain provenance is documented in `docs/page-turn-audio-source.md`; the bundled Anton licence is retained beside the font.
 
 The runtime contains no service credentials or server-side secrets. Story source links may point to systems that require their own authentication.
+
+Both editions include the Dhanteras sales update (381 cars in one day), place Frontier ’26 under Tech Updates, and omit the Australia Finance and reporting cards. Functional card labels omit personal names; attribution remains in story notes.

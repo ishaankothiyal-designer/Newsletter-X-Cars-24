@@ -88,5 +88,10 @@
     "src": "assets/story-graphics/safeguards.svg",
     "alt": "A growing branch is supported by a protective shield.",
     "type": "spot"
+  },
+  "dhanteras": {
+    "src": "assets/story-graphics/dhanteras.svg",
+    "alt": "Three cars and a glowing diya mark the Dhanteras sales milestone.",
+    "type": "spot"
   }
 }

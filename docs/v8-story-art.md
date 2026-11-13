@@ -24,3 +24,7 @@ Provider: built-in `image_gen`; use case `illustration-story`. Shared direction:
 ## Validation
 
 Content and motion regression checks pass. All 26 stories were checked in the in-app browser at 320×568, 393×852, and 1440×900 (78 observations): every image loaded, every image had alternative text, the active card stayed inside the viewport, and there was no horizontal overflow. Longer prose remains vertically scrollable inside its sheet, including on small phones; it is not clipped or reduced to tiny type. A swipe starting on the Miles illustration advances to the next story, and the long startup story's sources remain reachable by scrolling. Evidence: `../output/v8-story-art-audit.json`, mobile and desktop screenshots. Physical mobile Safari testing remains outside this browser check.
+
+## Dhanteras update · 13 November 2026
+
+V8 and V9 now contain 25 stories after the requested removals and addition. The Dhanteras illustration is an original editable SVG at `dist/assets/story-graphics/dhanteras.svg`, mirrored into V8. It reuses the existing car silhouette, Flatland palette, black outlines, and halftone ground with a diya. The cars are symbolic; the supplied figure of 381 sales remains in the story copy. Frontier now sits in Tech Updates, and functional eyebrow labels omit personal names.
