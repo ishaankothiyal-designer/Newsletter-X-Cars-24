@@ -1,0 +1,26 @@
+{
+  "samples": 162,
+  "minWidth": 160,
+  "maxWidth": 3840,
+  "failures": [],
+  "zoom": [
+    {
+      "textSize": "200%",
+      "width": 640,
+      "documentWidth": 640,
+      "failures": [],
+      "overlaps": []
+    },
+    {
+      "textSize": "300%",
+      "width": 640,
+      "documentWidth": 640,
+      "failures": [],
+      "overlaps": []
+    }
+  ],
+  "headlineSizes": [
+    "28px"
+  ],
+  "errors": []
+}

@@ -61,3 +61,9 @@ The Cars24 name, logo, editorial content, and supplied illustrations retain thei
 The runtime contains no service credentials or server-side secrets. Story source links may point to systems that require their own authentication.
 
 Both editions include the Dhanteras sales update (381 cars in one day), place Frontier ’26 under Tech Updates, and omit the Australia Finance and reporting cards. Functional card labels omit personal names; attribution remains in story notes.
+
+### V10 — newspaper edition
+
+V10 is a separate continuous-scroll edition at `/versions/v10/`, based on V9's shared 25-story dataset. It replaces the prior art direction with a broadsheet masthead, ruled columns, textured neutral paper, CARS24 blue identity, and newly generated newspaper ink illustrations. Default V8 and V9 are unchanged.
+
+Run `node tests/v10-content.test.cjs` to verify content preservation. Run `python3 scripts/package-v10.py` to write the standalone `../output/The-Pitstop-V10.html`. Reference research and design decisions are documented in `docs/v10-newspaper-direction.md`.

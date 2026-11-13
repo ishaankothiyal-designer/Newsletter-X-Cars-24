@@ -1,6 +1,6 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const dist=path.join(__dirname,'../dist'),v8=path.join(dist,'versions/v8'),context={window:{}};
-assert.deepEqual(fs.readdirSync(path.join(dist,'versions')).sort(),['v8','v9'],'Only the approved V8 and V9 editions may remain');
+assert.deepEqual(fs.readdirSync(path.join(dist,'versions')).sort(),['v10','v8','v9'],'Only the approved V8, V9 and V10 editions may remain');
 for(const file of ['versions.json','version-picker.js','version-picker.css','app.js','design-reference.html'])assert(!fs.existsSync(path.join(dist,file)),file+' is a retired entry point');
 for(const base of [dist,v8]){
  const html=fs.readFileSync(path.join(base,'index.html'),'utf8');
