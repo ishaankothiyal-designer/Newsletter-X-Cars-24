@@ -15,13 +15,23 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 // three cards, and the Dhanteras card omitted entirely. This is intentional product scope,
 // not a mirror of V8 (unlike V8 <-> its /versions/v8/ copy, which must stay byte-identical).
 const V9_HIDDEN=new Set(['dhanteras']);
+const C2C_GLOSS='C2C – Cars24’s consumer car buying & selling flow';
+const OWNERSHIP_GLOSS='Deemed Ownership – lets a delivered car’s buyer act as the owner (insurance, challans) while the RC transfer is still in progress';
+const WECARE_GLOSS='WeCare – Cars24’s internal employee-support ticketing system';
 const V9_OVERRIDES={
  growth:{body:'GMV grew about 29% year on year to ₹5,300 crore+, while adjusted net revenue rose over 33% to ₹921 crore. EBITDA loss narrowed to around 1% of GMV.',glossary:'GMV – Gross Merchandise Value'},
+ frontier:{body:'Cars24 and Deployment Inc will unveil 30+ AI releases in New Delhi on 29 November, part of CEO Vikram Chopra’s push to rebuild the company around AI.'},
+ lending:{body:'C2C and Loans24 recorded 414 disbursals and ₹22 crore disbursed in a single day — twice last Navratri’s first day — alongside 771 deliveries.',glossary:C2C_GLOSS},
  miles:{body:'FOS can record ad-hoc visits with new dealers and loan customers. The release targets 15% more monthly visits and 10% more leads entering the system.',glossary:'FOS – Fleet on Street'},
+ leads:{glossary:['AIRO – Cars24’s calling AI agent',C2C_GLOSS]},
+ approvals:{glossary:C2C_GLOSS},
+ ownership:{glossary:OWNERSHIP_GLOSS},
+ academy:{body:'Bangalore’s first Cars24 training academy opened on 26 October. Frontline teams combine classroom refreshers with hands-on practice using real cars. The first sessions covered frontline refreshers.'},
+ hackathon:{glossary:WECARE_GLOSS},
  diwali:{body:'The Diwali gifts may have taken a little longer than planned, but the thought behind them was always to share the warmth and joy of the festival.'},
- leads:{glossary:'AIRO – Cars24’s calling AI agent'},
+ survey:{link:'https://cars24.darwinbox.in/user/login',linkLabel:'Take the survey',glossary:WECARE_GLOSS},
  milo:{body:'Milo is a confidential AI wellbeing companion, now live on Slack; it is not a replacement for therapy.',link:'https://www.talktomilo.co/cars24',linkLabel:'Talk to Milo'},
- survey:{link:'https://cars24.darwinbox.in/user/login',linkLabel:'Take the survey'}
+ inflection:{glossary:OWNERSHIP_GLOSS}
 };
 const visible=d.stories.filter(s=>!V9_HIDDEN.has(s.id));
 assert.equal((html.match(/data-story=/g)||[]).length,visible.length,'one article per visible story');
@@ -34,7 +44,7 @@ for(const base of visible){
  const heading=card.match(/<h3[^>]*>(.*?)<\/h3>/s)[1].replace(/<[^>]+>/g,'');
  assert.equal(heading,esc(s.title),s.id+' exact headline');
  assert(card.includes(`<p>${esc(s.body)}</p>`),s.id+' exact body (override applied where set)');
- if(s.glossary)assert(card.includes(`<p class="glossary">* ${esc(s.glossary)}</p>`),s.id+' glossary footnote');
+ for(const g of (Array.isArray(s.glossary)?s.glossary:[s.glossary]).filter(Boolean))assert(card.includes(`<p class="glossary">* ${esc(g)}</p>`),s.id+' glossary footnote: '+g);
  if(s.link)assert(card.includes(`href="${esc(s.link)}"`)&&card.includes(`>${esc(s.linkLabel)} ↗`),s.id+' override link');
  // No source-notes disclosure, no Slack credit/links, on any card in this edition.
  assert(!card.includes('Story notes & sources'),s.id+' must not show source notes');

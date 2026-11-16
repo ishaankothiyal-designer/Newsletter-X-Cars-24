@@ -21,13 +21,23 @@ data = json.loads(subprocess.check_output(['node', '-e', 'global.window={};requi
 # embedded JSON must match exactly — overriding a field at render time is not enough on its own;
 # the raw (pre-override) value would otherwise still be sitting in "view source".
 V9_HIDDEN = {'dhanteras'}
+C2C_GLOSS = 'C2C – Cars24’s consumer car buying & selling flow'
+OWNERSHIP_GLOSS = 'Deemed Ownership – lets a delivered car’s buyer act as the owner (insurance, challans) while the RC transfer is still in progress'
+WECARE_GLOSS = 'WeCare – Cars24’s internal employee-support ticketing system'
 V9_OVERRIDES = {
     'growth': {'body': 'GMV grew about 29% year on year to ₹5,300 crore+, while adjusted net revenue rose over 33% to ₹921 crore. EBITDA loss narrowed to around 1% of GMV.', 'glossary': 'GMV – Gross Merchandise Value'},
+    'frontier': {'body': 'Cars24 and Deployment Inc will unveil 30+ AI releases in New Delhi on 29 November, part of CEO Vikram Chopra’s push to rebuild the company around AI.'},
+    'lending': {'body': 'C2C and Loans24 recorded 414 disbursals and ₹22 crore disbursed in a single day — twice last Navratri’s first day — alongside 771 deliveries.', 'glossary': C2C_GLOSS},
     'miles': {'body': 'FOS can record ad-hoc visits with new dealers and loan customers. The release targets 15% more monthly visits and 10% more leads entering the system.', 'glossary': 'FOS – Fleet on Street'},
+    'leads': {'glossary': ['AIRO – Cars24’s calling AI agent', C2C_GLOSS]},
+    'approvals': {'glossary': C2C_GLOSS},
+    'ownership': {'glossary': OWNERSHIP_GLOSS},
+    'academy': {'body': 'Bangalore’s first Cars24 training academy opened on 26 October. Frontline teams combine classroom refreshers with hands-on practice using real cars. The first sessions covered frontline refreshers.'},
+    'hackathon': {'glossary': WECARE_GLOSS},
     'diwali': {'body': 'The Diwali gifts may have taken a little longer than planned, but the thought behind them was always to share the warmth and joy of the festival.'},
-    'leads': {'glossary': 'AIRO – Cars24’s calling AI agent'},
+    'survey': {'link': 'https://cars24.darwinbox.in/user/login', 'linkLabel': 'Take the survey', 'glossary': WECARE_GLOSS},
     'milo': {'body': 'Milo is a confidential AI wellbeing companion, now live on Slack; it is not a replacement for therapy.', 'link': 'https://www.talktomilo.co/cars24', 'linkLabel': 'Talk to Milo'},
-    'survey': {'link': 'https://cars24.darwinbox.in/user/login', 'linkLabel': 'Take the survey'},
+    'inflection': {'glossary': OWNERSHIP_GLOSS},
 }
 data['storyCount'] -= len(V9_HIDDEN)
 for ch in data['chapters']:
