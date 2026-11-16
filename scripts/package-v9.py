@@ -17,6 +17,28 @@ def data_uri(path):
     return f'data:{mime};base64,' + base64.b64encode(path.read_bytes()).decode()
 
 data = json.loads(subprocess.check_output(['node', '-e', 'global.window={};require("./dist/stories.js");console.log(JSON.stringify(window.PITSTOP))'], cwd=repo))
+# Keep in sync with V9_HIDDEN / V9_OVERRIDES in dist/versions/v9/v9.js. The rendered page and the
+# embedded JSON must match exactly — overriding a field at render time is not enough on its own;
+# the raw (pre-override) value would otherwise still be sitting in "view source".
+V9_HIDDEN = {'dhanteras'}
+V9_OVERRIDES = {
+    'growth': {'body': 'GMV grew about 29% year on year to ₹5,300 crore+, while adjusted net revenue rose over 33% to ₹921 crore. EBITDA loss narrowed to around 1% of GMV.', 'glossary': 'GMV – Gross Merchandise Value'},
+    'miles': {'body': 'FOS can record ad-hoc visits with new dealers and loan customers. The release targets 15% more monthly visits and 10% more leads entering the system.', 'glossary': 'FOS – Fleet on Street'},
+    'diwali': {'body': 'The Diwali gifts may have taken a little longer than planned, but the thought behind them was always to share the warmth and joy of the festival.'},
+    'leads': {'glossary': 'AIRO – Cars24’s calling AI agent'},
+    'milo': {'body': 'Milo is a confidential AI wellbeing companion, now live on Slack; it is not a replacement for therapy.', 'link': 'https://www.talktomilo.co/cars24', 'linkLabel': 'Talk to Milo'},
+    'survey': {'link': 'https://cars24.darwinbox.in/user/login', 'linkLabel': 'Take the survey'},
+}
+data['storyCount'] -= len(V9_HIDDEN)
+for ch in data['chapters']:
+    ch['stories'] = [sid for sid in ch['stories'] if sid not in V9_HIDDEN]
+data['stories'] = [s for s in data['stories'] if s['id'] not in V9_HIDDEN]
+for story in data['stories']:
+    story.update(V9_OVERRIDES.get(story['id'], {}))
+    # V9 never renders Slack provenance (credit/sourceCredit/note/sourceLinks/originalBody) — strip
+    # it from the embedded data too, so a self-contained export doesn't leak it via "view source".
+    for field in ('credit', 'sourceCredit', 'note', 'sourceLinks', 'originalBody'):
+        story.pop(field, None)
 css = (v9 / 'v9.css').read_text().replace("@import url('../../reader-tokens.css');", (dist / 'reader-tokens.css').read_text())
 css = re.sub(r"url\('([^']+)'\)", lambda m: "url('" + data_uri((v9 / m[1]).resolve()) + "')", css)
 js = (v9 / 'v9.js').read_text().replace("'versions/v9/#'", "'#'")
@@ -28,9 +50,8 @@ for story in data['stories']:
     src = story['visual']['src']
     assets[src] = data_uri(dist / src)
     aliases[story['visual'].get('fallbackSrc', src)] = src
-    for file in story.get('imageFiles', {}).values():
-        target = (dist / file).with_suffix('.webp')
-        assets[file] = data_uri(target if target.is_file() else dist / file)
+    # imageFiles feeds the "extra illustrations" dialog in the Story notes & sources panel,
+    # which V9 never renders — skip embedding it (saves several MB of otherwise-unused images).
 js = js.replace('const asset=src=>esc(src);', 'const asset=src=>esc(V9_ASSETS[V9_ALIASES[src]||src]||src);')
 js = js.replace("`url('../../assets/flatland/${paper}.svg')`", "`url('${V9_PAPERS[paper]}')`")
 js = re.sub(r'assets/[a-zA-Z0-9_./-]+', lambda m: data_uri((dist / m[0]).with_suffix('.webp') if (dist / m[0]).with_suffix('.webp').is_file() else dist / m[0]) if (dist / m[0]).is_file() else m[0], js)
@@ -39,8 +60,11 @@ html = (v9 / 'index.html').read_text().replace('<base href="../../">', '')
 html = re.sub(r'<link rel="(?:preload|stylesheet)"[^>]+>', '', html)
 html = re.sub(r'<script[^>]+></script>', '', html)
 html = html.replace('href="versions/v9/#', 'href="#')
+# Drop the PNG webp-fallback on the cover image — every modern browser (and HTML Hub's viewer)
+# supports webp, so embedding both formats would just double this one image for no benefit.
+html = re.sub(r' data-fallback="assets/[a-zA-Z0-9_./-]+\.png"', '', html)
 html = re.sub(r'(?<=["\'])assets/[a-zA-Z0-9_./-]+', lambda m: data_uri(dist / m[0]), html)
-script = 'window.PITSTOP=' + json.dumps(data, ensure_ascii=False) + ';\n' + (dist / 'sources.js').read_text() + '\n' + js
+script = 'window.PITSTOP=' + json.dumps(data, ensure_ascii=False) + ';\n' + js  # sources.js (Slack-sourced provenance) is never read by v9.js and is deliberately not embedded
 script = script.replace('</script', '<\\/script')
 html = html.replace('</head>', '<style>' + css + '</style></head>').replace('</body>', '<script>' + script + '</script></body>')
 out.parent.mkdir(parents=True, exist_ok=True)
