@@ -9,21 +9,40 @@ const link=(url,label,cls='')=>/^https:\/\//.test(url||'')?`<a class="${cls}" hr
 // V9 is a clean, general-readership edition: no Slack-sourced provenance (names, channel links)
 // is shown to readers, and a few cards carry V9-only copy and acronym footnotes. These overrides
 // apply only here — V8 and V10 keep reading the shared story data in stories.js unchanged.
-const V9_HIDDEN=new Set(['dhanteras']);
-const C2C_GLOSS='C2C – Cars24’s consumer car buying & selling flow';
+const V9_HIDDEN=new Set(['dhanteras','security']);
+const C2C_GLOSS='C2C – Cars24’s Consumer-to-Consumer marketplace, where everyday buyers purchase used cars from Cars24';
 const OWNERSHIP_GLOSS='Deemed Ownership – lets a delivered car’s buyer act as the owner (insurance, challans) while the RC transfer is still in progress';
 const WECARE_GLOSS='WeCare – Cars24’s internal employee-support ticketing system';
 const V9_OVERRIDES={
- growth:{body:'GMV grew about 29% year on year to ₹5,300 crore+, while adjusted net revenue rose over 33% to ₹921 crore. EBITDA loss narrowed to around 1% of GMV.',glossary:'GMV – Gross Merchandise Value'},
- frontier:{body:'Cars24 and Deployment Inc will unveil 30+ AI releases in New Delhi on 29 November, part of CEO Vikram Chopra’s push to rebuild the company around AI.'},
- lending:{body:'C2C and Loans24 recorded 414 disbursals and ₹22 crore disbursed in a single day — twice last Navratri’s first day — alongside 771 deliveries.',glossary:C2C_GLOSS},
- miles:{body:'FOS can record ad-hoc visits with new dealers and loan customers. The release targets 15% more monthly visits and 10% more leads entering the system.',glossary:'FOS – Fleet on Street'},
+ growth:{
+  body:'GMV — the combined value of every car Cars24 buys and sells across India, UAE and Australia — grew 29% year-on-year to ₹5,300 crore+ in H1 FY27 (Apr–Sep 2026). Net revenue rose even faster, up 33%+ to ₹921 crore.',
+  glossary:'GMV – Gross Merchandise Value',
+  detail:'GMV tells you how much is moving through Cars24; net revenue tells you how much of that Cars24 actually earns — and it’s growing faster than GMV because more customers are buying financing, insurance and ownership services alongside the car, not just the car itself. H1’s ₹5,300 crore+ puts the full year on track for ₹12,000 crore+, and the EBITDA loss has narrowed to just ~1% of GMV — Cars24’s closest it’s been to breaking even at this scale.'
+ },
+ ecosystem:{
+  title:'Insurance, FASTag & more: ecosystem services cross ₹160 Cr',
+  body:'Cars24’s ecosystem services — insurance, FASTag, pollution checks and other ownership-journey add-ons — generated ₹160 Cr+ in margin, up 4x year on year. UAE and Australia also each crossed roughly 700 cars sold in a month for the first time, in September.'
+ },
+ startup:{
+  body:'Cars24 is hosting the Grand Startup Challenge — an event inviting early-stage founders to build against four of the company’s hardest problems, with a ₹1 crore prize pool and a January 2027 finale in New Delhi.',
+  detail:'The four tracks are lending & fintech, mobility & road safety, logistics & supply chain, and sovereign AI — all real problems Cars24 works on every day. Startups apply, get shortlisted, and spend time building before pitching to a jury. The top 20 get a month of mentorship in December, and winners share the ₹1 crore prize pool at the New Delhi finale. The idea: find founders already working on problems Cars24 cares about, and give them a reason to build with Cars24 instead of around it.'
+ },
+ frontier:{
+  body:'Frontier ’26 is Cars24’s biggest event of the year: on 29 November in New Delhi, Cars24 and Deployment Inc will unveil 30+ first-of-their-kind AI releases — live, in a single day.',
+  detail:'This isn’t a launch for one feature — it’s Cars24 opening up its entire effort to rebuild the company around AI, in front of the country. The event is positioned as India’s biggest AI summit: built to show what’s possible when a company goes AI-first across every part of the business, not just engineering.'
+ },
+ lending:{body:'Loans24 disbursed ₹22 crore across 414 loans in a single day to customers buying through Cars24’s C2C marketplace — twice last Navratri’s first day — alongside 771 car deliveries that same day.',glossary:C2C_GLOSS},
+ miles:{
+  body:'Miles is Cars24’s own app for its field agents — the people who visit dealers and customers in person (internally called FOS, short for Fleet on Street). The latest update lets them log visits with new dealers and loan customers on the spot: visits up 13% in two weeks, with 200+ previously untracked dealer visits now captured.',
+  detail:'Miles replaced an expensive third-party tool the field team used to rely on, cutting the monthly cost by around 98% while building something tailored to how these agents actually work — planning routes, checking in and out of visits, and keeping customer details on hand without a laptop. It’s the backbone that makes a lot of the ground-level work in this newsletter possible.'
+ },
  leads:{glossary:['AIRO – Cars24’s calling AI agent',C2C_GLOSS]},
  approvals:{glossary:C2C_GLOSS},
  ownership:{glossary:OWNERSHIP_GLOSS},
  academy:{body:'Bangalore’s first Cars24 training academy opened on 26 October. Frontline teams combine classroom refreshers with hands-on practice using real cars. The first sessions covered frontline refreshers.'},
+ codex:{body:'Ishaan, one of our design builders, trialled Codex — an AI coding tool — alongside Figma and produced a usable homepage draft, an estimated 20–30% effort saving. Production validation is still pending; next up is testing it across 23 SEO pages. Want to try the same workflow? Reach out to Ishaan.'},
  hackathon:{glossary:WECARE_GLOSS},
- diwali:{body:'The Diwali gifts may have taken a little longer than planned, but the thought behind them was always to share the warmth and joy of the festival.'},
+ diwali:{body:'Desi Fits Friday, a Diwali photo booth, festive snacks, games near the merch store, and a surprise gift countdown — the office went all out for Diwali this year. Gifts reached most desks on 5 November, though not every hub or office got there on time, and some ground staff got nothing right away; leadership said so directly rather than smoothing it over.'},
  survey:{link:'https://cars24.darwinbox.in/user/login',linkLabel:'Take the survey',glossary:WECARE_GLOSS},
  milo:{body:'Milo is a confidential AI wellbeing companion, now live on Slack; it is not a replacement for therapy.',link:'https://www.talktomilo.co/cars24',linkLabel:'Talk to Milo'},
  inflection:{glossary:OWNERSHIP_GLOSS}
@@ -31,7 +50,17 @@ const V9_OVERRIDES={
 const chCount=ch=>ch.stories.filter(id=>!V9_HIDDEN.has(id)).length;
 function title(s){const mark=d.colourSystem.pages[s.id].emphasis,at=s.title.indexOf(mark);return at<0?esc(s.title):esc(s.title.slice(0,at))+`<span class="headline-mark">${esc(mark)}</span>`+esc(s.title.slice(at+mark.length));}
 function art(s){return `<figure class="art art-${esc(s.visual.type)}"><img src="${asset(s.visual.src)}" data-fallback="${asset(s.visual.fallbackSrc||s.visual.src)}" alt="${esc(s.visual.alt)}" loading="lazy" decoding="async" width="${s.visual.type==='spot'?400:1200}" height="${s.visual.type==='spot'?205:800}"></figure>`;}
-function story(id,size=''){if(V9_HIDDEN.has(id))return '';const base=d.stories.find(s=>s.id===id),s={...base,...(V9_OVERRIDES[id]||{})},style=d.colourSystem.pages[id];return `<article class="story ${size} treatment-${esc(style.layout)}" id="${esc(id)}" data-story="${esc(id)}" data-paper="${esc(style.paper)}" aria-labelledby="title-${esc(id)}"><div class="story-inner"><div class="story-copy"><p class="eyebrow">${esc(s.label)}</p><h3 id="title-${esc(id)}">${title(s)}</h3><div class="body">${s.body.split(/\n\n/).map(t=>`<p>${esc(t)}</p>`).join('')}</div>${(Array.isArray(s.glossary)?s.glossary:[s.glossary]).filter(Boolean).map(g=>`<p class="glossary">* ${esc(g)}</p>`).join('')}${s.link?link(s.link,s.linkLabel||'Read more','story-link'):''}</div>${art(s)}</div></article>`;}
+function body(text){return text.split(/\n\n/).map(t=>`<p>${esc(t)}</p>`).join('');}
+function glossaryHtml(s){return (Array.isArray(s.glossary)?s.glossary:[s.glossary]).filter(Boolean).map(g=>`<p class="glossary">* ${esc(g)}</p>`).join('');}
+function story(id,size=''){
+ if(V9_HIDDEN.has(id))return '';
+ const base=d.stories.find(s=>s.id===id),s={...base,...(V9_OVERRIDES[id]||{})},style=d.colourSystem.pages[id];
+ const linkHtml=s.link?link(s.link,s.linkLabel||'Read more','story-link'):'';
+ const frontInner=`<div class="story-inner"><div class="story-copy"><p class="eyebrow">${esc(s.label)}</p><h3 id="title-${esc(id)}">${title(s)}</h3><div class="body">${body(s.body)}</div>${glossaryHtml(s)}${linkHtml}${s.detail?'<span class="flip-hint">↻ Tap for more context</span>':''}</div>${art(s)}</div>`;
+ if(!s.detail)return `<article class="story ${size} treatment-${esc(style.layout)}" id="${esc(id)}" data-story="${esc(id)}" data-paper="${esc(style.paper)}" aria-labelledby="title-${esc(id)}">${frontInner}</article>`;
+ const backInner=`<div class="story-inner flip-back-inner"><div class="story-copy"><p class="eyebrow">More context</p><h3>${title(s)}</h3><div class="body">${body(s.detail)}</div><span class="flip-hint">↻ Back to summary</span></div></div>`;
+ return `<article class="story flip ${size} treatment-${esc(style.layout)}" id="${esc(id)}" data-story="${esc(id)}" data-paper="${esc(style.paper)}" aria-labelledby="title-${esc(id)}" tabindex="0" role="button" aria-expanded="false" aria-label="${esc(s.title)} — tap for more context"><div class="flip-inner"><div class="flip-face flip-front">${frontInner}</div><div class="flip-face flip-back">${backInner}</div></div></article>`;
+}
 const rows={business:story('growth','lead')+`<div class="pair">${story('ecosystem')}${story('lending')}</div><div class="pair single">${story('startup')}</div>`,builders:`<div class="pair tech-opening">${story('academy')}${story('frontier')}</div>`+`<div class="release-list">${['dealer','miles','leads','approvals','saarathi','ownership','security'].map(id=>story(id,'release')).join('')}</div><div class="pair">${story('codex')}${story('hackathon')}</div>`,life:story('diwali','lead')+`<div class="pair">${story('milo')}${story('badminton')}</div><div class="pair">${story('survey')}${story('thermostat')}</div>`,perspectives:`<div class="pair voices">${['ambition','controls','inflection','safeguards'].map(id=>story(id,'voice')).join('')}</div>`};
 root.innerHTML=`<section class="cover" id="cover" aria-labelledby="cover-title"><div class="cover-copy"><p class="eyebrow">The October issue <span aria-hidden="true">✦</span> 2026</p><h1 id="cover-title">The Pitstop</h1><p class="cover-subtitle">What’s happening<br> across Cars24.</p><a class="read-button" href="${href('briefing')}">Open this issue <span aria-hidden="true">↓</span></a><p class="cover-caption">${d.storyCount-V9_HIDDEN.size} stories. Four chapters. One good catch-up.</p></div><figure class="cover-art"><picture><source media="(max-width:600px)" srcset="assets/cover-wide.webp"><img src="assets/cover-portrait.webp" data-fallback="assets/cover-portrait.png" alt="The original Pitstop colleagues gathered around their laptop." width="941" height="1672" fetchpriority="high"></picture></figure></section>
 <section class="briefing wrap" id="briefing" aria-labelledby="briefing-title"><div class="briefing-intro"><p class="eyebrow">Your monthly catch-up</p><h2 id="briefing-title">In this issue</h2><p>Results, things we’ve built, and the people behind them.</p></div><div class="briefing-chapters">${d.chapters.map(ch=>`<a href="${href(ch.id)}"><span class="chapter-number">0${ch.number}</span><span>${esc(ch.name)}<small>${chCount(ch)} stories</small></span><span aria-hidden="true">↘</span></a>`).join('')}</div></section>
@@ -40,6 +69,12 @@ root.innerHTML=`<section class="cover" id="cover" aria-labelledby="cover-title">
 <footer class="ending" id="caught-up"><p class="eyebrow">You’re all caught up <span aria-hidden="true">✦</span></p><h2>That’s this month’s Pitstop.</h2><p>Have a win, a lesson, or a teammate’s story for the next issue?</p>${link(d.form,'Add your story','read-button')}<a href="${href('cover')}" class="read-again">Read again ↑</a><div class="colophon"><img src="assets/cars24-logo-black.svg" alt="Cars24" width="80" height="22"><span>The Pitstop · October 2026 Edition</span></div></footer>`;
 for(const el of document.querySelectorAll('[data-paper]')){const paper=el.dataset.paper;el.style.setProperty('--page-stock',d.colourSystem.stocks[paper].hex);el.style.setProperty('--paper-art',`url('../../assets/flatland/${paper}.svg')`);}
 for(const img of document.querySelectorAll('img[data-fallback]'))img.addEventListener('error',()=>{if(img.dataset.fallback){img.src=img.dataset.fallback;delete img.dataset.fallback;}},{once:true});
+// A few cards carry extra context on a flip side — click/tap or Enter/Space to turn them over.
+for(const card of document.querySelectorAll('.story.flip')){
+ const toggle=e=>{if(e.target.closest('a'))return;const flipped=card.classList.toggle('flipped');card.setAttribute('aria-expanded',flipped);};
+ card.addEventListener('click',toggle);
+ card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(e);}});
+}
 // Native document scrolling: links, browser find, text selection, and keyboard reading all work normally.
 const navLinks=[...document.querySelectorAll('[data-chapter]')],chapters=[...document.querySelectorAll('.chapter')];
 let frame=0;function update(){frame=0;const active=chapters.filter(el=>el.getBoundingClientRect().top<=180).at(-1);for(const a of navLinks){if(a.dataset.chapter===active?.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');}const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('.nav-progress').style.transform=`scaleX(${max>0?Math.min(1,Math.max(0,scrollY/max)):0})`;}
