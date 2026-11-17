@@ -34,7 +34,8 @@ const V9_OVERRIDES={
  },
  frontier:{
   body:'Frontier ’26 is Cars24’s biggest event of the year: on 29 November in New Delhi, Cars24 and Deployment Inc will unveil 30+ first-of-their-kind AI releases — live, in a single day.',
-  detail:'This isn’t a launch for one feature — it’s Cars24 opening up its entire effort to rebuild the company around AI, in front of the country. The event is positioned as India’s biggest AI summit: built to show what’s possible when a company goes AI-first across every part of the business, not just engineering.'
+  detail:'This isn’t a launch for one feature — it’s Cars24 opening up its entire effort to rebuild the company around AI, in front of the country. The event is positioned as India’s biggest AI summit: built to show what’s possible when a company goes AI-first across every part of the business, not just engineering.',
+  visual:{src:'assets/story-graphics/frontier.svg',fallbackSrc:'assets/story-graphics/frontier.svg',alt:'A spotlighted AI chip on a stage under a night sky.',type:'spot'}
  },
  lending:{body:'Loans24 disbursed ₹22 crore across 414 loans in a single day to customers buying through Cars24’s C2C marketplace — twice last Navratri’s first day — alongside 771 car deliveries that same day.',glossary:C2C_GLOSS},
  miles:{
@@ -88,7 +89,7 @@ for(const base of allVisible){
  }
  const chapter=html.split(`<section class="chapter" id="${s.chapterId}"`)[1].split('</section>')[0];
  assert(chapter.includes(`data-story="${s.id}"`),s.id+' retained in its chapter');
- for(const file of [base.visual.src,base.visual.fallbackSrc])assert(fs.statSync(path.join(dist,file)).size>0);
+ for(const file of [s.visual.src,s.visual.fallbackSrc])assert(fs.statSync(path.join(dist,file)).size>0,s.id+' visual asset (override applied where set) must exist on disk');
 }
 assert(!/slack\.com/.test(html),'no Slack links anywhere in the rendered V9 page');
 assert(!html.includes('sourceCredit'),'no leaked sourceCredit markup');
