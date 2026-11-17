@@ -4,11 +4,13 @@
   "buildCommand": "",
   "installCommand": "",
   "outputDirectory": "public",
-  "redirects": [
+  "routes": [
     {
-      "source": "/:path*",
-      "destination": "https://ishaankothiyal-designer.github.io/Newsletter-X-Cars-24/:path*",
-      "permanent": false
+      "src": "^/(.*)$",
+      "headers": {
+        "Location": "https://ishaankothiyal-designer.github.io/Newsletter-X-Cars-24/$1"
+      },
+      "status": 307
     }
   ]
 }

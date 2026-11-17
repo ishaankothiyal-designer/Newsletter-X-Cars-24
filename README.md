@@ -38,7 +38,7 @@ node tests/v8-sound.test.cjs
 ## Deployments
 
 - **GitHub Pages:** pushes to `main` run the checks and publish `dist/` through the Pages workflow.
-- **Vercel:** the connected project serves `dist/` as a static site. `vercel.json` specifies the output directory; no build command or environment variables are needed.
+- **Vercel migration:** Git integration is disconnected; website updates publish through GitHub Pages only. The prepared `vercel-redirect` preserves paths and query parameters, but the final cutover is blocked by Vercel’s 100/day deployment allowance. The existing URL temporarily serves its original working release. Run `node scripts/deploy-vercel-redirect.mjs --deploy` after the allowance returns, verify root and V8/V9/V10 URLs, then remove the superseded full-site deployment. Twelve obsolete newsletter deployments were deleted. See `docs/hosting-migration-2026-11-17.md`.
 
 ## Project layout
 
