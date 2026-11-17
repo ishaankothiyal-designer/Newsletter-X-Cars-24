@@ -67,10 +67,18 @@ function story(id,size=''){
  if(V9_HIDDEN.has(id))return '';
  const base=V9_EXTRA[id]||d.stories.find(s=>s.id===id),s={...base,...(V9_OVERRIDES[id]||{})},style=d.colourSystem.pages[id]||V9_EXTRA_STYLE[id];
  const linkHtml=s.link?link(s.link,s.linkLabel||'Read more','story-link'):'';
- const frontInner=`<div class="story-inner"><div class="story-copy"><p class="eyebrow">${esc(s.label)}</p><h3 id="title-${esc(id)}">${title(s)}</h3><div class="body">${body(s.body)}</div>${glossaryHtml(s)}${linkHtml}${s.detail?'<span class="flip-hint">↻ Tap for more context</span>':''}</div>${art(s)}</div>`;
- if(!s.detail)return `<article class="story ${size} treatment-${esc(style.layout)}" id="${esc(id)}" data-story="${esc(id)}" data-paper="${esc(style.paper)}" aria-labelledby="title-${esc(id)}">${frontInner}</article>`;
- const backInner=`<div class="story-inner flip-back-inner"><div class="story-copy"><p class="eyebrow">More context</p><h3>${title(s)}</h3><div class="body">${body(s.detail)}</div><span class="flip-hint">↻ Back to summary</span></div></div>`;
- return `<article class="story flip ${size} treatment-${esc(style.layout)}" id="${esc(id)}" data-story="${esc(id)}" data-paper="${esc(style.paper)}" aria-labelledby="title-${esc(id)}" tabindex="0" role="button" aria-expanded="false" aria-label="${esc(s.title)} — tap for more context"><div class="flip-inner"><div class="flip-face flip-front">${frontInner}</div><div class="flip-face flip-back">${backInner}</div></div></article>`;
+ if(!s.detail){
+  const inner=`<div class="story-inner"><div class="story-copy"><p class="eyebrow">${esc(s.label)}</p><h3 id="title-${esc(id)}">${title(s)}</h3><div class="body">${body(s.body)}</div>${glossaryHtml(s)}${linkHtml}</div>${art(s)}</div>`;
+  return `<article class="story ${size} treatment-${esc(style.layout)}" id="${esc(id)}" data-story="${esc(id)}" data-paper="${esc(style.paper)}" aria-labelledby="title-${esc(id)}">${inner}</article>`;
+ }
+ // Flip cards: a text-only teaser up front, the full story (title, detail copy, artwork, glossary)
+ // on the back. Markup/behaviour follows the same pattern as the card-flip reference — front is a
+ // <button> that opens the back, the back has its own "Back to summary" button — but the content
+ // comes from this story's own body/detail fields rather than being auto-scraped from the DOM.
+ const frontId=`${esc(id)}-front`,backId=`${esc(id)}-back`;
+ const front=`<button type="button" class="story-face story-front" id="${frontId}" aria-controls="${backId}" aria-expanded="false" aria-label="${esc(s.title)} — tap to read more"><span class="story-preview-main"><span class="story-preview-kicker">${esc(s.label)}</span><span class="story-preview-title" id="title-${esc(id)}">${title(s)}</span><span class="story-preview-summary">${esc(s.body)}</span></span><span class="story-preview-cue"><span>Tap to read more</span><span class="story-preview-arrow" aria-hidden="true">↗</span></span></button>`;
+ const back=`<div class="story-face story-back" id="${backId}" aria-hidden="true"><button type="button" class="story-back-action">← Back to summary</button><div class="story-back-content"><div class="story-inner"><div class="story-copy"><p class="eyebrow">More context</p><h3>${title(s)}</h3><div class="body">${body(s.detail)}</div>${glossaryHtml(s)}${linkHtml}</div>${art(s)}</div></div></div>`;
+ return `<article class="story story-flip-card ${size} treatment-${esc(style.layout)}" id="${esc(id)}" data-story="${esc(id)}" data-paper="${esc(style.paper)}"><div class="story-flipper">${front}${back}</div></article>`;
 }
 const rows={business:story('growth','lead')+`<div class="pair">${story('ecosystem')}${story('alba')}</div><div class="pair">${story('lending')}${story('nach')}</div><div class="pair single">${story('startup')}</div>`,builders:`<div class="pair tech-opening">${story('academy')}${story('frontier')}</div>`+`<div class="release-list">${['dealer','miles','leads','approvals','saarathi','ownership','security'].map(id=>story(id,'release')).join('')}</div><div class="pair">${story('codex')}${story('hackathon')}</div>`,life:story('diwali','lead')+`<div class="pair">${story('milo')}${story('badminton')}</div><div class="pair">${story('survey')}${story('thermostat')}</div>`,perspectives:`<div class="pair voices">${['ambition','controls','inflection','safeguards'].map(id=>story(id,'voice')).join('')}</div>`};
 root.innerHTML=`<section class="cover" id="cover" aria-labelledby="cover-title"><div class="cover-copy"><p class="eyebrow">The October issue <span aria-hidden="true">✦</span> 2026</p><h1 id="cover-title">The Pitstop</h1><p class="cover-subtitle">What’s happening<br> across Cars24.</p><a class="read-button" href="${href('briefing')}">Open this issue <span aria-hidden="true">↓</span></a><p class="cover-caption">${d.storyCount-V9_HIDDEN.size+Object.keys(V9_EXTRA).length} stories. Four chapters. One good catch-up.</p></div><figure class="cover-art"><picture><source media="(max-width:600px)" srcset="assets/cover-wide.webp"><img src="assets/cover-portrait.webp" data-fallback="assets/cover-portrait.png" alt="The original Pitstop colleagues gathered around their laptop." width="941" height="1672" fetchpriority="high"></picture></figure></section>
@@ -80,11 +88,36 @@ root.innerHTML=`<section class="cover" id="cover" aria-labelledby="cover-title">
 <footer class="ending" id="caught-up"><p class="eyebrow">You’re all caught up <span aria-hidden="true">✦</span></p><h2>That’s this month’s Pitstop.</h2><p>Have a win, a lesson, or a teammate’s story for the next issue?</p>${link(d.form,'Add your story','read-button')}<a href="${href('cover')}" class="read-again">Read again ↑</a><div class="colophon"><img src="assets/cars24-logo-black.svg" alt="Cars24" width="80" height="22"><span>The Pitstop · October 2026 Edition</span></div></footer>`;
 for(const el of document.querySelectorAll('[data-paper]')){const paper=el.dataset.paper;el.style.setProperty('--page-stock',d.colourSystem.stocks[paper].hex);el.style.setProperty('--paper-art',`url('../../assets/flatland/${paper}.svg')`);}
 for(const img of document.querySelectorAll('img[data-fallback]'))img.addEventListener('error',()=>{if(img.dataset.fallback){img.src=img.dataset.fallback;delete img.dataset.fallback;}},{once:true});
-// A few cards carry extra context on a flip side — click/tap or Enter/Space to turn them over.
-for(const card of document.querySelectorAll('.story.flip')){
- const toggle=e=>{if(e.target.closest('a'))return;const flipped=card.classList.toggle('flipped');card.setAttribute('aria-expanded',flipped);};
- card.addEventListener('click',toggle);
- card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(e);}});
+// A few cards carry extra context on a flip side. Height animates between the collapsed teaser
+// and the full back face — measured from each face's real content — and the hidden face is made
+// properly inert (not just visually hidden) so keyboard/screen-reader users can't reach it.
+for(const card of document.querySelectorAll('.story-flip-card')){
+ const flipper=card.querySelector('.story-flipper'),front=card.querySelector('.story-front'),back=card.querySelector('.story-back'),backAction=card.querySelector('.story-back-action'),backContent=card.querySelector('.story-back-content');
+ const previewHeight=()=>{
+  // front is position:absolute with inset:0, so top/bottom:0 keep stretching it to the
+  // flipper's current (possibly stale, taller) height even once height is cleared — bottom:0
+  // still wins over height:auto. Taking it out of absolute positioning entirely is what lets
+  // scrollHeight reflect its own content instead.
+  const prevPos=front.style.position,prevH=front.style.height;
+  front.style.position='static';front.style.height='auto';
+  const h=Math.ceil(Math.max(280,front.scrollHeight));
+  front.style.position=prevPos;front.style.height=prevH;
+  return h;
+ };
+ const detailHeight=()=>Math.ceil(Math.max(280,backContent.scrollHeight));
+ const size=open=>{flipper.style.height=(open?detailHeight():previewHeight())+'px';};
+ const setOpen=(open,moveFocus)=>{
+  card.classList.toggle('is-open',open);flipper.classList.toggle('is-flipped',open);
+  front.setAttribute('aria-expanded',String(open));front.inert=open;
+  back.inert=!open;back.setAttribute('aria-hidden',String(!open));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{size(open);if(moveFocus)(open?backAction:front).focus({preventScroll:true});}));
+ };
+ front.addEventListener('click',()=>setOpen(true,true));
+ backAction.addEventListener('click',e=>{e.stopPropagation();setOpen(false,true);});
+ back.addEventListener('click',e=>{if(e.target.closest('a,button'))return;setOpen(false,true);});
+ requestAnimationFrame(()=>{size(false);setTimeout(()=>size(card.classList.contains('is-open')),120);});
+ for(const img of backContent.querySelectorAll('img'))if(!img.complete)img.addEventListener('load',()=>size(card.classList.contains('is-open')),{once:true});
+ addEventListener('resize',()=>size(card.classList.contains('is-open')),{passive:true});
 }
 // Native document scrolling: links, browser find, text selection, and keyboard reading all work normally.
 const navLinks=[...document.querySelectorAll('[data-chapter]')],chapters=[...document.querySelectorAll('.chapter')];

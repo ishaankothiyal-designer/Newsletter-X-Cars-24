@@ -70,22 +70,33 @@ for(const base of allVisible){
  assert.equal(html.split(`data-story="${s.id}"`).length-1,1,s.id+' must appear once');
  const artStart=html.lastIndexOf('<article',html.indexOf(`data-story="${s.id}"`));
  const card=html.slice(artStart,html.indexOf('</article>',artStart)+'</article>'.length);
- const heading=card.match(/<h3[^>]*>(.*?)<\/h3>/s)[1].replace(/<[^>]+>/g,'');
- assert.equal(heading,esc(s.title),s.id+' exact headline');
- for(const para of s.body.split(/\n\n/))assert(card.includes(`<p>${esc(para)}</p>`),s.id+' exact body paragraph (override applied where set)');
- for(const g of (Array.isArray(s.glossary)?s.glossary:[s.glossary]).filter(Boolean))assert(card.includes(`<p class="glossary">* ${esc(g)}</p>`),s.id+' glossary footnote: '+g);
- if(s.link)assert(card.includes(`href="${esc(s.link)}"`)&&card.includes(`>${esc(s.linkLabel)} ↗`),s.id+' override link');
+ assert.equal(!!s.detail,FLIP_IDS.has(s.id),s.id+' flip-card status matches FLIP_IDS');
  // No source-notes disclosure, no Slack credit/links, on any card in this edition.
  assert(!card.includes('Story notes & sources'),s.id+' must not show source notes');
  assert(!card.includes('class="notes"'),s.id+' must not render the notes disclosure');
- assert.equal(!!s.detail,FLIP_IDS.has(s.id),s.id+' flip-card status matches FLIP_IDS');
- if(s.detail){
-  assert(card.includes('class="story flip'),s.id+' must carry the flip class');
-  assert(card.includes('tabindex="0"')&&card.includes('role="button"'),s.id+' flip card must be keyboard-reachable');
-  assert(card.includes('<p>'+esc(s.detail)+'</p>'),s.id+' back face must contain the detail text');
-  assert(card.includes('flip-hint'),s.id+' must show a tap-for-more hint');
+ const glossaries=(Array.isArray(s.glossary)?s.glossary:[s.glossary]).filter(Boolean);
+ if(!s.detail){
+  const heading=card.match(/<h3[^>]*>(.*?)<\/h3>/s)[1].replace(/<[^>]+>/g,'');
+  assert.equal(heading,esc(s.title),s.id+' exact headline');
+  for(const para of s.body.split(/\n\n/))assert(card.includes(`<p>${esc(para)}</p>`),s.id+' exact body paragraph (override applied where set)');
+  for(const g of glossaries)assert(card.includes(`<p class="glossary">* ${esc(g)}</p>`),s.id+' glossary footnote: '+g);
+  if(s.link)assert(card.includes(`href="${esc(s.link)}"`)&&card.includes(`>${esc(s.linkLabel)} ↗`),s.id+' override link');
+  assert(!card.includes('story-flip-card'),s.id+' non-flip card must not carry the flip-card class');
  } else {
-  assert(!card.includes('story flip'),s.id+' non-flip card must not carry the flip class');
+  // Flip-card pattern (ported from the reference implementation): a <button> front carrying a
+  // text-only teaser, and a back face with the full story, artwork and a dedicated close button.
+  assert(card.includes('class="story story-flip-card'),s.id+' must carry the flip-card class');
+  const frontTitle=card.match(/<span class="story-preview-title"[^>]*>(.*?)<\/span>/s)[1].replace(/<[^>]+>/g,'');
+  assert.equal(frontTitle,esc(s.title),s.id+' front teaser headline');
+  const summary=card.match(/<span class="story-preview-summary">(.*?)<\/span>/s)[1];
+  assert.equal(summary,esc(s.body),s.id+' front teaser shows the exact body text');
+  assert(card.includes(`aria-controls="${s.id}-back"`),s.id+' front button must reference its back face by id');
+  const backHeading=card.match(/story-back"[\s\S]*?<h3[^>]*>(.*?)<\/h3>/)[1].replace(/<[^>]+>/g,'');
+  assert.equal(backHeading,esc(s.title),s.id+' back face exact headline');
+  for(const para of s.detail.split(/\n\n/))assert(card.includes(`<p>${esc(para)}</p>`),s.id+' back face exact detail paragraph');
+  for(const g of glossaries)assert(card.includes(`<p class="glossary">* ${esc(g)}</p>`),s.id+' back face glossary footnote: '+g);
+  assert(card.includes('← Back to summary'),s.id+' must have a back-to-summary action');
+  assert(card.includes(`aria-hidden="true"`),s.id+' back face starts hidden from assistive tech');
  }
  const chapter=html.split(`<section class="chapter" id="${s.chapterId}"`)[1].split('</section>')[0];
  assert(chapter.includes(`data-story="${s.id}"`),s.id+' retained in its chapter');
