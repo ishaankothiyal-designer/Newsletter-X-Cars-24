@@ -67,17 +67,16 @@ function story(id,size=''){
  if(V9_HIDDEN.has(id))return '';
  const base=V9_EXTRA[id]||d.stories.find(s=>s.id===id),s={...base,...(V9_OVERRIDES[id]||{})},style=d.colourSystem.pages[id]||V9_EXTRA_STYLE[id];
  const linkHtml=s.link?link(s.link,s.linkLabel||'Read more','story-link'):'';
- if(!s.detail){
-  const inner=`<div class="story-inner"><div class="story-copy"><p class="eyebrow">${esc(s.label)}</p><h3 id="title-${esc(id)}">${title(s)}</h3><div class="body">${body(s.body)}</div>${glossaryHtml(s)}${linkHtml}</div>${art(s)}</div>`;
-  return `<article class="story ${size} treatment-${esc(style.layout)}" id="${esc(id)}" data-story="${esc(id)}" data-paper="${esc(style.paper)}" aria-labelledby="title-${esc(id)}">${inner}</article>`;
- }
- // Flip cards: a text-only teaser up front, the full story (title, detail copy, artwork, glossary)
- // on the back. Markup/behaviour follows the same pattern as the card-flip reference — front is a
+ // Every card is a flip card: a text-only teaser up front, the full story (title, detail copy,
+ // artwork, glossary) on the back. Markup/behaviour follows the card-flip reference — front is a
  // <button> that opens the back, the back has its own "Back to summary" button — but the content
  // comes from this story's own body/detail fields rather than being auto-scraped from the DOM.
+ // Stories without hand-written `detail` copy (most of them) show their own body on the back too,
+ // rather than requiring every story to carry two versions of itself.
  const frontId=`${esc(id)}-front`,backId=`${esc(id)}-back`;
- const front=`<button type="button" class="story-face story-front" id="${frontId}" aria-controls="${backId}" aria-expanded="false" aria-label="${esc(s.title)} — tap to read more"><span class="story-preview-main"><span class="story-preview-kicker">${esc(s.label)}</span><span class="story-preview-title" id="title-${esc(id)}">${title(s)}</span><span class="story-preview-summary">${esc(s.body)}</span></span><span class="story-preview-cue"><span>Tap to read more</span><span class="story-preview-arrow" aria-hidden="true">↗</span></span></button>`;
- const back=`<div class="story-face story-back" id="${backId}" aria-hidden="true"><button type="button" class="story-back-action">← Back to summary</button><div class="story-back-content"><div class="story-inner"><div class="story-copy"><p class="eyebrow">More context</p><h3>${title(s)}</h3><div class="body">${body(s.detail)}</div>${glossaryHtml(s)}${linkHtml}</div>${art(s)}</div></div></div>`;
+ const frontArt=id==='frontier'?`<span class="story-preview-art">${art(s)}</span>`:'';
+ const front=`<button type="button" class="story-face story-front" id="${frontId}" aria-controls="${backId}" aria-expanded="false" aria-label="${esc(s.title)} — tap to read more">${frontArt}<span class="story-preview-main"><span class="story-preview-kicker">${esc(s.label)}</span><span class="story-preview-title" id="title-${esc(id)}">${title(s)}</span><span class="story-preview-summary">${esc(s.body)}</span></span><span class="story-preview-cue"><span>Tap to read more</span><span class="story-preview-arrow" aria-hidden="true">↗</span></span></button>`;
+ const back=`<div class="story-face story-back" id="${backId}" aria-hidden="true"><button type="button" class="story-back-action">← Back to summary</button><div class="story-back-content"><div class="story-inner"><div class="story-copy"><p class="eyebrow">More context</p><h3>${title(s)}</h3><div class="body">${body(s.detail||s.body)}</div>${glossaryHtml(s)}${linkHtml}</div>${art(s)}</div></div></div>`;
  return `<article class="story story-flip-card ${size} treatment-${esc(style.layout)}" id="${esc(id)}" data-story="${esc(id)}" data-paper="${esc(style.paper)}"><div class="story-flipper">${front}${back}</div></article>`;
 }
 const rows={business:story('growth','lead')+`<div class="pair">${story('ecosystem')}${story('alba')}</div><div class="pair">${story('lending')}${story('nach')}</div><div class="pair single">${story('startup')}</div>`,builders:`<div class="pair tech-opening">${story('academy')}${story('frontier')}</div>`+`<div class="release-list">${['dealer','miles','leads','approvals','saarathi','ownership','security'].map(id=>story(id,'release')).join('')}</div><div class="pair">${story('codex')}${story('hackathon')}</div>`,life:story('diwali','lead')+`<div class="pair">${story('milo')}${story('badminton')}</div><div class="pair">${story('survey')}${story('thermostat')}</div>`,perspectives:`<div class="pair voices">${['ambition','controls','inflection','safeguards'].map(id=>story(id,'voice')).join('')}</div>`};

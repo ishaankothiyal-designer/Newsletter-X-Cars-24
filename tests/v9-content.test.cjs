@@ -53,7 +53,7 @@ const V9_OVERRIDES={
  milo:{body:'Milo is a confidential AI wellbeing companion, now live on Slack; it is not a replacement for therapy.',link:'https://www.talktomilo.co/cars24',linkLabel:'Talk to Milo'},
  inflection:{glossary:OWNERSHIP_GLOSS}
 };
-const FLIP_IDS=new Set(['growth','startup','frontier','miles']);
+const FRONT_ART_IDS=new Set(['frontier']);
 // Two stories with no equivalent in the shared V8/V10 data at all — new content, V9-only.
 const V9_EXTRA={
  alba:{id:'alba',chapterId:'business',title:'Alba Cars joins the Cars24 family',body:'Cars24’s partnership with Alba brings an established showroom, team and premium retail experience into the United Arab Emirates. Alba keeps its name and showroom, with its existing leadership continuing to guide the team.\n\nCars24 adds technology, financing and services — together, the businesses now sell more than 1,000 cars a month.',visual:{src:'assets/story-graphics/alba.svg',fallbackSrc:'assets/story-graphics/alba.svg'}},
@@ -70,34 +70,30 @@ for(const base of allVisible){
  assert.equal(html.split(`data-story="${s.id}"`).length-1,1,s.id+' must appear once');
  const artStart=html.lastIndexOf('<article',html.indexOf(`data-story="${s.id}"`));
  const card=html.slice(artStart,html.indexOf('</article>',artStart)+'</article>'.length);
- assert.equal(!!s.detail,FLIP_IDS.has(s.id),s.id+' flip-card status matches FLIP_IDS');
  // No source-notes disclosure, no Slack credit/links, on any card in this edition.
  assert(!card.includes('Story notes & sources'),s.id+' must not show source notes');
  assert(!card.includes('class="notes"'),s.id+' must not render the notes disclosure');
  const glossaries=(Array.isArray(s.glossary)?s.glossary:[s.glossary]).filter(Boolean);
- if(!s.detail){
-  const heading=card.match(/<h3[^>]*>(.*?)<\/h3>/s)[1].replace(/<[^>]+>/g,'');
-  assert.equal(heading,esc(s.title),s.id+' exact headline');
-  for(const para of s.body.split(/\n\n/))assert(card.includes(`<p>${esc(para)}</p>`),s.id+' exact body paragraph (override applied where set)');
-  for(const g of glossaries)assert(card.includes(`<p class="glossary">* ${esc(g)}</p>`),s.id+' glossary footnote: '+g);
-  if(s.link)assert(card.includes(`href="${esc(s.link)}"`)&&card.includes(`>${esc(s.linkLabel)} ↗`),s.id+' override link');
-  assert(!card.includes('story-flip-card'),s.id+' non-flip card must not carry the flip-card class');
- } else {
-  // Flip-card pattern (ported from the reference implementation): a <button> front carrying a
-  // text-only teaser, and a back face with the full story, artwork and a dedicated close button.
-  assert(card.includes('class="story story-flip-card'),s.id+' must carry the flip-card class');
-  const frontTitle=card.match(/<span class="story-preview-title"[^>]*>(.*?)<\/span>/s)[1].replace(/<[^>]+>/g,'');
-  assert.equal(frontTitle,esc(s.title),s.id+' front teaser headline');
-  const summary=card.match(/<span class="story-preview-summary">(.*?)<\/span>/s)[1];
-  assert.equal(summary,esc(s.body),s.id+' front teaser shows the exact body text');
-  assert(card.includes(`aria-controls="${s.id}-back"`),s.id+' front button must reference its back face by id');
-  const backHeading=card.match(/story-back"[\s\S]*?<h3[^>]*>(.*?)<\/h3>/)[1].replace(/<[^>]+>/g,'');
-  assert.equal(backHeading,esc(s.title),s.id+' back face exact headline');
-  for(const para of s.detail.split(/\n\n/))assert(card.includes(`<p>${esc(para)}</p>`),s.id+' back face exact detail paragraph');
-  for(const g of glossaries)assert(card.includes(`<p class="glossary">* ${esc(g)}</p>`),s.id+' back face glossary footnote: '+g);
-  assert(card.includes('← Back to summary'),s.id+' must have a back-to-summary action');
-  assert(card.includes(`aria-hidden="true"`),s.id+' back face starts hidden from assistive tech');
- }
+ // Every card is a flip card (ported from the reference implementation): a <button> front
+ // carrying a text-only teaser, and a back face with the full story, artwork and a dedicated
+ // close button. Cards without hand-written `detail` copy show their own body on the back too.
+ assert(card.includes('class="story story-flip-card'),s.id+' must carry the flip-card class');
+ // Non-greedy but anchored to the next known sibling tag — titles with a mid-string headline-mark
+ // (e.g. lending's "₹22 crore" isn't at the end) nest a <span>, so stopping at the first </span>
+ // would cut the capture short at that inner tag instead of the outer one.
+ const frontTitle=card.match(/<span class="story-preview-title"[^>]*>([\s\S]*?)<\/span>(?=<span class="story-preview-summary")/)[1].replace(/<[^>]+>/g,'');
+ assert.equal(frontTitle,esc(s.title),s.id+' front teaser headline');
+ const summary=card.match(/<span class="story-preview-summary">(.*?)<\/span>/s)[1];
+ assert.equal(summary,esc(s.body),s.id+' front teaser shows the exact body text');
+ assert(card.includes(`aria-controls="${s.id}-back"`),s.id+' front button must reference its back face by id');
+ if(FRONT_ART_IDS.has(s.id))assert(/<span class="story-preview-art">[\s\S]*?<img/.test(card),s.id+' front teaser must show its art');
+ const backHeading=card.match(/story-back"[\s\S]*?<h3[^>]*>(.*?)<\/h3>/)[1].replace(/<[^>]+>/g,'');
+ assert.equal(backHeading,esc(s.title),s.id+' back face exact headline');
+ for(const para of (s.detail||s.body).split(/\n\n/))assert(card.includes(`<p>${esc(para)}</p>`),s.id+' back face exact detail/body paragraph');
+ for(const g of glossaries)assert(card.includes(`<p class="glossary">* ${esc(g)}</p>`),s.id+' back face glossary footnote: '+g);
+ if(s.link)assert(card.includes(`href="${esc(s.link)}"`)&&card.includes(`>${esc(s.linkLabel)} ↗`),s.id+' back face override link');
+ assert(card.includes('← Back to summary'),s.id+' must have a back-to-summary action');
+ assert(card.includes(`aria-hidden="true"`),s.id+' back face starts hidden from assistive tech');
  const chapter=html.split(`<section class="chapter" id="${s.chapterId}"`)[1].split('</section>')[0];
  assert(chapter.includes(`data-story="${s.id}"`),s.id+' retained in its chapter');
  for(const file of [s.visual.src,s.visual.fallbackSrc])assert(fs.statSync(path.join(dist,file)).size>0,s.id+' visual asset (override applied where set) must exist on disk');
