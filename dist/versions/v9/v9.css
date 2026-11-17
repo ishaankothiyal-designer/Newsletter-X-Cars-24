@@ -22,6 +22,10 @@
 .story.story-flip-card{perspective:1300px;border:0!important;background:transparent!important;overflow:visible!important}
 .story-flip-card>.story-flipper{position:relative;min-height:280px;transform-style:preserve-3d;transition:transform .68s cubic-bezier(.2,.72,.18,1),height .38s ease;will-change:transform,height}
 .story-flip-card>.story-flipper.is-flipped{transform:rotateY(180deg)}
+/* A quick tilt on hover/focus — before it's clicked — gives a visible hint that the card turns
+   over, distinct from the slower, full-rotation transition used for the actual open/close. */
+.story-flip-card:not(.is-open)>.story-flipper{transition:transform .3s cubic-bezier(.2,.72,.18,1),height .38s ease}
+.story-flip-card:not(.is-open):hover>.story-flipper,.story-flip-card:not(.is-open):focus-within>.story-flipper{transform:rotateY(-9deg)}
 .story-flip-card .story-face{position:absolute;inset:0;box-sizing:border-box;border:var(--line);border-radius:3px;background-color:var(--page-stock);background-image:var(--paper-art);background-size:cover;color:var(--color-ink);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:visible}
 .story-flip-card .story-front{z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:22px;width:100%;height:100%;min-height:280px;padding:clamp(22px,3vw,36px);text-align:left;appearance:none;font:inherit;cursor:pointer;transition:box-shadow .18s ease,filter .18s ease}
 .story-flip-card .story-front:hover{filter:saturate(1.05);box-shadow:0 12px 0 rgba(0,0,0,.08)}
