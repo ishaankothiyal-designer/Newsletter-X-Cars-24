@@ -53,18 +53,25 @@ const V9_OVERRIDES={
  inflection:{glossary:OWNERSHIP_GLOSS}
 };
 const FLIP_IDS=new Set(['growth','startup','frontier','miles']);
+// Two stories with no equivalent in the shared V8/V10 data at all — new content, V9-only.
+const V9_EXTRA={
+ alba:{id:'alba',chapterId:'business',title:'Alba Cars joins the Cars24 family',body:'Cars24’s partnership with Alba brings an established showroom, team and premium retail experience into the United Arab Emirates. Alba keeps its name and showroom, with its existing leadership continuing to guide the team.\n\nCars24 adds technology, financing and services — together, the businesses now sell more than 1,000 cars a month.',visual:{src:'assets/story-graphics/alba.svg',fallbackSrc:'assets/story-graphics/alba.svg'}},
+ nach:{id:'nach',chapterId:'business',title:'NACH payments are easier to track',body:'NACH (National Automated Clearing House) is how Cars24 collects loan payments from customer bank accounts. A new connection between Pennant, Digio and Cars24’s own records now shows teams exactly which payments succeeded, which failed, and why — with retries, an audit trail and failure alerts built in.\n\nIn its first cycle: 63,205 cases processed, 53,994 payments succeeded, and ₹20.40 crore collected.',visual:{src:'assets/story-graphics/nach.svg',fallbackSrc:'assets/story-graphics/nach.svg'}}
+};
 const visible=d.stories.filter(s=>!V9_HIDDEN.has(s.id));
-assert.equal((html.match(/data-story=/g)||[]).length,visible.length,'one article per visible story');
+const allVisible=[...visible,...Object.values(V9_EXTRA)];
+assert.equal((html.match(/data-story=/g)||[]).length,allVisible.length,'one article per visible story, including V9-only extras');
 for(const id of V9_HIDDEN)assert(!html.includes(`data-story="${id}"`),id+' must be hidden from V9');
+for(const id of Object.keys(V9_EXTRA))assert(html.includes(`data-story="${id}"`),id+' V9-only extra must be present');
 
-for(const base of visible){
+for(const base of allVisible){
  const s={...base,...(V9_OVERRIDES[base.id]||{})};
  assert.equal(html.split(`data-story="${s.id}"`).length-1,1,s.id+' must appear once');
  const artStart=html.lastIndexOf('<article',html.indexOf(`data-story="${s.id}"`));
  const card=html.slice(artStart,html.indexOf('</article>',artStart)+'</article>'.length);
  const heading=card.match(/<h3[^>]*>(.*?)<\/h3>/s)[1].replace(/<[^>]+>/g,'');
  assert.equal(heading,esc(s.title),s.id+' exact headline');
- assert(card.includes(`<p>${esc(s.body)}</p>`),s.id+' exact body (override applied where set)');
+ for(const para of s.body.split(/\n\n/))assert(card.includes(`<p>${esc(para)}</p>`),s.id+' exact body paragraph (override applied where set)');
  for(const g of (Array.isArray(s.glossary)?s.glossary:[s.glossary]).filter(Boolean))assert(card.includes(`<p class="glossary">* ${esc(g)}</p>`),s.id+' glossary footnote: '+g);
  if(s.link)assert(card.includes(`href="${esc(s.link)}"`)&&card.includes(`>${esc(s.linkLabel)} ↗`),s.id+' override link');
  // No source-notes disclosure, no Slack credit/links, on any card in this edition.
@@ -92,4 +99,4 @@ assert(!entry.includes('reader.js'),'The swipe reader must not intercept documen
 assert(!/inert|aria-hidden="true"[^>]*data-story/.test(html));
 assert(html.includes('aria-label="Newsletter chapters"'));
 assert(html.includes(esc(d.form)));
-console.log(`V9 content passed: ${visible.length} visible stories (Dhanteras hidden), overrides and glossary footnotes applied, no Slack provenance rendered, shared data unchanged.`);
+console.log(`V9 content passed: ${allVisible.length} visible stories (Dhanteras+security hidden, Alba+NACH added), overrides and glossary footnotes applied, no Slack provenance rendered, shared data unchanged.`);
