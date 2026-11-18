@@ -20,7 +20,7 @@ data = json.loads(subprocess.check_output(['node', '-e', 'global.window={};requi
 # Keep in sync with V9_HIDDEN / V9_OVERRIDES in dist/versions/v9/v9.js. The rendered page and the
 # embedded JSON must match exactly — overriding a field at render time is not enough on its own;
 # the raw (pre-override) value would otherwise still be sitting in "view source".
-V9_HIDDEN = {'dhanteras', 'security'}
+V9_HIDDEN = {'dhanteras', 'security', 'ambition', 'safeguards'}
 C2C_GLOSS = 'C2C – Cars24’s Consumer-to-Consumer marketplace, where everyday buyers purchase used cars from Cars24'
 OWNERSHIP_GLOSS = 'Deemed Ownership – lets a delivered car’s buyer act as the owner (insurance, challans) while the RC transfer is still in progress'
 WECARE_GLOSS = 'WeCare – Cars24’s internal employee-support ticketing system'

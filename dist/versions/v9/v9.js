@@ -9,7 +9,7 @@ const link=(url,label,cls='')=>/^https:\/\//.test(url||'')?`<a class="${cls}" hr
 // V9 is a clean, general-readership edition: no Slack-sourced provenance (names, channel links)
 // is shown to readers, and a few cards carry V9-only copy and acronym footnotes. These overrides
 // apply only here — V8 and V10 keep reading the shared story data in stories.js unchanged.
-const V9_HIDDEN=new Set(['dhanteras','security']);
+const V9_HIDDEN=new Set(['dhanteras','security','ambition','safeguards']);
 const C2C_GLOSS='C2C – Cars24’s Consumer-to-Consumer marketplace, where everyday buyers purchase used cars from Cars24';
 const OWNERSHIP_GLOSS='Deemed Ownership – lets a delivered car’s buyer act as the owner (insurance, challans) while the RC transfer is still in progress';
 const WECARE_GLOSS='WeCare – Cars24’s internal employee-support ticketing system';

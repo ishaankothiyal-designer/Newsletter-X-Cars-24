@@ -14,7 +14,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 // V8/V10 story data in three ways — no Slack provenance shown to readers, V9-only copy on
 // three cards, and the Dhanteras card omitted entirely. This is intentional product scope,
 // not a mirror of V8 (unlike V8 <-> its /versions/v8/ copy, which must stay byte-identical).
-const V9_HIDDEN=new Set(['dhanteras','security']);
+const V9_HIDDEN=new Set(['dhanteras','security','ambition','safeguards']);
 const C2C_GLOSS='C2C – Cars24’s Consumer-to-Consumer marketplace, where everyday buyers purchase used cars from Cars24';
 const OWNERSHIP_GLOSS='Deemed Ownership – lets a delivered car’s buyer act as the owner (insurance, challans) while the RC transfer is still in progress';
 const WECARE_GLOSS='WeCare – Cars24’s internal employee-support ticketing system';
@@ -100,4 +100,4 @@ assert(!entry.includes('reader.js'),'The swipe reader must not intercept documen
 assert(!/inert|aria-hidden="true"[^>]*data-story/.test(html));
 assert(html.includes('aria-label="Newsletter chapters"'));
 assert(html.includes(esc(d.form)));
-console.log(`V9 content passed: ${allVisible.length} visible stories (Dhanteras+security hidden, Alba+NACH added), overrides and glossary footnotes applied, no Slack provenance rendered, shared data unchanged.`);
+console.log(`V9 content passed: ${allVisible.length} visible stories (Dhanteras/security/ambition/safeguards hidden, Alba+NACH added), overrides and glossary footnotes applied, no Slack provenance rendered, shared data unchanged.`);
