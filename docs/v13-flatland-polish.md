@@ -23,3 +23,7 @@ PLAYWRIGHT_MODULE=/path/to/playwright \
 PITSTOP_URL=http://127.0.0.1:8798/versions/v13/ \
 node tests/v13-layout.test.cjs
 ```
+
+## Contributor update — 18 November
+
+PR #8 updated V9's Diwali wording. V13 now carries the same approved wording, restoring the copy-parity validation that blocked publishing. Restored the 3D card flip from V9 after the newsletter group reported it missing from V13. Inactive faces use absolute positioning while the active face stays in normal flow, preserving natural card heights without JavaScript measurement. The flip animates only transforms, and reduced-motion users retain an immediate state change. V13 CSS and JavaScript cache versions are bumped to 2.
