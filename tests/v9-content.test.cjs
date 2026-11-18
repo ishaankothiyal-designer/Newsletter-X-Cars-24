@@ -20,7 +20,7 @@ const OWNERSHIP_GLOSS='Deemed Ownership – lets a delivered car’s buyer act a
 const WECARE_GLOSS='WeCare – Cars24’s internal employee-support ticketing system';
 const V9_OVERRIDES={
  growth:{
-  body:'GMV — the combined value of every car Cars24 buys and sells across India, UAE and Australia — grew 29% year-on-year to ₹5,300 crore+ in H1 FY27 (Apr–Sep 2026). Net revenue rose even faster, up 33%+ to ₹921 crore.',
+  body:'GMV grew about 29% year on year to ₹5,300 crore+, while adjusted net revenue rose over 33% to ₹921 crore. EBITDA loss narrowed to around 1% of GMV.',
   glossary:'GMV – Gross Merchandise Value',
   detail:'GMV is the total value of every car bought and sold through Cars24; net revenue is the share of that Cars24 actually keeps as its own earnings — and net revenue is growing faster than GMV because more customers are buying financing, insurance and ownership services alongside the car, not just the car itself. H1’s ₹5,300 crore+ puts the full year on track for ₹12,000 crore+, and the EBITDA loss has narrowed to just ~1% of GMV — Cars24’s closest it’s been to breaking even at this scale.'
  },
@@ -33,13 +33,12 @@ const V9_OVERRIDES={
  },
  lending:{glossary:C2C_GLOSS},
  miles:{
-  body:'Miles is Cars24’s own app for its field agents — the people who visit dealers and customers in person (internally called FOS, short for Fleet on Street). The latest update lets them log visits with new dealers and loan customers on the spot: visits up 13% in two weeks, with 200+ previously untracked dealer visits now captured.',
+  body:'FOS can record ad-hoc visits with new dealers and loan customers. The release targets 15% more monthly visits and 10% more leads entering the system.',
   detail:'Miles replaced an expensive third-party tool the field team used to rely on, cutting the monthly cost by around 98% while building something tailored to how these agents actually work — planning routes, checking in and out of visits, and keeping customer details on hand without a laptop. It’s the backbone that makes a lot of the ground-level work in this newsletter possible.'
  },
  leads:{glossary:['AIRO – Cars24’s calling AI agent',C2C_GLOSS]},
  approvals:{glossary:C2C_GLOSS},
  ownership:{glossary:OWNERSHIP_GLOSS},
- codex:{body:'Ishaan, one of our design builders, trialled Codex — an AI coding tool — alongside Figma and produced a usable homepage draft, an estimated 20–30% effort saving. Production validation is still pending; next up is testing it across 23 SEO pages. Want to try the same workflow? Reach out to Ishaan.'},
  hackathon:{glossary:WECARE_GLOSS},
  diwali:{body:'The Diwali gifts may have taken a little longer than planned, but the thought behind them was always to share the warmth and joy of the festival.'},
  survey:{link:'https://cars24.darwinbox.in/user/login',linkLabel:'Take the survey',glossary:WECARE_GLOSS},
