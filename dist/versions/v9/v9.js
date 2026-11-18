@@ -17,7 +17,7 @@ const V9_OVERRIDES={
  growth:{
   body:'GMV — the combined value of every car Cars24 buys and sells across India, UAE and Australia — grew 29% year-on-year to ₹5,300 crore+ in H1 FY27 (Apr–Sep 2026). Net revenue rose even faster, up 33%+ to ₹921 crore.',
   glossary:'GMV – Gross Merchandise Value',
-  detail:'GMV tells you how much is moving through Cars24; net revenue tells you how much of that Cars24 actually earns — and it’s growing faster than GMV because more customers are buying financing, insurance and ownership services alongside the car, not just the car itself. H1’s ₹5,300 crore+ puts the full year on track for ₹12,000 crore+, and the EBITDA loss has narrowed to just ~1% of GMV — Cars24’s closest it’s been to breaking even at this scale.'
+  detail:'GMV is the total value of every car bought and sold through Cars24; net revenue is the share of that Cars24 actually keeps as its own earnings — and net revenue is growing faster than GMV because more customers are buying financing, insurance and ownership services alongside the car, not just the car itself. H1’s ₹5,300 crore+ puts the full year on track for ₹12,000 crore+, and the EBITDA loss has narrowed to just ~1% of GMV — Cars24’s closest it’s been to breaking even at this scale.'
  },
  // ecosystem's title/body override used to diverge from the shared stories.js text; dropped
  // since the shared copy already reads the same as the reference deck.
