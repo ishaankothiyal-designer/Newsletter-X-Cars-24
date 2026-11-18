@@ -38,7 +38,7 @@ node tests/v8-sound.test.cjs
 ## Deployments
 
 - **GitHub Pages:** pushes to `main` run the checks and publish `dist/` through the Pages workflow.
-- **Vercel migration:** Git integration is disconnected; website updates publish through GitHub Pages only. The prepared `vercel-redirect` preserves paths and query parameters, but the final cutover is blocked by Vercel’s 100/day deployment allowance. The existing URL temporarily serves its original working release. Run `node scripts/deploy-vercel-redirect.mjs --deploy` after the allowance returns, verify root and V8/V9/V10 URLs, then remove the superseded full-site deployment. Twelve obsolete newsletter deployments were deleted. See `docs/hosting-migration-2026-11-17.md`.
+- **Vercel:** migration completed18November2026. Keep sharing https://newsletter-x-cars-24.vercel.app/; it redirects to GitHub Pages with paths and query parameters preserved. Git integration is disconnected and the last full-site deployment has been deleted. One tiny redirect deployment remains. Ordinary website updates publish through GitHub only; `node scripts/deploy-vercel-redirect.mjs --deploy` is only for future redirect changes. See `docs/hosting-migration-2026-11-17.md`.
 
 ## Project layout
 

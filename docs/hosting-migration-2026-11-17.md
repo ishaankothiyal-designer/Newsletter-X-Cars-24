@@ -1,4 +1,8 @@
-# Hosting migration — 17 November2026
+# Hosting migration — 17–18 November2026
+
+**Completed18November2026:** the original shared Vercel link now307redirects to GitHub Pages, preserving root/index/V8/V9/V10paths and query parameters. Deployment`dpl_Ga2yyHar9xyHgw5FYpTJe5Gm2EjF` is the sole active production deployment and contains only redirect config/metadata and a tiny fallback page. After verification, deleted the last full-site deployment`dpl_783VpVBrUDkBeCmVxLKHJ96qFP5r`. Six cross-project browser checks, including all3newsletter editions and V10source-dialog open/close, passed without page errors;12cross-project HTTP checks passed. User requested hourly checks but the first immediate attempt succeeded, so no recurring checker remains. GitHub remains the source and website host; the existing Vercel URL remains the shareable entry link.
+
+The following17November record is historical; its pending cutover is resolved above.
 
 User authorised GitHub hosting and Vercel links/cleanup in chat01a1e996-ea44-7fa2-8814-efad5ba881cb. GitHub Pages is live at https://ishaankothiyal-designer.github.io/Newsletter-X-Cars-24/. Existing Pages workflow continues production updates from main. All244published files match local/GitHub/Vercel release bytes;10suites pass against Pages, including162responsive widths and100dialog cases.
 
