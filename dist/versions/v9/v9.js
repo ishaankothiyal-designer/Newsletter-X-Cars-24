@@ -95,6 +95,8 @@ for(const img of document.querySelectorAll('img[data-fallback]'))img.addEventLis
 // properly inert (not just visually hidden) so keyboard/screen-reader users can't reach it.
 for(const card of document.querySelectorAll('.story-flip-card')){
  const flipper=card.querySelector('.story-flipper'),front=card.querySelector('.story-front'),back=card.querySelector('.story-back'),backAction=card.querySelector('.story-back-action'),backContent=card.querySelector('.story-back-content');
+ // The back face starts closed; keep its controls out of keyboard navigation.
+ back.inert=true;
  const previewHeight=()=>{
   // front is position:absolute with inset:0, so top/bottom:0 keep stretching it to the
   // flipper's current (possibly stale, taller) height even once height is cleared — bottom:0
