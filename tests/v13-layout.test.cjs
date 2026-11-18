@@ -24,5 +24,16 @@ for(const file of fs.readdirSync(artDir)){
  const bounds=await page.locator('svg').evaluate(e=>{const b=e.querySelector('g').getBBox(),v=e.viewBox.baseVal;return {x:b.x,y:b.y,right:b.x+b.width,bottom:b.y+b.height,w:v.width,h:v.height}});assert(bounds.x>=8&&bounds.y>=8&&bounds.right<=bounds.w-8&&bounds.bottom<=bounds.h-8,file+' unsafe SVG geometry '+JSON.stringify(bounds));
 }
 const touch=await browser.newContext({viewport:{width:393,height:852},hasTouch:true,isMobile:true});const mobile=await touch.newPage();await mobile.goto(url);assert.equal(await mobile.locator('.pointer-cue').count(),0);await mobile.locator('#growth .story-front').tap();assert.equal(await mobile.locator('#growth .story-front').getAttribute('aria-expanded'),'true');await mobile.locator('#growth .story-back-action').tap();assert.equal(await mobile.locator('#growth .story-front').getAttribute('aria-expanded'),'false');await touch.close();
+const motion=await browser.newPage({reducedMotion:'no-preference',viewport:{width:1280,height:960}});
+await motion.goto(url);await motion.evaluate(()=>document.fonts.ready);
+const front=motion.locator('#lending .story-front'),flipper=motion.locator('#lending .story-flipper');
+await front.click();await motion.waitForTimeout(100);
+const during=await flipper.evaluate(e=>new DOMMatrixReadOnly(getComputedStyle(e).transform).m11);
+assert(Math.abs(during)<.999,'Card must pass through an intermediate 3D rotation');
+await motion.waitForTimeout(400);
+assert(await flipper.evaluate(e=>new DOMMatrixReadOnly(getComputedStyle(e).transform).m11<-.99),'Open card must complete its 180-degree flip');
+await motion.locator('#lending .story-back-action').click();await motion.waitForTimeout(450);
+assert(await flipper.evaluate(e=>new DOMMatrixReadOnly(getComputedStyle(e).transform).m11>.99),'Closing restores the front face');
+await motion.close();console.log('3D flip animation and return verified with normal motion');
 assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);console.log('Pointer cue, touch, all 17 SVG safe bounds passed; no page errors or missing assets');
 }finally{await browser.close()}})().catch(e=>{console.error(e);process.exit(1)});
