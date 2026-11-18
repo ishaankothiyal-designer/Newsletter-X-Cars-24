@@ -41,7 +41,7 @@ const V9_OVERRIDES={
  ownership:{glossary:OWNERSHIP_GLOSS},
  codex:{body:'Ishaan, one of our design builders, trialled Codex — an AI coding tool — alongside Figma and produced a usable homepage draft, an estimated 20–30% effort saving. Production validation is still pending; next up is testing it across 23 SEO pages. Want to try the same workflow? Reach out to Ishaan.'},
  hackathon:{glossary:WECARE_GLOSS},
- diwali:{body:'Desi Fits Friday, a Diwali photo booth, festive snacks, games near the merch store, and a surprise gift countdown — the office went all out for Diwali this year. Gifts reached most desks on 5 November, though not every hub or office got there on time, and some ground staff got nothing right away; leadership said so directly rather than smoothing it over.'},
+ diwali:{body:'Diwali gifts arrived later than planned, but the idea behind them was to share the warmth and joy of the festival with colleagues.\n\nThe celebration brought teams together around a familiar part of Diwali: thoughtful gifts and time spent with one another.'},
  survey:{link:'https://cars24.darwinbox.in/user/login',linkLabel:'Take the survey',glossary:WECARE_GLOSS},
  milo:{body:'Milo is a confidential AI wellbeing companion, now live on Slack; it is not a replacement for therapy.',link:'https://www.talktomilo.co/cars24',linkLabel:'Talk to Milo'},
  inflection:{glossary:OWNERSHIP_GLOSS}
