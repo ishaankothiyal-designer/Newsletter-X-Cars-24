@@ -48,7 +48,7 @@ const V9_OVERRIDES={
  // uneven Diwali gifting, and what FOS stands for) that the shared/reference text doesn't have.
  codex:{body:'Ishaan, one of our design builders, trialled Codex — an AI coding tool — alongside Figma and produced a usable homepage draft, an estimated 20–30% effort saving. Production validation is still pending; next up is testing it across 23 SEO pages. Want to try the same workflow? Reach out to Ishaan.'},
  hackathon:{glossary:WECARE_GLOSS},
- diwali:{body:'Diwali gifts arrived later than planned, but the idea behind them was to share the warmth and joy of the festival with colleagues.\n\nThe celebration brought teams together around a familiar part of Diwali: thoughtful gifts and time spent with one another.'},
+ diwali:{body:'The Diwali gifts may have taken a little longer than planned, but the thought behind them was always to share the warmth and joy of the festival.'},
  survey:{link:'https://cars24.darwinbox.in/user/login',linkLabel:'Take the survey',glossary:WECARE_GLOSS},
  milo:{body:'Milo is a confidential AI wellbeing companion, now live on Slack; it is not a replacement for therapy.',link:'https://www.talktomilo.co/cars24',linkLabel:'Talk to Milo'},
  inflection:{glossary:OWNERSHIP_GLOSS}
