@@ -47,7 +47,9 @@ assert(entry.includes('<base href="../../">'));
 assert(entry.includes('October 2026'),'masthead/title must still say October');
 assert(!/stories\.js|sources\.js/.test(entry),'V9 no longer loads the shared V8/V10/V11 data file — it is now a separate, self-contained edition');
 assert(!entry.includes('reader.js'),'The swipe reader must not intercept document scrolling');
-assert(html.includes('The October issue'));
+assert(html.includes('October 2026'),'cover eyebrow must still date the issue');
+assert(html.includes("Cars24's monthly newsletter"),'cover must plainly state what this is');
+assert(html.includes('cover-scroll-hint'),'cover must carry a visible scroll-down cue');
 assert(html.includes('aria-label="Newsletter chapters"'));
 assert(html.includes('Why this exists'),'the new opening section must state the newsletter’s purpose');
 
