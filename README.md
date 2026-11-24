@@ -51,6 +51,7 @@ node tests/v8-sound.test.cjs
 - `dist/versions/v8/` — V8 entry point, identical to the default reader.
 - `dist/versions/v9/` — October edition; self-contained, its own seven-story dataset in `v9.js`.
 - `dist/versions/v11/` — November edition; self-contained, its own story dataset in `v11.js`.
+- `dist/versions/v14/` — retro comic-book edition; standalone HTML with its own `img/` folder.
 - `scripts/package-v9.py` — exports a self-contained HTML copy for HTML Hub.
 - `tests/` — content, gesture, motion, viewport, and sound checks.
 - `docs/` — design decisions and asset provenance.
@@ -69,3 +70,7 @@ Both editions include the Dhanteras sales update (381 cars in one day), place Fr
 V10 is a separate continuous-scroll edition at `/versions/v10/`, based on V9's shared 25-story dataset. It replaces the prior art direction with a broadsheet masthead, ruled columns, textured neutral paper, CARS24 blue identity, and newly generated newspaper ink illustrations. Default V8 and V9 are unchanged.
 
 Run `node tests/v10-content.test.cjs` to verify content preservation. Run `python3 scripts/package-v10.py` to write the standalone `../output/The-Pitstop-V10.html`. Reference research and design decisions are documented in `docs/v10-newspaper-direction.md`.
+
+### V14 — retro comic-book edition (Oct–Nov 2026)
+
+V14 is a standalone page at `/versions/v14/`: 19 October and November stories in three parts (Business, Builders at work, Life at Cars24), plus a puzzle page with sudoku, word jumble and memory match. It has its own `img/` folder and does not touch the shared story data or V8–V13. Run `node tests/v14-content.test.cjs` to check it. See `docs/v14-comic-edition.md`.

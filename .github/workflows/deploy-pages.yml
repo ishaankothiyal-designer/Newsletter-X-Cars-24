@@ -25,6 +25,8 @@ jobs:
       - name: Validate the current reader
         run: |
           node tests/v9-content.test.cjs
+          node tests/v11-content.test.cjs
+          node tests/v14-content.test.cjs
           node tests/v8-content.test.cjs
           node tests/v8-images.test.cjs
           node tests/v8-motion.test.cjs

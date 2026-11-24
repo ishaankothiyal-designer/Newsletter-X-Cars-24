@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Pitstop · October–November 2026 · Cars24</title>
+<link rel="icon" href="img/cars24-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d1b2e;--paper:#f6f1e7;--y:#f3d88c;--blue:#5b5bb8}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.5 Inter,"Comic Neue",system-ui,sans-serif;
+ background-image:radial-gradient(rgba(29,27,46,.08) 1.2px,transparent 1.4px);background-size:14px 14px}
+img{display:block;max-width:100%}a{color:inherit}b,strong{font-weight:700}
+h1,h2,h3,.num,.sfx,.burst{font-family:Bangers,Anton,Impact,sans-serif;font-weight:400;letter-spacing:.03em}
+/* top bar + progress */
+.top{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:3px solid var(--ink)}
+.top-in{display:flex;align-items:center;gap:12px;padding:7px 24px;max-width:1200px;margin:auto}
+.top img{height:18px}.top-in>b{font:400 19px Bangers,Anton,sans-serif;letter-spacing:.04em;flex:none}
+.top nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-left:auto}.top nav::-webkit-scrollbar{display:none}
+.top nav a{flex:none;text-decoration:none;font:700 12.5px Inter,sans-serif;border:2px solid var(--ink);border-radius:7px;padding:3px 9px;background:#fff;transition:background .2s}
+.top nav a.on{background:var(--c)}
+.prog{height:5px;background:rgba(29,27,46,.08)}.prog i{display:block;height:100%;width:0;background:var(--blue);border-right:3px solid var(--ink)}
+/* cover (compact) */
+.cover{background:var(--blue);color:#fff;border-bottom:4px solid var(--ink);padding:26px 24px 22px;
+ background-image:radial-gradient(rgba(255,255,255,.14) 2px,transparent 2.2px);background-size:16px 16px}
+.cv{max-width:1152px;margin:auto;display:grid;grid-template-columns:1fr 280px;gap:36px;align-items:center}
+.cv-top{display:flex;align-items:center;gap:12px;font:700 12px Inter,sans-serif;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+.cv-top img{height:18px;filter:brightness(0) invert(1)}
+.cover h1{margin:0;font-size:clamp(46px,6.4vw,78px);line-height:.88;color:var(--y);-webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink)}
+.cover h1 small{display:block;font-size:.4em;color:#fff;-webkit-text-stroke:1px var(--ink)}
+.what{background:#fff;color:var(--ink);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:11px 14px;margin:16px 0 12px;max-width:56ch;font-size:15px}
+.what b{color:var(--blue)}
+.go{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font:700 13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.go b{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--y);color:var(--ink);border:2.5px solid var(--ink);animation:bob 1.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(5px)}}
+.cv-art{position:relative;border:4px solid var(--ink);background:#fff;padding:6px;box-shadow:7px 7px 0 var(--ink);transform:rotate(2deg)}
+.burst{position:absolute;right:-22px;top:-24px;width:96px;height:96px;display:grid;place-items:center;text-align:center;color:var(--ink);font-size:18px;line-height:.9;background:var(--y);
+ clip-path:polygon(50% 0,61% 18%,82% 8%,79% 31%,100% 36%,84% 52%,98% 70%,76% 72%,78% 95%,58% 82%,45% 100%,38% 79%,15% 92%,20% 68%,0 62%,16% 47%,2% 27%,24% 26%,22% 4%,40% 17%)}
+/* chapters */
+main{max-width:1200px;margin:auto;padding:10px 24px 40px}
+.chapter{padding-top:26px;display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.story,.halves>*,.briefs>*{min-width:0}
+.ch-open{display:flex;align-items:center;gap:10px}
+.ch-n{font:700 11px Inter,sans-serif;text-transform:uppercase;letter-spacing:.12em;background:var(--ink);color:#fff;padding:3px 8px}
+.ch-open h2{margin:0;font-size:26px;line-height:1;background:var(--c);border:2.5px solid var(--ink);padding:3px 10px 1px;box-shadow:3px 3px 0 var(--ink)}
+.ch-sub{font-size:13px;opacity:.75}
+.ch-open i{flex:1;height:0;border-top:2.5px dashed var(--ink);opacity:.35}
+/* story cards */
+.story{background:#fff;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:12px}
+.sh{display:flex;align-items:center;gap:10px;background:var(--c);border:2.5px solid var(--ink);padding:5px 10px;margin-bottom:12px}
+.num{font-size:22px;line-height:1;background:var(--ink);color:#fff;padding:3px 7px 1px;transform:rotate(-4deg)}
+.team{margin:0;font:700 10.5px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;opacity:.8}
+.sh h3{margin:0;font-size:24px;line-height:1.05}
+.sh .sfx{margin-left:auto;font-size:22px;color:var(--y);-webkit-text-stroke:1.5px var(--ink);text-shadow:2px 2px 0 var(--ink);transform:rotate(-6deg);flex:none}
+.sb{display:grid;grid-template-columns:30% minmax(0,1fr);gap:16px;align-items:stretch}
+.lead .sb{grid-template-columns:38% minmax(0,1fr)}
+.rev .sb{grid-template-columns:minmax(0,1fr) 30%}.rev .art{order:2}
+.art{margin:0;border:2.5px solid var(--ink);background:#fbf7ef;display:flex;align-items:center;justify-content:center;padding:8px}
+.art img{width:auto;max-width:100%;height:auto;max-height:280px}.lead .art img{max-height:340px}
+.txt{display:flex;flex-direction:column;min-width:0}.txt>*{width:100%}.half .why,.brief .why{margin-top:auto}
+.half .sh,.brief .sh{min-height:64px}.half .sh h3{font-size:21px}
+.cap{margin:0 0 10px;background:var(--y);border:2px solid var(--ink);padding:7px 10px;font-style:italic;font-size:14px}
+.cap::before{content:"Background story: ";font:400 13px Bangers,Anton,sans-serif;letter-spacing:.05em;font-style:normal;opacity:.75}
+.bubble{position:relative;background:#fff;border:2.5px solid var(--ink);border-radius:18px;padding:7px 12px;margin:0 0 10px;box-shadow:2px 2px 0 var(--ink)}
+.bubble p{margin:0;font-weight:700;font-size:15px;line-height:1.3}.bubble small{font-size:11px;opacity:.6}
+.bubble::before{content:"";position:absolute;top:12px;border:8px solid transparent}
+.t-left::before{left:-18px;border-right:11px solid var(--ink)}
+.t-right::before{right:-18px;border-left:11px solid var(--ink)}
+.t-up::before{top:-17px;left:22px;border-bottom:10px solid var(--ink)}
+.body p{margin:0 0 8px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:2px 0 10px}
+.fact{border:2px solid var(--ink);padding:5px 9px;box-shadow:2px 2px 0 var(--c);background:#fff}
+.fact b{display:block;font:400 22px/1 Bangers,Anton,sans-serif;letter-spacing:.03em}
+.fact span{display:block;font-size:12px;line-height:1.25;margin-top:2px}
+.why{margin:0;background:var(--paper);border-left:4px solid var(--c);padding:6px 10px;font-size:14px}
+/* halves + briefs */
+.halves{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+.half,.brief{display:flex;flex-direction:column}.half .txt,.brief .txt{flex:1}
+.briefs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.half .art,.brief .art{margin-bottom:10px;height:200px}.brief .art{height:160px}
+.half .art img{max-height:100%}
+.brief .art img{max-height:100%}
+.brief .sh h3{font-size:20px}.brief .sh .sfx{display:none}
+.brief .body{font-size:14px}
+.brief .bubble p{font-size:14px}
+/* hub tracker */
+.cap.wide{margin-bottom:6px}
+.routewrap{overflow-x:auto;padding:8px 4px 4px}
+.route{list-style:none;margin:0;padding:24px 0 0;display:flex;min-width:760px;position:relative}
+.route::before{content:"";position:absolute;left:12px;right:12px;top:32px;height:5px;background:repeating-linear-gradient(90deg,var(--ink) 0 12px,transparent 12px 20px)}
+.route li{flex:1;position:relative;padding-top:20px;text-align:center;font-size:12px}
+.route .dot{position:absolute;left:50%;top:0;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid var(--ink)}
+.route li.live .dot{background:var(--c)}
+.route li.live::after{content:"LIVE!";position:absolute;left:50%;top:-26px;transform:translateX(-50%) rotate(-6deg);font:400 13px Bangers,Anton,sans-serif;background:#e9a9b6;border:2px solid var(--ink);padding:0 5px}
+.route b{display:block;font:400 16px Bangers,Anton,sans-serif}.route strong{display:block;font-size:13px}.route small{display:block;opacity:.65}
+/* games */
+.games{margin-top:30px}
+.gbox{background:#fff;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:12px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.tabs button{font:700 13px Inter,sans-serif;border:2px solid var(--ink);background:#fff;border-radius:7px;padding:6px 12px;cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+.tabs button[aria-selected=true]{background:var(--y)}
+.gpanel{border:2.5px solid var(--ink);padding:16px;background:var(--paper);min-height:260px}
+.gpanel[hidden]{display:none}
+.ghead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.ghead h3{font-size:22px;margin:0}
+.score{font-size:13px;background:#cdd38f;border:2px solid var(--ink);border-radius:99px;padding:3px 10px}
+.gq{font-size:17px;font-weight:700;margin:4px 0 12px}
+.opts{display:grid;gap:8px;max-width:600px}
+.opts button,.gbtn{font:600 14px Inter,sans-serif;text-align:left;padding:9px 12px;border:2px solid var(--ink);border-radius:7px;background:#fff;cursor:pointer;color:var(--ink)}
+.opts button:hover:not(:disabled),.gbtn:hover{background:var(--y)}
+.opts button.right{background:#cdd38f}.opts button.wrong{background:#f3c9c0}
+.gmsg{min-height:1.5em;margin:10px 0 0}
+.gnext{margin-top:10px;font:700 14px Inter,sans-serif;background:var(--blue);color:#fff;border:2px solid var(--ink);border-radius:7px;padding:8px 16px;cursor:pointer}
+.tfrow{display:flex;gap:10px}.tfrow button{flex:0 0 130px;text-align:center;font-size:16px}
+.scr-word{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+.scr-word span{width:40px;height:46px;display:grid;place-items:center;font:400 26px Bangers,Anton,sans-serif;background:var(--y);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.scr-word span:nth-child(odd){rotate:-4deg}.scr-word span:nth-child(even){rotate:3deg}
+.scr-in{display:flex;gap:8px;flex-wrap:wrap;max-width:520px}
+.scr-in input{flex:1;min-width:180px;font:700 16px Inter,sans-serif;text-transform:uppercase;padding:9px 12px;border:2px solid var(--ink);border-radius:7px}
+.mem{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-width:600px}
+.tile{aspect-ratio:1;perspective:600px;border:0;background:none;padding:0;cursor:pointer;display:block}
+.tile .ti{display:block;position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.tile.up .ti,.tile.done .ti{transform:rotateY(180deg)}
+.tile .tf,.tile .tb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:2px solid var(--ink);border-radius:7px;display:grid;place-items:center;font-size:28px}
+.tile .tf{background:var(--blue);color:var(--y);font:400 26px Bangers,Anton,sans-serif}
+.tile .tb{background:#fff;transform:rotateY(180deg)}.tile.done .tb{background:#cdd38f}
+/* sudoku */
+.sud{display:grid;grid-template-columns:repeat(6,46px);gap:0;border:3px solid var(--ink);width:max-content;background:#fff;margin:4px 0 12px}
+.sud input{width:46px;height:46px;border:1px solid #bbb;text-align:center;font:400 26px Bangers,Anton,sans-serif;color:var(--blue);background:#fff;padding:0;border-radius:0}
+.sud input[readonly]{color:var(--ink);background:#f3efe4}
+.sud input.c3{border-right:3px solid var(--ink)}.sud input.r2{border-bottom:3px solid var(--ink)}
+.sud input.bad{background:#f3c9c0}.sud input:focus{outline:3px solid var(--y);outline-offset:-3px}
+.sud.won input{background:#cdd38f}
+.sudrow{display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:420px){.sud{grid-template-columns:repeat(6,40px)}.sud input{width:40px;height:40px}}
+.agenda{margin:0 0 10px;padding-left:18px}.agenda li{margin:0 0 4px}
+.ext{display:inline-block;margin-top:4px;font-weight:700;color:var(--blue)}
+/* end */
+.end{margin-top:30px;background:var(--y);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:20px;text-align:center}
+.end h2{font-size:34px;margin:0 0 6px}.end p{max-width:52ch;margin:0 auto 12px}
+.cta{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border:2.5px solid var(--ink);padding:9px 18px;box-shadow:3px 3px 0 var(--ink);font-weight:700}
+footer{text-align:center;padding:18px;font-size:12px}
+@media (max-width:820px){
+ .cv{grid-template-columns:1fr;gap:20px}.cv-art{max-width:260px}
+ .sb,.lead .sb,.rev .sb{grid-template-columns:1fr}.rev .art{order:0}
+ .art img{max-height:240px}.lead .art img{max-height:260px}
+ .t-left::before,.t-right::before{left:22px;right:auto;top:-17px;border:8px solid transparent;border-bottom:10px solid var(--ink)}
+ .halves,.briefs{grid-template-columns:1fr}.half .art,.brief .art{height:200px}.half .sh,.brief .sh{min-height:0}
+ .top-in>b{display:none}.top nav{margin-left:0}
+ .mem{grid-template-columns:repeat(4,1fr)}
+}
+@media (max-width:480px){.sh .sfx{display:none}.sh h3{font-size:21px}.ch-sub{display:none}}
+@media (prefers-reduced-motion:reduce){.go b{animation:none}html{scroll-behavior:auto}}
+/* ===== Retro comic-book skin (overrides) ===== */
+:root{--ink:#191919;--paper:#f3e8cc;--cream:#fffaf0;--y:#f6c744;--r:#d9413a;--blue:#1f6fb0;--dots:radial-gradient(rgba(25,25,25,.22) 1.1px,transparent 1.5px)}
+body{background-color:var(--paper);color:var(--ink);font:400 15px/1.55 Inter,system-ui,sans-serif;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .27 0 0 0 0 .12 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px}
+/* top bar */
+.top{background:var(--ink);border-bottom:3px solid var(--ink);color:#fff}
+.top img{filter:brightness(0) invert(1)}
+.top-in>b{color:var(--y);font-size:21px}
+.top nav a{background:transparent;color:#fff;border-color:#fff;border-radius:0;transform:skew(-8deg)}
+.top nav a.on{background:var(--c);color:var(--ink);border-color:var(--c)}
+.prog{background:#333;height:6px}.prog i{background:var(--y);border-right:0}
+/* cover */
+.cover{background:var(--r);padding:18px 24px 26px;border-bottom:4px solid var(--ink);
+ background-image:var(--dots),repeating-conic-gradient(from 0deg at 72% 55%,rgba(255,255,255,.10) 0 6deg,transparent 6deg 14deg);background-size:7px 7px,100% 100%}
+.cv{max-width:1152px;margin:auto}
+.cv-strip{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--ink);color:var(--y);font:400 16px Bangers,Anton,Impact,sans-serif;letter-spacing:.08em;padding:6px 12px;border:3px solid var(--ink);margin-bottom:16px}
+.cv-strip span:not(:last-child)::after{content:"★";margin-left:10px;color:#fff}
+.cv-strip .price{margin-left:auto;background:var(--y);color:var(--ink);padding:1px 8px}
+.cv-strip .price::after{content:none!important}
+.cv-main{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:center}
+.cv-l{position:relative}
+.issue-box{position:absolute;right:0;top:0;background:#fff;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);text-align:center;padding:2px 10px 4px;transform:rotate(4deg)}
+.issue-box small{display:block;font:700 10px Inter;letter-spacing:.1em}.issue-box b{font:400 34px/1 Bangers,Anton,Impact,sans-serif}
+.cover h1{font-size:clamp(64px,10vw,128px);line-height:.82;margin:4px 0 0;color:var(--y);letter-spacing:.02em;-webkit-text-stroke:3px var(--ink);
+ text-shadow:3px 3px 0 var(--ink),6px 6px 0 var(--ink),9px 9px 0 var(--blue),12px 12px 0 var(--ink);transform:rotate(-3deg);transform-origin:left}
+.what{font-size:15px;margin:26px 0 14px;max-width:52ch;background:var(--cream);box-shadow:5px 5px 0 var(--ink)}
+.what b{color:var(--r)}
+.go{color:#fff}.go b{background:var(--y)}
+.cv-art{transform:rotate(2.5deg);padding:8px;background:var(--cream);box-shadow:8px 8px 0 var(--ink)}
+.cv-art img{width:100%;filter:contrast(1.08) saturate(1.05)}
+.cv-art::after{content:"";position:absolute;inset:8px;background:var(--dots);background-size:5px 5px;mix-blend-mode:multiply;opacity:.35;pointer-events:none}
+.burst{background:var(--y);font-size:20px;width:110px;height:110px;right:-26px;top:-30px;transform:rotate(10deg)}
+/* chapter openers */
+.chapter{padding-top:38px}
+.ch-open{gap:14px;align-items:flex-end;flex-wrap:wrap}
+.ch-n{background:var(--r);font:400 18px Bangers,Anton,Impact,sans-serif;letter-spacing:.06em;padding:6px 12px;border:3px solid var(--ink);transform:rotate(-4deg);box-shadow:3px 3px 0 var(--ink)}
+.ch-open h2{font-size:42px;padding:6px 18px 2px;border-width:3px;box-shadow:6px 6px 0 var(--ink);transform:skew(-6deg);
+ background-color:var(--c);background-image:var(--dots);background-size:6px 6px}
+.ch-sub{font:700 15px "Comic Neue",sans-serif;opacity:.85;margin-bottom:6px}
+.ch-open i{display:none}
+/* story cards */
+.story{background:var(--cream);border-width:3px;box-shadow:6px 6px 0 var(--ink);position:relative}
+.sh{position:relative;overflow:visible;background-color:var(--c);background-image:var(--dots);background-size:6px 6px;border-width:3px;padding:6px 12px}
+.num{font-size:20px;background:var(--ink);color:var(--y);border-radius:50%;width:38px;height:38px;display:grid;place-items:center;padding:0;transform:none;flex:none}
+.team{font-size:10.5px}
+.sh h3{font-size:25px;text-shadow:1px 1px 0 rgba(255,255,255,.6)}
+.stamp{margin-left:auto;flex:none;font:400 15px/.95 Bangers,Anton,Impact,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:var(--r);
+ border:3px solid var(--r);border-radius:8px;padding:4px 8px;transform:rotate(8deg);background:rgba(255,250,240,.85);box-shadow:inset 0 0 0 2px rgba(255,250,240,.85),inset 0 0 0 4px var(--r)}
+.art{background:#fff;border-width:3px;position:relative}
+.art::after{content:"";position:absolute;inset:0;background:var(--dots);background-size:5px 5px;mix-blend-mode:multiply;opacity:.12;pointer-events:none}
+.cap{position:relative;background:var(--y);border-width:2.5px;font:700 14.5px/1.45 "Comic Neue",sans-serif;font-style:normal;padding:16px 12px 8px;margin-top:10px;box-shadow:3px 3px 0 var(--ink)}
+.cap::before{content:none}
+.cap .tab{position:absolute;left:10px;top:-12px;background:var(--ink);color:var(--y);font:400 13px Bangers,Anton,Impact,sans-serif;letter-spacing:.08em;padding:2px 8px}
+.bubble{background:#fff;border-width:3px;border-radius:22px;font-family:"Comic Neue",sans-serif}
+.bubble p{font:700 16px/1.3 "Comic Neue",sans-serif}
+.fact{background:#fff;border-width:2.5px;box-shadow:3px 3px 0 var(--c)}
+.fact b{color:var(--r);font-size:24px;-webkit-text-stroke:.3px var(--ink)}
+.why{background:var(--ink);color:#fff;border-left:0;padding:7px 12px;transform:skew(-3deg)}
+.why b{color:var(--y)}
+.body a{color:var(--blue)}
+.ext{color:var(--blue)}
+.wish{list-style:none;counter-reset:w;margin:0 0 10px;padding:0;display:grid;gap:8px}
+.wish li{counter-increment:w;display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:start;background:#fff;border:2.5px solid var(--ink);padding:7px 10px;box-shadow:3px 3px 0 var(--c)}
+.wish li::before{content:counter(w);font:400 30px/1 Bangers,Anton,Impact,sans-serif;color:var(--r);text-align:center}
+/* did you know */
+.dyk{position:relative;background:#fff;border:3px dashed var(--ink);padding:14px 16px 12px 70px;box-shadow:5px 5px 0 var(--y);max-width:760px;justify-self:center}
+.dyk::before{content:"?";position:absolute;left:14px;top:50%;transform:translateY(-50%) rotate(-8deg);width:42px;height:42px;display:grid;place-items:center;background:var(--r);color:#fff;font:400 30px Bangers,Anton,Impact,sans-serif;border:3px solid var(--ink);border-radius:50%}
+.dyk-t{font:400 20px Bangers,Anton,Impact,sans-serif;letter-spacing:.05em;color:var(--r)}
+.dyk p{margin:2px 0 0}
+/* hub tracker */
+.route li.live .dot{background:var(--r)}
+.route li.live::after{content:none}
+.route li.soon .dot{background:#fff;border-style:dashed}
+.route{min-width:640px}
+/* briefs: 4 across */
+.briefs{grid-template-columns:repeat(4,minmax(0,1fr))}
+.brief .art{height:150px}
+/* games + end */
+.gbox{background:var(--cream);border-width:3px;box-shadow:6px 6px 0 var(--ink)}
+.tabs button{border-radius:0;transform:skew(-6deg);font-family:Bangers,Anton,Impact,sans-serif;font-weight:400;font-size:17px;letter-spacing:.05em}
+.gpanel{background:#fff}
+.end{display:grid;grid-template-columns:1fr 220px;gap:24px;align-items:center;text-align:left;background:var(--y);background-image:var(--dots);background-size:7px 7px;border-width:3px;box-shadow:6px 6px 0 var(--ink)}
+.end-t{display:inline-block;background:var(--ink);color:var(--y);font:400 15px Bangers,Anton,Impact,sans-serif;letter-spacing:.08em;padding:2px 8px}
+.end h2{font-size:38px;margin:6px 0}.end p{margin:0 0 12px}
+.cta{background:var(--r);border-radius:0}
+.next{background:var(--cream);border:3px solid var(--ink);padding:12px;text-align:center;transform:rotate(3deg);box-shadow:4px 4px 0 var(--ink)}
+.next small{display:block;font:700 11px Inter;letter-spacing:.12em;text-transform:uppercase}.next b{display:block;font:400 26px Bangers,Anton,Impact,sans-serif;color:var(--r)}.next span{font-size:13px}
+@media (max-width:1000px){.briefs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){
+ .cv-main{grid-template-columns:1fr}.cv-art{max-width:300px;margin:6px auto 0}
+ .issue-box{position:static;display:inline-block;margin-bottom:6px}
+ .cv-strip .price{margin-left:0}
+ .ch-open h2{font-size:32px}
+ .end{grid-template-columns:1fr}.next{max-width:240px}
+ .briefs{grid-template-columns:1fr}
+}
+@media (max-width:480px){.stamp{font-size:12px;padding:3px 5px}.sh h3{font-size:20px}.cover h1{font-size:64px}.dyk{padding-left:16px;padding-top:58px}.dyk::before{top:12px;transform:rotate(-8deg)}}
+.cv{display:block}
+.wish li{display:block;position:relative;padding:8px 12px 8px 50px}
+.wish li::before{position:absolute;left:12px;top:6px;width:28px}
+.issue-box{color:var(--ink)}
+.stamp{position:absolute;right:-14px;top:-16px;z-index:2;margin:0}
+.sh{padding-right:70px}
+.brief .sh{padding-right:12px}
+.cv-main{grid-template-columns:1fr 470px}
+.cv-art{transform:rotate(1.5deg)}
+.cv-art::after{content:none}
+.cv-art img{filter:none}
+.sh{padding-right:12px}
+@media (max-width:820px){.cv-main{grid-template-columns:1fr}.cv-art{max-width:100%}}
+@media (max-width:820px){.burst{right:-6px;top:-24px}.cover{overflow:hidden}}
+.cv-strip span.last::after{content:none}
+/* ubuntu categories + eng ask */
+.cats-t{margin:6px 0 6px}
+.cats{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.cats li{font:700 12.5px Inter,sans-serif;background:#fff;border:2px solid var(--ink);padding:3px 9px;box-shadow:2px 2px 0 var(--c);transform:rotate(-1deg)}
+.cats li:nth-child(even){transform:rotate(1deg)}
+.ask{margin-top:10px;background:#fff;border:2.5px dashed var(--ink);padding:9px 12px;font-size:14px}
+.ask .ext{display:inline-block;margin-top:4px}
+/* briefs: 2-column masonry of horizontal cards */
+.briefs{display:block!important;column-count:2;column-gap:20px}
+.brief{display:grid!important;grid-template-columns:150px minmax(0,1fr);column-gap:14px;align-items:start;break-inside:avoid;margin:0 6px 22px 0}
+.brief .sh{grid-column:1/-1;min-height:0}
+.brief .art{height:auto!important;margin:0;padding:6px}
+.brief .art img{max-height:150px}
+.brief .txt{flex:none}
+.brief .cap{margin-top:12px}
+@media (max-width:820px){.briefs{column-count:1}}
+@media (max-width:480px){.brief{grid-template-columns:1fr}.brief .art{margin-bottom:8px}}
+</style></head><body>
+<div class="top"><div class="top-in"><img src="img/cars24-logo.svg" alt="Cars24"><b>THE PITSTOP</b><nav><a href="#business" data-ch="business" style="--c:#f6c744">Business</a><a href="#builders" data-ch="builders" style="--c:#7cc4d8">Builders at work</a><a href="#life" data-ch="life" style="--c:#e9a9b6">Life at Cars24</a><a href="#games" data-ch="games" style="--c:#f6c744">Games</a></nav></div><div class="prog" aria-hidden="true"><i></i></div></div>
+<section class="cover">
+ <div class="cv">
+  <div class="cv-strip"><span>Cars24 presents</span><span class="last">October–November 2026</span></div>
+  <div class="cv-main">
+   <div class="cv-l">
+    <h1>The<br>Pitstop</h1>
+    <p class="what"><b>The Pitstop</b> is Cars24's monthly newsletter for every Autonaut. This issue brings you <b>19 stories from October and November</b>, with games at the end.</p>
+    <a class="go" href="#business"><b>↓</b>Scroll down to read</a>
+   </div>
+   <div class="cv-art"><img src="img/cover-people.jpg" alt="Illustration: four colleagues cheering at a laptop."><div class="burst">19<br>stories!</div></div>
+  </div>
+ </div>
+</section>
+<main>
+<section class="chapter" id="business" style="--c:#f6c744"><div class="ch-open"><span class="ch-n">Part 1</span><h2>Business</h2><span class="ch-sub">Deals, numbers, money and hubs</span></div><article class="story lead" id="s1" style="--c:#f6c744"><header class="sh"><span class="num">01</span><div class="sh-t"><p class="team">Business · Festive season</p><h3>Our biggest festive season ever</h3></div></header>
+<div class="sb"><figure class="art"><img src="img/festive.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>The festive season, from Navratri to Diwali, is when India buys the most cars.</p><div class="bubble t-left"><p>19,039 cars sold. 44% more than last year.</p></div><div class="body"><p>Vikram shared what these numbers really say: more <b>first-time car owners</b>, more people trusting us, and car ownership getting <b>simpler for families across India</b>.</p></div><div class="facts"><div class="fact"><b>19,039</b><span>cars sold this festive season</span></div><div class="fact"><b>+44%</b><span>vs the same season last year</span></div><div class="fact"><b>#1</b><span>our biggest festive season yet</span></div></div><p class="why"><b>Why it matters:</b> More families now trust us with one of their biggest buys.</p></div></div></article><article class="story row rev" id="s2" style="--c:#e9a9b6"><header class="sh"><span class="num">02</span><div class="sh-t"><p class="team">Business · 7 Nov · UAE</p><h3>Alba Cars joins Cars24!</h3></div></header>
+<div class="sb"><figure class="art"><img src="img/alba.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Dubai, 2015. Talib starts Alba Cars with a few parking spots below his apartment, and car photos shot like a magazine.</p><div class="body"><p>Eleven years later, Alba is a premium showroom with <b>200+ people</b>, selling cars at about <b>twice our average price</b>. Now it is part of Cars24, with Talib still leading it. Alba brings premium, showroom-style selling; Cars24 brings loans, insurance, our refurbishment lab and technology.</p></div><div class="facts"><div class="fact"><b>1,000+</b><span>cars a month in the UAE, together</span></div><div class="fact"><b>~300</b><span>cars a month sold by Alba</span></div><div class="fact"><b>4 in 5</b><span>Alba customers come straight to Alba</span></div></div><p class="why"><b>Why it matters:</b> Together we sell more used cars in the UAE than any other retailer.</p></div></div></article><article class="story row" id="s3" style="--c:#b7b2e0"><header class="sh"><span class="num">03</span><div class="sh-t"><p class="team">Business · Apr–Sep 2026</p><h3>The half-year report card</h3></div></header>
+<div class="sb"><figure class="art"><img src="img/h1.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Every six months the company checks how the business is doing. Here's April to September 2026.</p><div class="bubble t-left"><p>Cars sold up 29%. Revenue up 33%.</p></div><div class="body"><p><b>GMV (Gross Merchandise Value)</b> is the total value of cars sold through us; <b>revenue</b> is what Cars24 itself earns. Our operating loss came down to about <b>1% of GMV</b>, and services like insurance earned <b>₹160 Cr+</b>, 4 times last year.</p></div><div class="facts"><div class="fact"><b>₹5,300 Cr+</b><span>of cars bought & sold</span></div><div class="fact"><b>₹921 Cr</b><span>revenue, up 33%+</span></div><div class="fact"><b>+68%</b><span>cars delivered to customers</span></div></div><p class="why"><b>Why it matters:</b> More people buy through us, and we earn more on each sale.</p></div></div></article><article class="story row rev" id="s4" style="--c:#a9c9dc"><header class="sh"><span class="num">04</span><div class="sh-t"><p class="team">Business · September</p><h3>UAE & Australia hit ~700</h3></div></header>
+<div class="sb"><figure class="art"><img src="img/global.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Cars24 also buys and sells cars in the UAE and Australia.</p><div class="body"><p>In September, both teams touched about <b>700 cars</b> in a single month for the first time. The UAE team also returned to profit.</p></div><div class="facts"><div class="fact"><b>~700</b><span>cars in a month, UAE</span></div><div class="fact"><b>~700</b><span>cars in a month, Australia</span></div></div><p class="why"><b>Why it matters:</b> The Cars24 way of selling works outside India too.</p></div></div></article><article class="story row" id="s5" style="--c:#cdd38f"><header class="sh"><span class="num">05</span><div class="sh-t"><p class="team">Finance · Sep–Oct</p><h3>Our biggest co-lending month ever</h3></div></header>
+<div class="sb"><figure class="art"><img src="img/colend.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Co-lending means Cars24 gives a customer's car loan together with a big lending partner, like Bajaj Finance.</p><div class="bubble t-left"><p>₹246 Cr co-lent in October, our best month ever.</p></div><div class="body"><p>We earn almost the same on each loan but use much less of our own money. In October, loan decisions also got faster: from about <b>1 hour to 30 minutes</b>.</p></div><div class="facts"><div class="fact"><b>₹194 Cr</b><span>co-lent in September, up 35%</span></div><div class="fact"><b>87%</b><span>of our loans now co-lent</span></div><div class="fact"><b>₹246 Cr</b><span>in October, a new high</span></div></div><p class="why"><b>Why it matters:</b> Less of our own money tied up means more room to grow.</p></div></div></article><article class="story hubs" id="s6" style="--c:#9fcf9a"><header class="sh"><span class="num">06</span><div class="sh-t"><p class="team">Hubs · Expansion</p><h3>Hub tracker: 6 new hubs in 4 weeks</h3></div></header>
+<p class="cap wide"><span class="tab">Background story</span>A hub is where customers come to see, test-drive and buy our cars. Each new one is opened by a frontline top performer.</p>
+<div class="routewrap"><ol class="route"><li class="live"><span class="dot"></span><b>25 Oct</b><strong>Dehradun</strong><small>New city</small></li><li class="live"><span class="dot"></span><b>1 Nov</b><strong>Kukatpally</strong><small>Hyderabad</small></li><li class="live"><span class="dot"></span><b>5 Nov</b><strong>Ranchi</strong><small>New city</small></li><li class="live"><span class="dot"></span><b>12 Nov</b><strong>Bellandur</strong><small>First Premium Hub</small></li><li class="live"><span class="dot"></span><b>17 Nov</b><strong>Jodhpur</strong><small>New city</small></li><li class="live"><span class="dot"></span><b>21 Nov</b><strong>Ludhiana</strong><small>New city</small></li><li class="soon"><span class="dot"></span><b>Next</b><strong>More cities</strong><small>Coming soon</small></li></ol></div></article><article class="story row rev" id="s7" style="--c:#e9c46a"><header class="sh"><span class="num">07</span><div class="sh-t"><p class="team">Hubs · 26 Oct · Bangalore</p><h3>Our first Training Academy is open</h3></div></header>
+<div class="sb"><figure class="art"><img src="img/academy.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Jakkur, Bangalore. This is our first academy built just for our frontline teams.</p><div class="body"><p>The academy is for our frontline, on-ground teams. Anyone who joins Cars24 in Bangalore now learns, practises and grows right here at the hub. It was opened by three of our best performers: <b>Uma</b> (Care Crew), <b>Gopal</b> (WSM) and <b>Prateek</b> (Car Advisor).</p><p><b>What the training covers:</b></p><ul class='agenda'><li><b>Classroom theory</b>, then <b>hands-on practice on real cars</b>, so what you learn is what you do on the floor.</li><li><b>First up: a CJ refresher.</b> Day 1 was led by Mohammad Fayaz, our technical trainer for the South.</li><li><b>Batches all week</b>, covering all 90 Bangalore CJs and 15 WSMs.</li></ul></div><div class="facts"><div class="fact"><b>1st</b><span>Cars24 Training Academy</span></div><div class="fact"><b>90</b><span>Bangalore CJs in week one</span></div><div class="fact"><b>15</b><span>WSMs too</span></div></div><p class="why"><b>Why it matters:</b> Every new frontline joiner in Bangalore now trains in one place, with classroom lessons and real cars.</p></div></div></article></section><section class="chapter" id="builders" style="--c:#7cc4d8"><div class="ch-open"><span class="ch-n">Part 2</span><h2>Builders at work</h2><span class="ch-sub">What our tech and product teams shipped</span></div><article class="story row" id="s8" style="--c:#e98a6b"><header class="sh"><span class="num">08</span><div class="sh-t"><p class="team">Tech · 2 Nov · AI</p><h3>Phoenix: our new home for AI agents</h3></div></header>
+<div class="sb"><figure class="art"><img src="img/phoenix.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>An AI agent is software that can understand a request and act on it, like answering a customer and raising a ticket. Our first platform for these, AIRO, runs 45+ agents.</p><div class="bubble t-left"><p>One agent used to do the whole job. Now a team of agents shares it.</p></div><div class="body"><p><b>Phoenix</b> is the bigger platform that comes after AIRO. Specialist agents split a job and pass it along, so AI can take on harder work and cost less to run. First up: our <b>Support agent</b>, which reads a customer's query, sends it to the right team and opens a ticket. Next: agents that work towards a goal on their own, voice agents, and building agents straight from Claude or Codex.</p></div><div class="facts"><div class="fact"><b>45+</b><span>AI agents on AIRO today</span></div><div class="fact"><b>1.5 lakh</b><span>AI conversations a day</span></div><div class="fact"><b>4,000</b><span>queries a day, already on Phoenix</span></div></div><p class="why"><b>Why it matters:</b> Harder jobs can now be handed to AI, at a lower cost.</p></div></div></article><article class="story row rev" id="s9" style="--c:#9fcf9a"><header class="sh"><span class="num">09</span><div class="sh-t"><p class="team">Product · Autopilot app</p><h3>Pilots can now see demand before it reaches them</h3></div></header>
+<div class="sb"><figure class="art"><img src="img/heatmap.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Pilots are the drivers who pick up and move our cars. Until now, a pilot heard about a trip only when it was sent to them.</p><div class="bubble t-right"><p>See where the cars are needed, and get there first.</p></div><div class="body"><p><b>Opportunities &amp; Insights</b> is a live heat map inside the Autopilot app. It shows where cars need picking up or inspecting, and where other pilots already are, so pilots spread out instead of crowding one area. Kashish Kapadia built it from the first idea to launch. <a class='ext' href='https://cars24.slack.com/archives/C0GUPESGJ/p1795078023026779' target='_blank' rel='noopener'>Read the Slack post →</a></p></div><div class="facts"><div class="fact"><b>Top 7</b><span>cities live, more coming</span></div><div class="fact"><b>3</b><span>views: first, middle and last mile</span></div><div class="fact"><b>Live</b><span>pickups and inspection demand</span></div></div><p class="why"><b>Why it matters:</b> Pilots reach customers sooner, and fewer trips wait.</p></div></div></article><article class="story row" id="s10" style="--c:#e9a9b6"><header class="sh"><span class="num">10</span><div class="sh-t"><p class="team">Tech · 29 Nov · New Delhi</p><h3>Frontier '26: 30+ AI launches in one day</h3></div></header>
+<div class="sb"><figure class="art"><img src="img/frontier.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Cars24 has been rebuilding the way it works around AI. On 29 November, we show the world.</p><div class="bubble t-left"><p>Audacity is the only moat.</p></div><div class="body"><p>Cars24 and <b>Deployment Inc</b> will unveil 30+ AI releases in a single day, and open up how Cars24 is rebuilding a whole company around AI.</p></div><div class="facts"><div class="fact"><b>30+</b><span>first-of-their-kind AI launches</span></div><div class="fact"><b>1</b><span>day, live, in New Delhi</span></div><div class="fact"><b>29 Nov</b><span>mark the date</span></div></div><p class="why"><b>Why it matters:</b> Being bold is what keeps us ahead.</p></div></div></article><div class="halves"><article class="story half" id="s11" style="--c:#cdd38f"><header class="sh"><span class="num">11</span><div class="sh-t"><p class="team">Product · 28 Oct</p><h3>Deemed Ownership is live</h3></div></header>
+<figure class="art"><img src="img/deemed.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>When a used car is sold, the RC (registration) has to move to the new owner at the RTO. That can take weeks, and the seller worries until it's done.</p><div class="body"><p><b>Deemed Ownership</b> fixes that worry. As soon as we buy a car, we file a government form (<b>Form 29C</b>) and Cars24 becomes the car's <b>"deemed owner"</b>. From that moment, we take responsibility for the car, and the seller gets proof with the exact time it happened. The RC name change at the RTO follows as a separate step.</p><p>Its backend went live on <b>28 October</b>, and it reached the Cars24 app in early November.</p></div><div class="facts"><div class="fact"><b>Instant</b><span>we take responsibility for the car</span></div><div class="fact"><b>2 states</b><span>live today</span></div><div class="fact"><b>December</b><span>decision on going all-India</span></div></div><p class="why"><b>Why it matters:</b> Sellers can hand over their car without worrying about what happens next.</p></div></article><article class="story half" id="s12" style="--c:#a9c9dc"><header class="sh"><span class="num">12</span><div class="sh-t"><p class="team">Tech · New pages</p><h3>Cars24 Engineering is on X and LinkedIn</h3></div></header>
+<figure class="art"><img src="img/engpages.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Lots of great tech work happens inside Cars24, but people outside rarely see it.</p><div class="body"><p>Our builders now share what they build, how and what they learn on <a href='https://x.com/cars24eng' target='_blank' rel='noopener'><b>X (@cars24eng)</b></a> and <a href='https://www.linkedin.com/showcase/cars24-engineering/posts/?feedView=all' target='_blank' rel='noopener'><b>LinkedIn</b></a>. Follow, like and repost to help the pages grow.</p><div class='ask'><b>Built something you're proud of?</b> A tool, a fix, a launch, or a lesson learned the hard way. Share your story and we'll help you tell it on our Engineering pages. <a class='ext' href='https://script.google.com/a/macros/cars24.com/s/AKfycbyBB0mU8dp6ACiQnm6Mss1npu9BBgF4ETae3TOrvmbgxAdAY4XuIP5BnA0tsV_ztX_4/exec' target='_blank' rel='noopener'>Share your story →</a></div></div></div></article></div></section><section class="chapter" id="life" style="--c:#e9a9b6"><div class="ch-open"><span class="ch-n">Part 3</span><h2>Life at Cars24</h2><span class="ch-sub">People, giving, films, events and fun</span></div><article class="story row" id="s13" style="--c:#f6c744"><header class="sh"><span class="num">13</span><div class="sh-t"><p class="team">People · 18 Nov</p><h3>Ubuntu: a thank-you evening for our frontline</h3></div></header>
+<div class="sb"><figure class="art"><img src="img/ubuntu.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Ubuntu is an African word that means "I am because we are".</p><div class="bubble t-left"><p>One winner's mother took her first-ever flight for the evening, and video-called every relative to say her daughter works at Cars24.</p></div><div class="body"><p>On <b>18 November</b>, our top frontline builders came to the Support Office in Gurgaon with their <b>families</b> for an evening of awards. Each award was given by the head of that team, who told the winner's story on stage. The next day, Vikram joined a call with the winners to congratulate each of them.</p><p class='cats-t'><b>Awards went to our best:</b></p><ul class='cats'><li>RAs</li><li>Car Advisors</li><li>CJs</li><li>Pilots</li><li>Ops Marshals</li><li>Care Crew</li><li>Shine Squad</li><li>Safety Brigade</li><li>WSMs</li></ul></div><p class="why"><b>Why it matters:</b> Cars24 runs on the people at our hubs.</p></div></div></article><div class="halves"><article class="story half" id="s14" style="--c:#e2946a"><header class="sh"><span class="num">14</span><div class="sh-t"><p class="team">Brand · First PDI film</p><h3>Akbar and Birbal, now checking cars</h3></div></header>
+<figure class="art"><img src="img/akbar.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>PDI (Pre-Delivery Inspection) is the full check we do on a car before the customer takes it home.</p><div class="bubble t-up"><p>Zamana badle, sawaari badle… par jaanch har sawaari ki honi chahiye!</p></div><div class="body"><p>Our first-ever PDI brand film brings back <b>Akbar and Birbal</b>, with horses swapped for horsepower. Birbal still inspects every ride, now with help from Cars24 PDI.</p></div><div class="facts"><div class="fact"><b>1st</b><span>PDI brand film</span></div><div class="fact"><b>3</b><span>platforms: Instagram, LinkedIn, X</span></div></div><p class="why"><b>Why it matters:</b> It explains PDI in a way everyone remembers.</p></div></article><article class="story half" id="s15" style="--c:#e9c46a"><header class="sh"><span class="num">15</span><div class="sh-t"><p class="team">Event · Grand Startup Challenge</p><h3>₹1 crore for India's early founders</h3></div></header>
+<figure class="art"><img src="img/gsc.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Cars24 went looking for young startups solving problems close to our world.</p><div class="bubble t-up"><p>Four tracks. Top 20 get mentoring. Finale in New Delhi.</p></div><div class="body"><p>Run with Startup India (DPIIT), MeitY Startup Hub and Startup Policy Forum. Tracks: lending & fintech, mobility & road safety, logistics, and sovereign AI. Applications closed on <b>10 November</b>; the top 20 get a month of mentoring in December. <a class='ext' href='https://gsc.cars24.com' target='_blank' rel='noopener'>Visit gsc.cars24.com →</a></p></div><div class="facts"><div class="fact"><b>₹1 Cr</b><span>for early founders</span></div><div class="fact"><b>4</b><span>tracks</span></div><div class="fact"><b>Jan 2027</b><span>finale in New Delhi</span></div></div><p class="why"><b>Why it matters:</b> We back the next generation of founders building for India.</p></div></article></div><aside class="dyk"><span class="dyk-t">Did you know?</span><p>Alba's showroom in Dubai now has a <b>2026 Tesla Cybertruck Cyberbeast</b> for sale. If you're in Dubai, drop by and take a look.</p></aside><div class="briefs"><article class="story brief" id="s16" style="--c:#e9a9b6"><header class="sh"><span class="num">16</span><div class="sh-t"><p class="team">People · New series</p><h3>Her Drive: stories of our women builders</h3></div></header>
+<figure class="art"><img src="img/herdrive.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Some of the best stories in this company sit one desk away, and we rarely hear them.</p><div class="body"><p><b>Her Drive</b> is a new series that passes the mic to the resilient women who build Cars24. First up: <b>Sheetal Pandya</b>. <a class='ext' href='https://www.linkedin.com/posts/cars24_her-drive-sheetal-pandya-women-of-cars24-activity-7528415113641500673-GzoW' target='_blank' rel='noopener'>Read Sheetal's story →</a></p></div></div></article><article class="story brief" id="s17" style="--c:#b7b2e0"><header class="sh"><span class="num">17</span><div class="sh-t"><p class="team">People · Wellbeing</p><h3>Meet Milo</h3></div></header>
+<figure class="art"><img src="img/milo.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Most of us carry more through the workday than we let on.</p><div class="bubble t-up"><p>A good place to start when something is on your mind.</p></div><div class="body"><p><b>Milo</b> is an AI wellbeing companion on Slack, built on proven therapy techniques. Use it to think out loud: a conversation you keep replaying, a hard decision, or missing home. It is not a replacement for therapy; for that, write to wellness@cars24.com. <a class='ext' href='https://www.talktomilo.co/cars24' target='_blank' rel='noopener'>Get started with Milo →</a></p></div><div class="facts"><div class="fact"><b>24/7</b><span>on Slack, in confidence</span></div></div></div></article><article class="story brief" id="s18" style="--c:#e2946a"><header class="sh"><span class="num">18</span><div class="sh-t"><p class="team">People · Diwali</p><h3>Diwali, together at Cars24</h3></div></header>
+<figure class="art"><img src="img/diwali.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><div class="bubble t-up"><p>The idea was simple: share the warmth and joy of the festival.</p></div><div class="body"><p>Diwali gifts arrived later than planned, but the idea behind them was to share the warmth and joy of the festival with colleagues.</p><p>The celebration brought teams together around a familiar part of Diwali: thoughtful gifts and time spent with one another.</p></div></div></article><article class="story brief" id="s19" style="--c:#a9c9dc"><header class="sh"><span class="num">19</span><div class="sh-t"><p class="team">Fun · Badminton Championship</p><h3>Smash! Meet our champions</h3></div></header>
+<figure class="art"><img src="img/badminton.jpg" alt="" loading="lazy"></figure>
+<div class="txt"><p class="cap"><span class="tab">Background story</span>Great turnout, great rallies, and plenty of loud cheering.</p><div class="bubble t-up"><p>Ladies, we want to see MORE of you on the court next time!</p></div><div class="body"><p><b>Mixed doubles:</b> Goldy & Harshita Khajuria. <b>Spirit of the Games:</b> Aditya Ghai, for fair refereeing. No experience needed for next time: come play, have fun and be part of the community.</p></div><div class="facts"><div class="fact"><b>Goldy</b><span>men's singles</span></div><div class="fact"><b>Harshita</b><span>women's singles</span></div><div class="fact"><b>Kunal & Vasu</b><span>men's doubles</span></div></div></div></article></div></section>
+<section class="chapter games" id="games" style="--c:#f6c744"><div class="ch-open"><span class="ch-n">Bonus</span><h2>Puzzle page</h2><span class="ch-sub">Sudoku, word jumble and memory match</span></div>
+<div class="gbox"><div class="tabs" role="tablist">
+  <button role="tab" aria-selected="true" data-p="g-sud">Sudoku</button>
+  <button role="tab" aria-selected="false" data-p="g-scr">Word jumble</button>
+  <button role="tab" aria-selected="false" data-p="g-mem">Memory match</button>
+ </div>
+ <div class="gpanel" id="g-sud" role="tabpanel"></div>
+ <div class="gpanel" id="g-scr" role="tabpanel" hidden></div>
+ <div class="gpanel" id="g-mem" role="tabpanel" hidden></div></div>
+</section>
+<section class="end"><div class="end-l"><span class="end-t">Readers' corner</span><h2>Got a story to share?</h2><p>Did your team ship something, win something or try something brave? Your story could be in the next issue.</p>
+<a class="cta" href="https://script.google.com/a/macros/cars24.com/s/AKfycbyBB0mU8dp6ACiQnm6Mss1npu9BBgF4ETae3TOrvmbgxAdAY4XuIP5BnA0tsV_ztX_4/exec" target="_blank" rel="noopener">Share your story →</a></div>
+<div class="next"><small>Next issue</small><b>December 2026</b><span>Out in early December</span></div></section>
+</main>
+<footer>The Pitstop · October–November 2026 · Cars24</footer>
+<script>
+(()=>{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+// ---------- games ----------
+const G={"quiz": [["How many cars a month do Cars24 and Alba now sell together in the UAE?", ["~300", "~700", "1,000+"], 2], ["In co-lending, what share of each loan do we keep?", ["10%", "50%", "87%"], 0], ["Where is our first Training Academy?", ["Jakkur, Bangalore", "Dehradun", "Kukatpally"], 0], ["How many AI launches are planned at Frontier '26?", ["10", "30+", "100"], 1], ["Who checks the cars in our PDI brand film?", ["Vikram & Betaal", "Akbar & Birbal", "Tenali Raman"], 1], ["How much is the Grand Startup Challenge offering early founders?", ["₹10 lakh", "₹1 crore", "₹10 crore"], 1]], "tf": [["Frontier '26 will unveil 30+ AI releases in one day.", true], ["Our Dehradun hub opened in September.", false], ["UAE and Australia each sold about 700 cars in a month.", true], ["Milo is a new canteen menu.", false], ["Alba Cars is changing its name to Cars24.", false], ["Goldy won the men's singles badminton title.", true]], "scr": [["ALBA", "The Dubai showroom that joined Cars24"], ["ACADEMY", "What opened in Jakkur, Bangalore"], ["FRONTIER", "Our AI summit on 29 November"], ["MILO", "Our AI wellbeing buddy"], ["BIRBAL", "Akbar's witty minister, now inspecting cars"], ["SMASH", "What our badminton champions did best"], ["PHOENIX", "Our new home for AI agents"], ["UBUNTU", "I am because we are"], ["CONTAINER", "What our new small-city hubs are built from"]], "mem": {"car": "🚗", "key": "🔑", "coin": "💰", "cup": "🏆", "shuttle": "🏸", "diya": "🪔"}};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const cheers=['Spot on! 🎉','Nailed it! 🚗','Correct! ⭐','Yes! 🙌','Full marks! 🏆'];
+const cheer=()=>cheers[Math.floor(Math.random()*cheers.length)];
+// tabs
+$$('.tabs button').forEach(t=>t.addEventListener('click',()=>{$$('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===t));
+  $$('.gpanel').forEach(p=>p.hidden=p.id!==t.dataset.p)}));
+
+// 1. mini sudoku (6x6)
+(()=>{const P=$('#g-sud');
+ const make=()=>{const d=shuffle([1,2,3,4,5,6]);
+  const rows=[].concat(...shuffle([0,1,2]).map(b=>shuffle([0,1]).map(r=>b*2+r)));
+  const cols=[].concat(...shuffle([0,1]).map(b=>shuffle([0,1,2]).map(c=>b*3+c)));
+  const sol=rows.map(r=>cols.map(c=>d[(3*(r%2)+Math.floor(r/2)+c)%6]));
+  const cells=shuffle([...Array(36).keys()]).slice(0,18);const giv=sol.map(r=>r.slice());cells.forEach(i=>giv[Math.floor(i/6)][i%6]=0);return giv};
+ const draw=()=>{const g=make();
+  P.innerHTML=`<div class="ghead"><h3>🔢 Mini sudoku</h3><span class="score">6 × 6</span></div><p class="gq">Fill every row, column and 2×3 box with the numbers 1 to 6. No repeats!</p><div class="sud">${g.map((row,r)=>row.map((v,c)=>`<input inputmode="numeric" maxlength="1" aria-label="Row ${r+1} column ${c+1}" class="${c===2?'c3':''} ${r%2===1&&r<5?'r2':''}" ${v?`value="${v}" readonly`:''}>`).join('')).join('')}</div><div class="sudrow"><button class="gnext" data-check>Check</button><button class="gbtn" data-new>New puzzle</button></div><p class="gmsg" aria-live="polite"></p>`;
+  const ins=$$('.sud input',P),m=$('.gmsg',P);
+  const val=()=>ins.map(i=>+i.value||0);
+  const bad=()=>{const v=val(),b=new Set();
+   for(let k=0;k<36;k++){if(!v[k])continue;const r=Math.floor(k/6),c=k%6;
+    for(let j=0;j<36;j++){if(j===k||v[j]!==v[k])continue;const r2=Math.floor(j/6),c2=j%6;
+     if(r===r2||c===c2||(Math.floor(r/2)===Math.floor(r2/2)&&Math.floor(c/3)===Math.floor(c2/3)))b.add(k)}}return b};
+  const mark=()=>{const b=bad();ins.forEach((i,k)=>i.classList.toggle('bad',b.has(k)&&!i.readOnly))};
+  ins.forEach(i=>i.addEventListener('input',()=>{i.value=i.value.replace(/[^1-6]/g,'').slice(0,1);mark();m.textContent=''}));
+  $('[data-check]',P).onclick=()=>{const v=val(),b=bad();
+   if(b.size){m.textContent='Some numbers clash (shown in red). Keep going!'}
+   else if(v.includes(0)){m.textContent=`So far so good! ${v.filter(x=>!x).length} squares left.`}
+   else{$('.sud',P).classList.add('won');m.textContent='Solved! You are a sudoku pro. 🏆'}};
+  $('[data-new]',P).onclick=draw};
+ draw()})();
+
+// 3. word jumble
+(()=>{const P=$('#g-scr');let i=0,score=0,list=shuffle(G.scr);
+ const jumble=w=>{let s;do{s=shuffle(w.split('')).join('')}while(s===w&&w.length>2);return s};
+ const draw=()=>{if(i>=list.length){P.innerHTML=`<div class="ghead"><h3>🔤 Word jumble</h3><span class="score">Solved ${score}/${list.length}</span></div><p class="gq">All done! 🎉</p><button class="gnext">Play again</button>`;$('.gnext',P).onclick=()=>{i=0;score=0;list=shuffle(G.scr);draw()};return}
+  const [w,clue]=list[i];
+  P.innerHTML=`<div class="ghead"><h3>🔤 Word jumble · ${i+1} of ${list.length}</h3><span class="score">Solved ${score}</span></div><p class="gq">Clue: ${clue}</p><div class="scr-word">${jumble(w).split('').map(c=>`<span>${c}</span>`).join('')}</div><form class="scr-in"><input aria-label="Your answer" autocomplete="off" placeholder="Type the word"><button class="gnext" type="submit">Check</button><button class="gbtn" type="button" data-skip>Show me</button></form><p class="gmsg" aria-live="polite"></p>`;
+  const f=$('form',P),inp=$('input',P),m=$('.gmsg',P);
+  const next=()=>{const n=document.createElement('button');n.className='gnext';n.textContent='Next word →';n.onclick=()=>{i++;draw()};P.appendChild(n);f.querySelectorAll('button,input').forEach(x=>x.disabled=true)};
+  f.onsubmit=ev=>{ev.preventDefault();if(inp.value.trim().toUpperCase().replace(/\s/g,'')===w){score++;m.textContent=cheer();next()}else{m.textContent='Not yet. Try again!'}};
+  $('[data-skip]',P).onclick=()=>{m.textContent=`It was: ${w}`;next()}};
+ draw()})();
+
+// 4. memory match
+(()=>{const P=$('#g-mem');
+ const draw=()=>{const keys=shuffle([...Object.keys(G.mem),...Object.keys(G.mem)]);let open=[],moves=0,found=0,lock=false;
+  P.innerHTML=`<div class="ghead"><h3>🃏 Memory match · find the pairs</h3><span class="score" id="memsc">Moves 0</span></div><div class="mem">${keys.map((k,i)=>`<button class="tile" data-k="${k}" aria-label="Hidden card ${i+1}"><span class="ti"><span class="tf">?</span><span class="tb">${G.mem[k]}</span></span></button>`).join('')}</div><p class="gmsg" aria-live="polite"></p>`;
+  $$('.tile',P).forEach(t=>t.onclick=()=>{if(lock||t.classList.contains('up')||t.classList.contains('done'))return;
+   t.classList.add('up');open.push(t);
+   if(open.length===2){moves++;$('#memsc').textContent='Moves '+moves;const [a,b]=open;
+    if(a.dataset.k===b.dataset.k){a.classList.add('done');b.classList.add('done');a.classList.remove('up');b.classList.remove('up');open=[];found++;
+      if(found===Object.keys(G.mem).length){$('.gmsg',P).textContent=`You found all pairs in ${moves} moves! 🎉`;const n=document.createElement('button');n.className='gnext';n.textContent='Play again';n.onclick=draw;P.appendChild(n)}}
+    else{lock=true;setTimeout(()=>{a.classList.remove('up');b.classList.remove('up');open=[];lock=false},800)}}})};
+ draw()})();
+
+})();
+(()=>{
+const bar=document.querySelector('.prog i'),links=[...document.querySelectorAll('.top nav a')],nav=document.querySelector('.top nav');
+const secs=links.map(a=>document.getElementById(a.dataset.ch));let cur=null,tick=false;
+function upd(){tick=false;const h=document.documentElement,max=h.scrollHeight-innerHeight;bar.style.width=(max>0?Math.min(100,scrollY/max*100):0)+'%';
+ let on=null;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<innerHeight*.35)on=i});
+ if(on!==cur){cur=on;links.forEach((a,i)=>a.classList.toggle('on',i===on));if(on!=null){const a=links[on];nav.scrollLeft=a.offsetLeft-nav.clientWidth/2+a.offsetWidth/2}}}
+addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd();
+})();
+</script>
+</body></html>
