@@ -9,7 +9,7 @@ The Pitstop — Cars24’s October 2026 newsletter. A responsive, swipeable edit
 - [Public repository](https://github.com/ishaankothiyal-designer/Newsletter-X-Cars-24)
 - [Vercel project dashboard](https://vercel.com/design-ea38/newsletter-x-cars-24)
 
-The current V8 edition includes 25 stories in four chapters, eight paper colours, varied editorial layouts, story illustrations, source notes, and a soft page-turn sound. V8 remains at the default URL. V9 adds a continuous vertical edition at `/versions/v9/`, with the same 25 stories, artwork, notes, and source links. No version picker or retired editions are restored.
+The current V8 edition includes 25 stories in four chapters, eight paper colours, varied editorial layouts, story illustrations, source notes, and a soft page-turn sound. V8 remains at the default URL. V9, at `/versions/v9/`, is a separate, self-contained October edition built around seven curated stories and an opening note on why the newsletter exists — quality over quantity, not a mirror of V8's story list. V11, at `/versions/v11/`, is the November edition, also self-contained. No version picker or retired editions are restored.
 
 ## Local preview
 
@@ -27,6 +27,7 @@ Requires Node.js 22 or later.
 
 ```sh
 node tests/v9-content.test.cjs
+node tests/v11-content.test.cjs
 node tests/v8-content.test.cjs
 node tests/v8-images.test.cjs
 node tests/v8-motion.test.cjs
@@ -48,7 +49,9 @@ node tests/v8-sound.test.cjs
 - `dist/stories.js` — stories, chapters, page colours, layout treatments, and sources.
 - `dist/page-sound.js` — optional page-turn audio.
 - `dist/versions/v8/` — V8 entry point, identical to the default reader.
-- `dist/versions/v9/` — continuous vertical newsletter; shares root story data and assets.
+- `dist/versions/v9/` — October edition; self-contained, its own seven-story dataset in `v9.js`.
+- `dist/versions/v11/` — November edition; self-contained, its own story dataset in `v11.js`.
+- `dist/versions/v14/` — retro comic-book edition; a single standalone HTML file with images embedded as base64.
 - `scripts/package-v9.py` — exports a self-contained HTML copy for HTML Hub.
 - `tests/` — content, gesture, motion, viewport, and sound checks.
 - `docs/` — design decisions and asset provenance.
@@ -67,3 +70,7 @@ Both editions include the Dhanteras sales update (381 cars in one day), place Fr
 V10 is a separate continuous-scroll edition at `/versions/v10/`, based on V9's shared 25-story dataset. It replaces the prior art direction with a broadsheet masthead, ruled columns, textured neutral paper, CARS24 blue identity, and newly generated newspaper ink illustrations. Default V8 and V9 are unchanged.
 
 Run `node tests/v10-content.test.cjs` to verify content preservation. Run `python3 scripts/package-v10.py` to write the standalone `../output/The-Pitstop-V10.html`. Reference research and design decisions are documented in `docs/v10-newspaper-direction.md`.
+
+### V14 — retro comic-book edition (Oct–Nov 2026)
+
+V14 is a standalone page at `/versions/v14/`: 19 October and November stories in three parts (Business, Builders at work, Life at Cars24), plus a puzzle page with sudoku, word jumble and memory match. It's a single self-contained HTML file (images embedded as base64) and does not touch the shared story data or V8–V13. Run `node tests/v14-content.test.cjs` to check it. See `docs/v14-comic-edition.md`.
