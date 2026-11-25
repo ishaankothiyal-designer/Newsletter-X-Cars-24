@@ -3,6 +3,9 @@ const dir=path.join(__dirname,'../dist/versions/v14'),html=fs.readFileSync(path.
 const stories=[...html.matchAll(/<article class="story [^"]*" id="s(\d+)"/g)].map(m=>+m[1]);
 assert.equal(stories.length,19,'19 stories');assert.deepEqual(stories,stories.map((_,i)=>i+1),'stories numbered in order');
 for(const id of ['business','builders','life','games'])assert(html.includes(`id="${id}"`),id+' section present');
-for(const m of new Set([...html.matchAll(/(?:src|href)="(img\/[^"]+)"/g)].map(m=>m[1])))assert(fs.statSync(path.join(dir,m)).size>0,m+' exists');
+assert(!/src="img\//.test(html),'images must be embedded (base64), not read from a separate img/ folder');
+const dataUris=[...html.matchAll(/src="(data:image\/[a-zA-Z+]+;base64,[A-Za-z0-9+/=]+)"/g)];
+assert(dataUris.length>=19,'every story (and the cover) should carry its own embedded image');
+for(const [,uri] of dataUris)assert(uri.length>1000,'embedded image data should not be a tiny/placeholder stub');
 for(const banned of ['Double issue','New<br>in Nov','No. 02','Price ₹0','explained simply'])assert(!html.includes(banned),'removed: '+banned);
 console.log('V14 passed: 19 stories in 3 parts plus games; all images present; removed copy stays removed.');

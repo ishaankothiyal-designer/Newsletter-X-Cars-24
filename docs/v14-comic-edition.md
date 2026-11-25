@@ -1,6 +1,6 @@
 # V14 — Retro comic-book edition (October–November 2026)
 
-Local route: `/versions/v14/`. A standalone page: `index.html` plus its own `img/` folder. It does not use the shared `stories.js` data, and V8–V13 are unchanged.
+Local route: `/versions/v14/`. A single standalone `index.html` — all images are embedded as base64 data URIs, so there is no separate `img/` folder. It does not use the shared `stories.js` data, and V8–V13 are unchanged.
 
 ## What it is
 
