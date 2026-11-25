@@ -28,6 +28,7 @@ jobs:
           node tests/v12-content.test.cjs
           node tests/v13-content.test.cjs
           node tests/v9-content.test.cjs
+          node tests/v14-content.test.cjs
           node tests/v8-content.test.cjs
           node tests/v8-images.test.cjs
           node tests/v8-motion.test.cjs
