@@ -49,7 +49,7 @@ assert(html.includes('The November issue'));
 assert(!html.includes('The October issue'),'must not carry over October\'s cover copy');
 
 const versionsDir=fs.readdirSync(path.join(dist,'versions')).sort();
-assert.deepEqual(versionsDir,['v10','v11','v12','v13','v14','v8','v9'],'V11 sits alongside the existing editions');
+assert.deepEqual(versionsDir,['v10','v11','v12','v13','v14','v15','v8','v9'],'V11 sits alongside the existing editions');
 assert(fs.existsSync(path.join(dist,'versions/v9/v9.js')),'October (V9) must still exist untouched');
 
 console.log(`V11 content passed: ${cards.length} stories across ${Object.keys(EXPECTED_CHAPTERS).length} chapters, all flip cards, self-contained data, October (V9) untouched.`);

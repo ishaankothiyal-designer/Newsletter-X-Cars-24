@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const dir=path.join(__dirname,'../dist/versions/v15'),html=fs.readFileSync(path.join(dir,'index.html'),'utf8');
+const stories=[...html.matchAll(/<article class="story [^"]*" id="s(\d+)"/g)].map(m=>+m[1]);
+assert.equal(stories.length,19,'19 stories');assert.deepEqual(stories,stories.map((_,i)=>i+1),'stories numbered in order');
+for(const id of ['business','builders','life','games'])assert(html.includes(`id="${id}"`),id+' section present');
+assert(!/src="img\//.test(html),'images must be embedded (base64), not read from a separate img/ folder');
+const dataUris=[...html.matchAll(/src="(data:image\/[a-zA-Z+]+;base64,[A-Za-z0-9+/=]+)"/g)];
+assert(dataUris.length>=19,'every story (and the cover) should carry its own embedded image');
+for(const [,uri] of dataUris)assert(uri.length>1000,'embedded image data should not be a tiny/placeholder stub');
+assert(!/Bangers|Comic Neue|fonts\.googleapis/.test(html),'V15 is the Cars24 brand edition, not the comic skin — no comic fonts or external font fetches');
+assert(/@font-face/.test(html),'Geist Sans should be embedded so the edition renders Cars24 brand typography offline');
+assert(/#4736FE/i.test(html),'Cars24 brand blue should be present as the lead colour');
+console.log('V15 passed: 19 stories in 3 parts plus games; all images present; Cars24 brand theme (no comic skin) confirmed.');
