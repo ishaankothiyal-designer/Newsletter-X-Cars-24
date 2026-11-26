@@ -52,6 +52,7 @@ node tests/v8-sound.test.cjs
 - `dist/versions/v9/` — October edition; self-contained, its own seven-story dataset in `v9.js`.
 - `dist/versions/v11/` — November edition; self-contained, its own story dataset in `v11.js`.
 - `dist/versions/v14/` — retro comic-book edition; a single standalone HTML file with images embedded as base64.
+- `dist/versions/v15/` — Cars24 brand edition; same content as V14, restyled, mobile-first, self-contained HTML.
 - `scripts/package-v9.py` — exports a self-contained HTML copy for HTML Hub.
 - `tests/` — content, gesture, motion, viewport, and sound checks.
 - `docs/` — design decisions and asset provenance.
@@ -74,3 +75,7 @@ Run `node tests/v10-content.test.cjs` to verify content preservation. Run `pytho
 ### V14 — retro comic-book edition (Oct–Nov 2026)
 
 V14 is a standalone page at `/versions/v14/`: 19 October and November stories in three parts (Business, Builders at work, Life at Cars24), plus a puzzle page with sudoku, word jumble and memory match. It's a single self-contained HTML file (images embedded as base64) and does not touch the shared story data or V8–V13. Run `node tests/v14-content.test.cjs` to check it. See `docs/v14-comic-edition.md`.
+
+### V15 — Cars24 brand edition (Oct–Nov 2026)
+
+V15 is a standalone page at `/versions/v15/` with the exact same 19 stories, three parts and puzzle page as V14, but restyled from the retro comic-book look into a clean Cars24 brand look (Brand Blue `#4736FE`, white/neutral base, Geist Sans, no halftone/hard-shadow comic styling) and built mobile-first. Self-contained HTML (base64 images, embedded Geist font); does not touch V8–V14. Run `node tests/v15-content.test.cjs` to check it. See `docs/v15-cars24-brand-edition.md`.
