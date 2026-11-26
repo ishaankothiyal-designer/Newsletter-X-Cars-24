@@ -4,7 +4,7 @@ Local route: `/versions/v14/`. A single standalone `index.html` — all images a
 
 ## What it is
 
-- 19 stories from October and November 2026, in three parts: **Business**, **Builders at work** and **Life at Cars24**.
+- 20 stories from October and November 2026, in three parts: **Business**, **Builders at work** and **Life at Cars24**.
 - Bonus puzzle page: mini 6×6 sudoku, word jumble and memory match.
 - Each story has a "Background story" line for readers who don't know the topic, a short body, key numbers and a "Why it matters" line.
 - Facts were checked against the original Slack posts.
